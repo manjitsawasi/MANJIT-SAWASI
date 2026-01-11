@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Manjitsawasi - Moksh Patam Final</title>
+    <style>
+        * { box-sizing: border-box; touch-action: manipulation; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; 
+            margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh; overflow-x: hidden;
+        }
+        
+        #selection-screen { background: white; color: #333; padding: 25px; border-radius: 20px; text-align: center; margin-top: 50px; width: 90%; max-width: 350px; border: 4px solid #f59e0b; }
+        .btn { background: #f59e0b; color: white; border: none; padding: 12px 20px; margin: 10px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+        /* बोर्ड डिजाइन */
+        #board-container { position: relative; width: 92vw; height: 92vw; max-width: 380px; max-height: 380px; margin: 15px 0; border: 4px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        #board { display: grid; grid-template-columns: repeat(10, 1fr); width: 100%; height: 100%; background: #fff; }
+        .cell { border: 0.1px solid #eee; display: flex; justify-content: center; align-items: center; font-size: 10px; font-weight: bold; color: #444; position: relative; }
+        
+        /* साँप और सीढ़ी के रंग */
+        .ladder-cell { background: #dcfce7 !important; border: 1.5px solid #22c55e !important; color: #166534; }
+        .snake-cell { background: #fee2e2 !important; border: 1.5px solid #ef4444 !important; color: #991b1b; }
+
+        /* गोटियाँ */
+        .pawn { width: 18px; height: 18px; border-radius: 50%; position: absolute; z-index: 50; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .p1 { background: #e11d48; } .p2 { background: #2563eb; }
+
+        /* पासा (Dice) */
+        .ui { text-align: center; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 20px; width: 90%; max-width: 350px; }
+        #dice { 
+            font-size: 65px; cursor: pointer; display: inline-block; 
+            background: #fff; border-radius: 15px; width: 80px; height: 80px;
+            line-height: 80px; color: #1e293b; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        .rolling { animation: spin 0.2s infinite linear; }
+        @keyframes spin { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+        
+        #status { font-size: 18px; margin-bottom: 10px; color: #fbbf24; font-weight: bold; }
+        #msg { position: fixed; top: 20%; font-size: 26px; font-weight: bold; opacity: 0; transition: 0.5s; z-index: 100; text-align: center; width: 100%; pointer-events: none; }
+        .show { opacity: 1 !important; transform: scale(1.3) !important; }
+    </style>
+</head>
+<body>
+
+    <div id="selection-screen">
+        <h2>नमस्ते मंजीत!</h2>
+        <p>खेल शुरू करें</p>
+        <button class="btn" onclick="initGame('ai')">VS कंप्यूटर</button>
+        <button class="btn" onclick="initGame('friend')">VS दोस्त</button>
+    </div>
+
+    <div id="game-area" style="display:none; text-align: center;">
+        <h2 style="margin: 5px; font-size: 20px;">Manjitsawasi - मोक्ष पटम</h2>
+        <div id="status">आपकी बारी</div>
+        <div id="board-container">
+            <div id="board"></div>
+        </div>
+        <div class="ui">
+            <div id="dice" onclick="playTurn()">🎲</div>
+            <p style="font-size: 13px; color: #94a3b8; margin-top: 10px;">पासे पर क्लिक करें!</p>
+        </div>
+    </div>
+
+    <div id="msg"></div>
+
+    <script>
+        let gameMode = '', currentPlayer = 0, positions = [1, 1], canClick = true;
+        
+        // १० साँप और १० सीढ़ियाँ (Board Logic)
+        const snakes = { 99: 7, 92: 35, 85: 40, 73: 15, 62: 22, 54: 10, 48: 9, 31: 4, 25: 2, 95: 50 }; 
+        const ladders = { 3: 20, 12: 45, 21: 58, 33: 52, 42: 80, 50: 75, 61: 90, 67: 88, 71: 94, 81: 98 };
+
+        function initGame(mode) {
+            gameMode = mode;
+            document.getElementById('selection-screen').style.display = 'none';
+            document.getElementById('game-area').style.display = 'block';
+            createBoard();
+            setupPawns();
+        }
+
+        function createBoard() {
+            const board = document.getElementById('board');
+            for (let i = 100; i >= 1; i--) {
+                let div = document.createElement('div');
+                div.className = 'cell'; div.id = 'c' + i; div.innerText = i;
+                if(snakes[i]) { div.classList.add('snake-cell'); div.innerText += "🐍"; }
+                if(ladders[i]) { div.classList.add('ladder-cell'); div.innerText += "🪜"; }
+                board.appendChild(div);
+            }
+        }
+
+        function setupPawns() {
+            for(let i=0; i<2; i++) {
+                let p = document.createElement('div');
+                p.className = `pawn p${i+1}`; p.id = `pawn-${i}`;
+                document.getElementById('board-container').appendChild(p);
+                updatePawn(i);
+            }
+        }
+
+        function updatePawn(idx) {
+            let cell = document.getElementById('c' + positions[idx]);
+            let pawn = document.getElementById('pawn-' + idx);
+            pawn.style.left = cell.offsetLeft + (idx*6) + 'px';
+            pawn.style.top = cell.offsetTop + (idx*6) + 'px';
+        }
+
+        // साउंड पैदा करने का नया तरीका (Beep Sound)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playSfx(freq, dur) {
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + dur);
+        }
+
+        function playTurn() {
+            if(!canClick || (currentPlayer === 1 && gameMode === 'ai')) return;
+            handleMove();
+        }
+
+        async function handleMove() {
+            canClick = false;
+            let d = document.getElementById('dice');
+            d.classList.add('rolling');
+            playSfx(400, 0.1); // पासा फेंकने की आवाज़
+            
+            setTimeout(async () => {
+                d.classList.remove('rolling');
+                let roll = Math.floor(Math.random() * 6) + 1;
+                const faces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+                d.innerText = faces[roll-1];
+
+                for(let i=0; i<roll; i++) {
+                    if(positions[currentPlayer] < 100) {
+                        positions[currentPlayer]++;
+                        updatePawn(currentPlayer);
+                        playSfx(600, 0.05); // चलने की आवाज़ (Tap-Tap)
+                        await new Promise(r => setTimeout(r, 300));
+                    }
+                }
+
+                let pos = positions[currentPlayer];
+                if(snakes[pos]) {
+                    showMsg("साँप ने काटा! 🐍", "#ef4444");
+                    positions[currentPlayer] = snakes[pos];
+                    playSfx(200, 0.4); 
+                } else if(ladders[pos]) {
+                    showMsg("सीढ़ी मिली! 🪜", "#22c55e");
+                    positions[currentPlayer] = ladders[pos];
+                    playSfx(800, 0.3);
+                }
+                updatePawn(currentPlayer);
+
+                if(positions[currentPlayer] === 100) {
+                    alert((currentPlayer === 0 ? "मंजीत" : "विरोधी") + " जीत गया!");
+                    location.reload(); return;
+                }
+
+                currentPlayer = 1 - currentPlayer;
+                document.getElementById('status').innerText = (currentPlayer === 0 ? "आपकी बारी" : (gameMode === 'ai' ? "कंप्यूटर चल रहा है..." : "दोस्त की बारी"));
+                canClick = true;
+                if(gameMode === 'ai' && currentPlayer === 1) setTimeout(handleMove, 1200);
+            }, 600);
+        }
+
+        function showMsg(t, c) {
+            let m = document.getElementById('msg');
+            m.innerText = t; m.style.color = c;
+            m.classList.add('show');
+            setTimeout(() => m.classList.remove('show'), 2000);
+        }
+    </script>
+
+
+<script type="text/javascript">
+    (function() {
+        // 1. Right Click Alert aur Block
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert("MANJIT SECURITY: Chori karna mana hai! 🚫\nYe page Manjeet bhai ne banaya hai.");
+        });
+
+        // 2. Text Selection aur Image Dragging Block
+        document.onselectstart = function() { return false; };
+        document.ondragstart = function() { return false; };
+
+        // 3. Keyboard Shortcuts Block (F12, Ctrl+U, Ctrl+Shift+I, Ctrl+S)
+        document.onkeydown = function(e) {
+            if (
+                e.keyCode == 123 || // F12
+                (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || // Inspect Tools
+                (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) // View Source aur Save Page
+            ) {
+                alert("SECURITY ALERT: Manjit Bhai ne ye rasta band kiya hua hai! 🔒");
+                return false;
+            }
+        };
+
+        // 4. Inspect Element khulne par Browser Pause (Debugger Loop)
+        setInterval(function() {
+            (function(_0x1b2c) {
+                if (_0x1b2c) {
+                    (function() {
+                        var _0x3e4a = function() {
+                            debugger;
+                        };
+                        _0x3e4a();
+                    }());
+                }
+            })(true);
+        }, 100);
+
+        // 5. Iframe Protection (Taaki koi apki site copy na kar sake)
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+        
+        console.log("%cSTOP! Manjitsawasi's Secure Zone.", "color: red; font-size: 30px; font-weight: bold;");
+    })();
+</script>
+
+
+</body>
+</html>
+

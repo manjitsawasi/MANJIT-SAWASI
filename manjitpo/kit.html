@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjitsawasi - Pro TicTacToe</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px; overflow: hidden; }
+        
+        #menu { background: white; color: #333; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 10; }
+        .btn { background: #38bdf8; color: white; border: none; padding: 12px 20px; margin: 10px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+        #game-area { display: none; text-align: center; position: relative; }
+        #board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 300px; height: 300px; margin: 20px auto; position: relative; }
+        
+        .cell { background: #1e293b; border-radius: 15px; display: flex; justify-content: center; align-items: center; font-size: 50px; font-weight: bold; cursor: pointer; z-index: 2; }
+        .cell.x { color: #f43f5e; } 
+        .cell.o { color: #38bdf8; }
+
+        /* जीतने वाली लाइन (Strike Line) */
+        #strike {
+            position: absolute; background-color: #fbbf24; z-index: 5;
+            display: none; transition: all 0.3s ease; border-radius: 10px;
+        }
+
+        #status { font-size: 22px; color: #fbbf24; margin: 15px; font-weight: bold; }
+        
+        /* बैकग्राउंड म्यूजिक कंट्रोल */
+        #music-note { position: fixed; bottom: 20px; right: 20px; font-size: 30px; cursor: pointer; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <h1 style="color: #38bdf8; margin-bottom: 5px;">Manjitsawasi</h1>
+    <p style="margin-top: 0; opacity: 0.7;">काटा-पीटी प्रो</p>
+
+    <div id="menu">
+        <h2 style="margin-top:0;">गेम शुरू करें</h2>
+        <button class="btn" onclick="startGame('ai')">VS रोबोट</button>
+        <button class="btn" onclick="startGame('friend')">VS दोस्त</button>
+    </div>
+
+    <div id="game-area">
+        <div id="status">आपकी बारी (X)</div>
+        <div id="board">
+            <div id="strike"></div>
+            <div class="cell" onclick="userMove(0)"></div>
+            <div class="cell" onclick="userMove(1)"></div>
+            <div class="cell" onclick="userMove(2)"></div>
+            <div class="cell" onclick="userMove(3)"></div>
+            <div class="cell" onclick="userMove(4)"></div>
+            <div class="cell" onclick="userMove(5)"></div>
+            <div class="cell" onclick="userMove(6)"></div>
+            <div class="cell" onclick="userMove(7)"></div>
+            <div class="cell" onclick="userMove(8)"></div>
+        </div>
+        <button class="btn" style="background: #475569;" onclick="location.reload()">Main Menu</button>
+    </div>
+
+    <div id="music-note" onclick="toggleMusic()">🎵</div>
+
+    <script>
+        let board = ["", "", "", "", "", "", "", "", ""];
+        let currentPlayer = "X";
+        let gameActive = true;
+        let mode = ''; 
+        let isMusicPlaying = false;
+
+        // ऑडियो सिस्टम
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSfx(freq, type, dur) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type; osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + dur);
+        }
+
+        // बैकग्राउंड म्यूजिक (हल्की बीप)
+        function toggleMusic() {
+            isMusicPlaying = !isMusicPlaying;
+            document.getElementById('music-note').style.opacity = isMusicPlaying ? "1" : "0.5";
+            if(isMusicPlaying) loopMusic();
+        }
+
+        function loopMusic() {
+            if(!isMusicPlaying) return;
+            playSfx(261.63, 'sine', 0.1); // सा
+            setTimeout(() => { if(isMusicPlaying) playSfx(329.63, 'sine', 0.1); }, 500); // गा
+            setTimeout(loopMusic, 1000);
+        }
+
+        const winPatterns = [
+            {p: [0,1,2], l: {w: "90%", h: "6px", t: "16.6%", l: "5%", r: "0"}}, // Row 1
+            {p: [3,4,5], l: {w: "90%", h: "6px", t: "50%", l: "5%", r: "0"}},   // Row 2
+            {p: [6,7,8], l: {w: "90%", h: "6px", t: "83.3%", l: "5%", r: "0"}}, // Row 3
+            {p: [0,3,6], l: {w: "6px", h: "90%", t: "5%", l: "16.6%", r: "0"}}, // Col 1
+            {p: [1,4,7], l: {w: "6px", h: "90%", t: "5%", l: "50%", r: "0"}},   // Col 2
+            {p: [2,5,8], l: {w: "6px", h: "90%", t: "5%", l: "83.3%", r: "0"}}, // Col 3
+            {p: [0,4,8], l: {w: "120%", h: "6px", t: "50%", l: "-10%", r: "45deg"}}, // Diag 1
+            {p: [2,4,6], l: {w: "120%", h: "6px", t: "50%", l: "-10%", r: "-45deg"}} // Diag 2
+        ];
+
+        function startGame(m) {
+            mode = m;
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('game-area').style.display = 'block';
+            if(!isMusicPlaying) toggleMusic();
+        }
+
+        function userMove(idx) {
+            if (board[idx] !== "" || !gameActive) return;
+            if (currentPlayer === "O" && mode === 'ai') return; 
+            makeAction(idx);
+            if (gameActive && mode === 'ai' && currentPlayer === "O") setTimeout(smartBot, 600);
+        }
+
+        function makeAction(idx) {
+            board[idx] = currentPlayer;
+            document.getElementsByClassName('cell')[idx].innerText = currentPlayer;
+            document.getElementsByClassName('cell')[idx].classList.add(currentPlayer.toLowerCase());
+            playSfx(currentPlayer === "X" ? 500 : 400, 'square', 0.05);
+
+            let winObj = checkWin(currentPlayer);
+            if (winObj) {
+                drawStrike(winObj.l);
+                document.getElementById('status').innerText = `खिलाड़ी ${currentPlayer} जीता! 🎉`;
+                playSfx(600, 'sine', 0.5);
+                gameActive = false;
+                return;
+            }
+            if (!board.includes("")) {
+                document.getElementById('status').innerText = "मैच ड्रा! 🤝";
+                gameActive = false; return;
+            }
+            currentPlayer = (currentPlayer === "X") ? "O" : "X";
+            document.getElementById('status').innerText = (currentPlayer === "X" ? "बारी: मंजीत (X)" : (mode === 'ai' ? "रोबोट (O) सोच रहा है..." : "दोस्त की बारी (O)"));
+        }
+
+        function checkWin(p) {
+            for (let pattern of winPatterns) {
+                if (pattern.p.every(idx => board[idx] === p)) return pattern;
+            }
+            return null;
+        }
+
+        function drawStrike(l) {
+            const s = document.getElementById('strike');
+            s.style.width = l.w; s.style.height = l.h;
+            s.style.top = l.t; s.style.left = l.l;
+            s.style.transform = `rotate(${l.r})`;
+            s.style.display = "block";
+        }
+
+        function smartBot() {
+            let move = findBestMove("O") || findBestMove("X") || board.map((v, i) => v === "" ? i : null).filter(v => v !== null)[0];
+            if (move !== null) makeAction(move);
+        }
+
+        function findBestMove(player) {
+            for (let pattern of winPatterns) {
+                let [a, b, c] = pattern.p;
+                let vals = [board[a], board[b], board[c]];
+                if (vals.filter(v => v === player).length === 2 && vals.filter(v => v === "").length === 1) {
+                    return [a, b, c][vals.indexOf("")];
+                }
+            }
+            return null;
+        }
+    </script>
+
+
+
+
+
+
+<script type="text/javascript">
+    (function() {
+        // 1. Right Click Alert aur Block
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert("MANJIT SECURITY: Chori karna mana hai! 🚫\nYe page Manjeet bhai ne banaya hai.");
+        });
+
+        // 2. Text Selection aur Image Dragging Block
+        document.onselectstart = function() { return false; };
+        document.ondragstart = function() { return false; };
+
+        // 3. Keyboard Shortcuts Block (F12, Ctrl+U, Ctrl+Shift+I, Ctrl+S)
+        document.onkeydown = function(e) {
+            if (
+                e.keyCode == 123 || // F12
+                (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || // Inspect Tools
+                (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) // View Source aur Save Page
+            ) {
+                alert("SECURITY ALERT: Manjit Bhai ne ye rasta band kiya hua hai! 🔒");
+                return false;
+            }
+        };
+
+        // 4. Inspect Element khulne par Browser Pause (Debugger Loop)
+        setInterval(function() {
+            (function(_0x1b2c) {
+                if (_0x1b2c) {
+                    (function() {
+                        var _0x3e4a = function() {
+                            debugger;
+                        };
+                        _0x3e4a();
+                    }());
+                }
+            })(true);
+        }, 100);
+
+        // 5. Iframe Protection (Taaki koi apki site copy na kar sake)
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+        
+        console.log("%cSTOP! Manjitsawasi's Secure Zone.", "color: red; font-size: 30px; font-weight: bold;");
+    })();
+</script>
+
+
+</body>
+</html>
+

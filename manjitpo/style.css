@@ -1,0 +1,149 @@
+/* 1. सब कुछ फिट करने के लिए बेसिक सेटिंग */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* 2. टॉप मूविंग एनीमेशन (New Box) */
+.new-box {
+    width: 100vw;
+    padding: 15px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg,#ff0073, #ffff00, #ff0000, #0000ff, #ff0000);
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
+    z-index: 100;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+} 
+
+.moving-text {
+    white-space: nowrap;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    display: inline-block;
+    animation: moveleft 20s linear infinite, barcolors 3s infinite alternate;
+}
+
+@keyframes moveleft {
+    0%  { transform: translateX(100vw); }
+    100%   { transform: translateX(-100vw); }
+}
+
+@keyframes barcolors {
+    0% { color:rgb(176, 16, 220) }
+    50% { color: rgb(30, 255, 0); }
+    100% { color: #ffd500; }
+}
+
+/* 3. मुख्य हेडिंग (Heading) */
+h1 {
+    color: #ff0073;
+    font-size: 32px;
+    padding: 35px 10px;
+    text-align: center;
+    background-color: #04d783;
+    width: 100vw;
+    line-height: 1.5;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 4. नेविगेशन मेनू (Home, News, Video आदि) */
+.mmm ul {
+    display: flex !important;
+    list-style-type: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px 5px;
+    background: rgb(105, 112, 26);
+    width: 100vw;
+    gap: 10px;
+}
+
+.mmm a {
+    color:#560570;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 3px solid rgb(11, 219, 28);
+    background: white;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+}
+
+.mmm a:hover {
+    color: rgb(255, 0, 187);
+    transform: scale(1.05);
+}
+
+/* 5. सोशल मीडिया लिंक (YouTube, FB आदि) - अब एक लाइन में (Horizontal) */
+.aa {
+    width: 100vw;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.aa ul {
+    display: flex; /* हॉरिजॉन्टल करने के लिए */
+    flex-wrap: wrap;
+    list-style: none;
+    background: #ffd500;
+    border-radius: 30px;
+    padding: 10px;
+    justify-content: center;
+    gap: 10px;
+    width: 95%;
+}
+
+.aa a {
+    text-decoration: none;
+    color: #110780;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.aa a:hover {
+    color: #ff0000;
+    transform: translateY(-3px);
+}
+
+/* 6. आपका सारा मटेरियल (Material Links/Items) */
+/* अगर आपने मटेरियल के लिए कोई अलग क्लास रखी है तो यहाँ सेट होगी */
+.material-section {
+    width: 95%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 15px auto;
+}
