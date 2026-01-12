@@ -147,3 +147,17 @@ img {
     display: block;
     margin: 15px auto;
 }
+
+
+h2 {
+    color: #131211;
+    background-color: aqua;
+    text-align: center;
+    display: auto;
+    width: auto;
+    height: fit-content;
+    font-size: 20px;
+    align-items: center;
+}
+
+
