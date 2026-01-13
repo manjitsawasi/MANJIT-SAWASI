@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मंजीत गेमिंग जोन</title>
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>MANJIT SAWASI (मंजीत सवासी)</h1>
+        <p>अपना पसंदीदा गेम चुनें और खेलना शुरू करें!</p>
+    </div>
+
+    <div class="main-game-container">
+
+        <div class="game-card">
+            <a href="snake.html">
+                <img src="snake.jpg.jpeg" alt="सांप-सीढ़ी खेलें" style="width: 100%; max-width: 600px;">
+                <div class="label">सांप-सीढ़ी</div>
+            </a>
+        </div>
+
+        <div class="game-card">
+            <a href="kit.html">
+                <img src="kata.jpg.jpeg" alt="काटा-कुटी खेलें" style="width: 100%; max-width: 600px;">
+                <div class="label">काटा-कुटी</div>
+            </a>
+        </div>
+
+        <div class="game-card">
+            <a href="chor.html">
+                <img src="chor_police.jpg" alt="चोर-सिपाही खेलें">
+                <div class="label">चोर-सिपाही</div>
+            </a>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript">
+    (function() {
+        // 1. Right Click Alert aur Block
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert("MANJIT SECURITY: Chori karna mana hai! 🚫\nYe page Manjeet bhai ne banaya hai.");
+        });
+
+        // 2. Text Selection aur Image Dragging Block
+        document.onselectstart = function() { return false; };
+        document.ondragstart = function() { return false; };
+
+        // 3. Keyboard Shortcuts Block (F12, Ctrl+U, Ctrl+Shift+I, Ctrl+S)
+        document.onkeydown = function(e) {
+            if (
+                e.keyCode == 123 || // F12
+                (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || // Inspect Tools
+                (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) // View Source aur Save Page
+            ) {
+                alert("SECURITY ALERT: Manjit Bhai ne ye rasta band kiya hua hai! 🔒");
+                return false;
+            }
+        };
+
+        // 4. Inspect Element khulne par Browser Pause (Debugger Loop)
+        setInterval(function() {
+            (function(_0x1b2c) {
+                if (_0x1b2c) {
+                    (function() {
+                        var _0x3e4a = function() {
+                            debugger;
+                        };
+                        _0x3e4a();
+                    }());
+                }
+            })(true);
+        }, 100);
+
+        // 5. Iframe Protection (Taaki koi apki site copy na kar sake)
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+        
+        console.log("%cSTOP! Manjitsawasi's Secure Zone.", "color: red; font-size: 30px; font-weight: bold;");
+    })();
+</script>
+
+
+</body>
+</html>
