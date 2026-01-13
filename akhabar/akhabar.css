@@ -1,0 +1,124 @@
+header h1 {
+    font-size: 10px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 10px;
+    display: inline-block;
+
+    background: linear-gradient(90deg,#e3bebe, #03032e, #8a8649);
+    background-size: 200% auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
+    animation: shine 3s linear infinite
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* अखबार पेज की पूरी सेटिंग */
+.paper-container {
+    max-width: 850px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #fdfdfd; /* हल्का पेपर जैसा रंग */
+    border: 1px solid #dcdcdc;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.paper-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.paper-header h1 {
+    font-size: 20px;
+    right: 10px;
+    position: fixed;
+    top: 10px;
+    color: #222;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.date-style {
+    color: #666;
+    font-style: italic;
+}
+
+.header-line {
+    border: none;
+    border-top: 4px double #333;
+    margin-top: 10px;
+}
+
+/* न्यूज़ आर्टिकल स्टाइल */
+.news-article {
+    margin-bottom: 40px;
+    border-bottom: 1px dashed #bbb;
+    padding-bottom: 20px;
+}
+
+.news-title {
+    color: #d63031; /* न्यूज़ हेडिंग के लिए लाल रंग */
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.news-img-box img {
+    width: auto;
+    height: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.news-desc {
+    line-height: 1.6;
+    color: #333;
+    font-size: 17px;
+}
+
+/* वापस जाने वाला बटन */
+.home-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    position: sticky;
+    position: fixed;
+    position: -webkit-sticky;
+    z-index: 999;
+    top: 10px;
+left: 0;
+}
+
+.home-btn:hover {
+    background-color: #fe220555;
+}
+
+
+
+.share-btn {
+    cursor: pointer;
+    background-color: #333;
+    right: 20px;
+    color: #ddd;
+    border: #fff000;
+    padding: 7px 20px;
+    border-radius: 10px;
+
+}
+
+body {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    
+}
