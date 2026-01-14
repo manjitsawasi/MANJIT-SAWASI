@@ -1,3 +1,9 @@
+
+
+
+
+
+
 /* 1. सब कुछ फिट करने के लिए बेसिक सेटिंग */
 * {
     box-sizing: border-box;
@@ -10,6 +16,9 @@ body {
     overflow-x: hidden;
     font-family: sans-serif;
     background-color: #f0f0f0;
+    white-space: nowrap;
+    font-size: clamp(14px, 3vw, 20px);
+display: block;
 }
 
 /* 2. टॉप मूविंग एनीमेशन (New Box) */
