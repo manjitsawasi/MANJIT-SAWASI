@@ -12,10 +12,13 @@
 }
 
 body {
+
     width: 100%;
     overflow-x: hidden;
     font-family: sans-serif;
     background-color: #f0f0f0;
+    text-align: center;
+    align-items: center;
     white-space: nowrap;
     font-size: clamp(14px, 3vw, 20px);
 display: block;
@@ -28,9 +31,10 @@ display: block;
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(90deg,#ff0073, #ffff00, #ff0000, #0000ff, #ff0000);
+    border-radius: 20%;
+    background: linear-gradient(90deg,#ff0073, #ffff00,#04d783, #131211, #ff0000, #0000ff, #ff0000);
     background-size: 400% 400%;
-    animation: gradientFlow 10s ease infinite;
+    animation: gradientFlow 20s ease infinite;
     z-index: 100;
 }
 
@@ -42,28 +46,19 @@ display: block;
 
 .moving-text {
     white-space: nowrap;
-    font-size: 24px;
+     font-size: clamp(14px, 3vw, 20px);
     font-weight: bold;
     color: rgb(0, 0, 0);
-    display: inline-block;
-    animation: moveleft 20s linear infinite, barcolors 3s infinite alternate;
-}
-
-@keyframes moveleft {
-    0%  { transform: translateX(100vw); }
-    100%   { transform: translateX(-100vw); }
-}
-
-@keyframes barcolors {
-    0% { color:rgb(176, 16, 220) }
-    50% { color: rgb(30, 255, 0); }
-    100% { color: #ffd500; }
+    
+    align-items: center;
+  
+    text-align: center;
 }
 
 /* 3. मुख्य हेडिंग (Heading) */
 h1 {
     color: #ff0073;
-    font-size: 32px;
+    font-size: clamp(14px, 3vw, 20px, 30px);
     padding: 35px 10px;
     text-align: center;
     background-color: #04d783;
@@ -72,6 +67,7 @@ h1 {
     margin-top: 80px;
     display: flex;
     justify-content: center;
+    border-radius: 20%;
 }
 
 /* 4. नेविगेशन मेनू (Home, News, Video आदि) */
@@ -90,7 +86,7 @@ h1 {
     color:#560570;
     text-decoration: none;
     font-weight: bold;
-    font-size: 18px;
+   font-size: clamp(14px, 3vw, 20px);
     padding: 10px 15px;
     border-radius: 12px;
     border: 3px solid rgb(11, 219, 28);
@@ -127,7 +123,7 @@ h1 {
 .aa a {
     text-decoration: none;
     color: #110780;
-    font-size: 18px;
+    font-size: clamp(14px, 3vw, 20px, 18px);
     font-weight: bold;
     padding: 10px 15px;
     transition: 0.3s;
@@ -165,7 +161,7 @@ h2 {
     display: auto;
     width: auto;
     height: fit-content;
-    font-size: 20px;
+    font-size: clamp(14px, 3vw, 20px);
     align-items: center;
 }
 
