@@ -11,18 +11,6 @@
     padding: 0;
 }
 
-body {
-
-    width: 100%;
-    overflow-x: hidden;
-    font-family: sans-serif;
-    background-color: #f0f0f0;
-    text-align: center;
-    align-items: center;
-    white-space: nowrap;
-    font-size: clamp(14px, 3vw, 20px);
-display: block;
-}
 
 /* 2. टॉप मूविंग एनीमेशन (New Box) */
 .new-box {
@@ -176,4 +164,13 @@ p {
     width: 90%;
     margin: 0 auto;
     word-wrap: break-word;
+}
+
+
+.news-title {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    word-break: break-all;
+    max-width: 100vw;
 }
