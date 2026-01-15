@@ -20,7 +20,7 @@
     top: 0;
     left: 0;
     border-radius: 20%;
-    background: linear-gradient(90deg,#ff0073, #ffff00,#04d783, #131211, #ff0000, #0000ff, #ff0000);
+    background: linear-gradient(90deg,#ff0073, #ffff00,#04d783, #dd7915, #6aff00, #0000ff, #ff0000);
     background-size: 400% 400%;
     animation: gradientFlow 20s ease infinite;
     z-index: 100;
@@ -36,7 +36,7 @@
     white-space: nowrap;
      font-size: clamp(14px, 3vw, 20px);
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 248, 248);
     
     align-items: center;
   
@@ -168,7 +168,7 @@ p {
 
 
 .news-title {
-    display: flex;
+   align-items: center;
     width: 100%;
     padding: 10px;
     word-break: break-all;
