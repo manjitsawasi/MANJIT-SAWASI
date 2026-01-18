@@ -1,6 +1,6 @@
 
 body {
-    background-color: #cbab5e;
+    background-color: #ab6fdf;
     color: white;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,7 +8,7 @@ body {
 }
 
 .section-title {
-    color: rgb(26, 3, 197);
+    color: rgb(17, 101, 8);
     border-left: 5px solid red;
     padding-left: 10px;
     margin-top: 30px;
