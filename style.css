@@ -64,17 +64,19 @@ h1 {
     list-style-type: none;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 15px 5px;
+    font-size: 20px;
+    padding: 20px 10px;
     background: rgb(105, 112, 26);
     width: 100vw;
     gap: 10px;
+    
 }
 
 .mmm a {
     color:#560570;
     text-decoration: none;
     font-weight: bold;
-   font-size: clamp(14px, 3vw, 20px);
+   font-size: clamp( 20px);
     padding: 10px 15px;
     border-radius: 12px;
     border: 3px solid rgb(11, 219, 28);
@@ -173,4 +175,75 @@ p {
     padding: 10px;
     word-break: break-all;
     max-width: 100vw;
+}
+
+
+/* Quiz Style for Manjeet's Website */
+.quiz-box {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.question-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    background: #f1f2f6;
+    border: 2px solid #dfe4ea;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    transition: 0.2s;
+}
+
+.option-btn:hover {
+    background: #dfe4ea;
+}
+
+.correct-ans {
+    background-color: #2ecc71 !important;
+    color: white !important;
+    border-color: #27ae60;
+}
+
+.wrong-ans {
+    background-color: #e74c3c !important;
+    color: white !important;
+    border-color: #c0392b;
+}
+
+#next-question-btn {
+    display: none;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#result-screen {
+    display: none;
+    text-align: center;
+    font-size: 24px;
+    color: #3498db;
+    padding: 30px;
 }
