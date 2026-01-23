@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bihar Board VVI Objective Quiz</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { text-align: center; color: #d32f2f; }
+        
+        /* Quiz Card Style */
+        .quiz-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #27ae60; }
+        .question { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #2c3e50; }
+        .year-info { font-size: 12px; color: #e74c3c; background: #ffebee; padding: 2px 8px; border-radius: 4px; }
+        
+        /* Options Style */
+        .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .option-btn { background: #fff; border: 2px solid #ddd; padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; transition: 0.3s; font-size: 16px; }
+        .option-btn:hover { background-color: #e8f5e9; border-color: #27ae60; }
+        
+        /* Correct/Wrong Classes */
+        .correct { background-color: #27ae60 !important; color: white !important; border-color: #27ae60 !important; }
+        .wrong { background-color: #e74c3c !important; color: white !important; border-color: #e74c3c !important; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📚 बिहार बोर्ड मैट्रिक (Science) VVI Quiz</h1>
+    <p style="text-align: center;">कुल प्रश्न: 25 | हर प्रश्न 1 अंक का</p>
+
+    <div class="quiz-card">
+        <div class="question">1. प्रकाश के परावर्तन के कितने नियम हैं? <span class="year-info">2012, 2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. एक</button>
+            <button class="option-btn" onclick="check(this, true)">B. दो</button>
+            <button class="option-btn" onclick="check(this, false)">C. तीन</button>
+            <button class="option-btn" onclick="check(this, false)">D. चार</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">2. समतल दर्पण द्वारा बना प्रतिबिम्ब हमेशा कैसा होता है? <span class="year-info">2016, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. वास्तविक</button>
+            <button class="option-btn" onclick="check(this, true)">B. काल्पनिक (आभासी)</button>
+            <button class="option-btn" onclick="check(this, false)">C. उल्टा</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">3. दाढ़ी बनाने के लिए किस दर्पण का उपयोग किया जाता है? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. उत्तल</button>
+            <button class="option-btn" onclick="check(this, true)">B. अवतल</button>
+            <button class="option-btn" onclick="check(this, false)">C. समतल</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    </div>
+
+
+    <div class="quiz-card">
+        <div class="question">4. विद्युत धारा का SI मात्रक क्या है? <span class="year-info">2013, 2016, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. वाट</button>
+            <button class="option-btn" onclick="check(this, false)">B. वोल्ट</button>
+            <button class="option-btn" onclick="check(this, false)">C. ओम</button>
+            <button class="option-btn" onclick="check(this, true)">D. एम्पियर</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">5. सामान्य दृष्टि के लिए स्पष्ट दर्शन की न्यूनतम दूरी है? <span class="year-info">2012, 2017, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 25 मीटर</button>
+            <button class="option-btn" onclick="check(this, true)">B. 25 सेंटीमीटर</button>
+            <button class="option-btn" onclick="check(this, false)">C. 2.5 सेंटीमीटर</button>
+            <button class="option-btn" onclick="check(this, false)">D. अनंत</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">6. विद्युत बल्ब का तंतु (Filament) बना होता है? <span class="year-info">2013, 2017, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. ताँबा</button>
+            <button class="option-btn" onclick="check(this, false)">B. लोहा</button>
+            <button class="option-btn" onclick="check(this, true)">C. टंगस्टन</button>
+            <button class="option-btn" onclick="check(this, false)">D. सोना</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">7. अम्लीय विलयन का pH मान कितना होता है? <span class="year-info">2012, 2017, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 7 से कम</button>
+            <button class="option-btn" onclick="check(this, false)">B. 7 से अधिक</button>
+            <button class="option-btn" onclick="check(this, false)">C. 7 के बराबर</button>
+            <button class="option-btn" onclick="check(this, false)">D. 14</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">8. कौन-सा अधातु कमरे के ताप पर द्रव होता है? <span class="year-info">2014, 2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. पारा</button>
+            <button class="option-btn" onclick="check(this, true)">B. ब्रोमीन</button>
+            <button class="option-btn" onclick="check(this, false)">C. ताँबा</button>
+            <button class="option-btn" onclick="check(this, false)">D. एल्युमिनियम</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">9. लोहे की परमाणु संख्या क्या है? <span class="year-info">2013, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 23</button>
+            <button class="option-btn" onclick="check(this, true)">B. 26</button>
+            <button class="option-btn" onclick="check(this, false)">C. 25</button>
+            <button class="option-btn" onclick="check(this, false)">D. 24</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">10. आधुनिक आवर्त सारणी में समूहों की संख्या है? <span class="year-info">2012, 2018, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 7</button>
+            <button class="option-btn" onclick="check(this, false)">B. 9</button>
+            <button class="option-btn" onclick="check(this, true)">C. 18</button>
+            <button class="option-btn" onclick="check(this, false)">D. 10</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">11. रक्त (Blood) क्या है? <span class="year-info">2014, 2018, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. ऊतक (Tissue)</button>
+            <button class="option-btn" onclick="check(this, false)">B. कोशिका</button>
+            <button class="option-btn" onclick="check(this, false)">C. पदार्थ</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">12. निम्न में कौन-सा पदार्थ लेंस बनाने के लिए प्रयुक्त नहीं किया जा सकता? <span class="year-info">2012, 2017</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. जल</button>
+            <button class="option-btn" onclick="check(this, false)">B. काँच</button>
+            <button class="option-btn" onclick="check(this, false)">C. प्लास्टिक</button>
+            <button class="option-btn" onclick="check(this, true)">D. मिट्टी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">13. किसी माध्यम के अपवर्तनांक (μ) का मान होता है? <span class="year-info">2011, 2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. sin i / sin r</button>
+            <button class="option-btn" onclick="check(this, false)">B. sin r / sin i</button>
+            <button class="option-btn" onclick="check(this, false)">C. sin i * sin r</button>
+            <button class="option-btn" onclick="check(this, false)">D. sin i + sin r</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">14. स्पेक्ट्रम में किस रंग की किरण का झुकाव सबसे अधिक होता है? <span class="year-info">2014, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. लाल</button>
+            <button class="option-btn" onclick="check(this, false)">B. हरा</button>
+            <button class="option-btn" onclick="check(this, false)">C. पीला</button>
+            <button class="option-btn" onclick="check(this, true)">D. बैंगनी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">15. शुद्ध जल का pH मान कितना होता है? <span class="year-info">2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 6</button>
+            <button class="option-btn" onclick="check(this, true)">B. 7</button>
+            <button class="option-btn" onclick="check(this, false)">C. 8</button>
+            <button class="option-btn" onclick="check(this, false)">D. 9</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">16. मीथेन (CH4) में कितने सह-संयोजक बंधन होते हैं? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 2</button>
+            <button class="option-btn" onclick="check(this, true)">B. 4</button>
+            <button class="option-btn" onclick="check(this, false)">C. 6</button>
+            <button class="option-btn" onclick="check(this, false)">D. 8</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">17. किस धातु को चाकू से आसानी से काटा जा सकता है? <span class="year-info">2014, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. लोहा</button>
+            <button class="option-btn" onclick="check(this, false)">B. ताँबा</button>
+            <button class="option-btn" onclick="check(this, true)">C. सोडियम</button>
+            <button class="option-btn" onclick="check(this, false)">D. सोना</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">18. अमीबा अपना भोजन कैसे पकड़ता है? <span class="year-info">2019, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. स्पर्शक द्वारा</button>
+            <button class="option-btn" onclick="check(this, true)">B. कूटपाद द्वारा</button>
+            <button class="option-btn" onclick="check(this, false)">C. जीभ द्वारा</button>
+            <button class="option-btn" onclick="check(this, false)">D. मुँह द्वारा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">19. क्लोरोफिल वर्णक का रंग कैसा होता है? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. हरा</button>
+            <button class="option-btn" onclick="check(this, false)">B. नीला</button>
+            <button class="option-btn" onclick="check(this, false)">C. लाल</button>
+            <button class="option-btn" onclick="check(this, false)">D. सफेद</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">20. रक्त का थक्का बनाने में कौन सहायक होता है? <span class="year-info">2014, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. लाल रक्त कोशिका</button>
+            <button class="option-btn" onclick="check(this, false)">B. श्वेत रक्त कोशिका</button>
+            <button class="option-btn" onclick="check(this, true)">C. रक्त प्लेटलेट्स</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">21. ओजोन परत पाई जाती है? <span class="year-info">2013, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. स्ट्रैटोस्फियर में</button>
+            <button class="option-btn" onclick="check(this, false)">B. एक्सोस्फियर में</button>
+            <button class="option-btn" onclick="check(this, false)">C. आयनोस्फियर में</button>
+            <button class="option-btn" onclick="check(this, false)">D. ट्रोपोस्फियर में</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">22. एक स्वस्थ आँख की दूर बिंदु (Far point) कितनी होती है? <span class="year-info">2012, 2018</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 25 cm</button>
+            <button class="option-btn" onclick="check(this, false)">B. 250 cm</button>
+            <button class="option-btn" onclick="check(this, false)">C. 0 cm</button>
+            <button class="option-btn" onclick="check(this, true)">D. अनंत (Infinity)</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">23. दाँत साफ करने वाले मंजन (Toothpaste) प्रायः होते हैं? <span class="year-info">2018, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. क्षारीय</button>
+            <button class="option-btn" onclick="check(this, false)">B. अम्लीय</button>
+            <button class="option-btn" onclick="check(this, false)">C. लवणयुक्त</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">24. बायोगैस का मुख्य घटक क्या है? <span class="year-info">2016, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. हाइड्रोजन</button>
+            <button class="option-btn" onclick="check(this, true)">B. मीथेन (CH4)</button>
+            <button class="option-btn" onclick="check(this, false)">C. ईथेन</button>
+            <button class="option-btn" onclick="check(this, false)">D. प्रोपेन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">25. फूल में नर जनन अंग होता है? <span class="year-info">2013, 2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. पुंकेसर (Stamen)</button>
+            <button class="option-btn" onclick="check(this, false)">B. अंडप</button>
+            <button class="option-btn" onclick="check(this, false)">C. वर्तिकाग्र</button>
+            <button class="option-btn" onclick="check(this, false)">D. वर्तिका</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">26. संगमरमर (Marble) का रासायनिक सूत्र क्या है? <span class="year-info">2013, 2017, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. MgCO3</button>
+            <button class="option-btn" onclick="check(this, true)">B. CaCO3</button>
+            <button class="option-btn" onclick="check(this, false)">C. CaO</button>
+            <button class="option-btn" onclick="check(this, false)">D. Ca(OH)2</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">27. विरंजक चूर्ण (Bleaching Powder) का रासायनिक सूत्र क्या है? <span class="year-info">2015, 2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. Ca(OH)2</button>
+            <button class="option-btn" onclick="check(this, true)">B. CaOCl2</button>
+            <button class="option-btn" onclick="check(this, false)">C. CaCO3</button>
+            <button class="option-btn" onclick="check(this, false)">D. CaCl2</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">28. शुद्ध सोना कितने कैरेट का होता है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 22 कैरेट</button>
+            <button class="option-btn" onclick="check(this, true)">B. 24 कैरेट</button>
+            <button class="option-btn" onclick="check(this, false)">C. 20 कैरेट</button>
+            <button class="option-btn" onclick="check(this, false)">D. 18 कैरेट</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">29. लिटमस विलयन, जो बैंगनी रंग का रंजक होता है, किससे निकाला जाता है? <span class="year-info">2013, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. लाइकेन (Lichen)</button>
+            <button class="option-btn" onclick="check(this, false)">B. लाल पत्ता गोभी</button>
+            <button class="option-btn" onclick="check(this, false)">C. हल्दी</button>
+            <button class="option-btn" onclick="check(this, false)">D. पेटुनिया फूल</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">30. प्रकाश-संश्लेषण (Photosynthesis) की क्रिया में ऑक्सीजन बाहर निकलती है? <span class="year-info">2012, 2017, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. जल से</button>
+            <button class="option-btn" onclick="check(this, false)">B. CO2 से</button>
+            <button class="option-btn" onclick="check(this, false)">C. ग्लूकोज से</button>
+            <button class="option-btn" onclick="check(this, false)">D. डिक्टियोजोम से</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">31. मैग्नीशियम पाया जाता है? <span class="year-info">2013, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. क्लोरोफिल में</button>
+            <button class="option-btn" onclick="check(this, false)">B. लाल रक्त कण में</button>
+            <button class="option-btn" onclick="check(this, false)">C. वर्णी लवक में</button>
+            <button class="option-btn" onclick="check(this, false)">D. श्वेत रक्त कण में</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">32. इंसुलिन की कमी से कौन सा रोग होता है? <span class="year-info">2016, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. घेंघा</button>
+            <button class="option-btn" onclick="check(this, false)">B. बौनापन</button>
+            <button class="option-btn" onclick="check(this, true)">C. मधुमेह (Diabetes)</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">33. घेघा रोग पनपता है? <span class="year-info">2015, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. चीनी की कमी से</button>
+            <button class="option-btn" onclick="check(this, false)">B. रक्त की कमी से</button>
+            <button class="option-btn" onclick="check(this, true)">C. आयोडीन की कमी से</button>
+            <button class="option-btn" onclick="check(this, false)">D. मोटापा से</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">34. एंड्रोजेन (Androgen) है? <span class="year-info">2018, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. नर हार्मोन</button>
+            <button class="option-btn" onclick="check(this, false)">B. मादा हार्मोन</button>
+            <button class="option-btn" onclick="check(this, false)">C. पाचक रस</button>
+            <button class="option-btn" onclick="check(this, false)">D. एन्जाइम</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">35. द ओरिजिन ऑफ स्पीशीज (The Origin of Species) नामक पुस्तक किसने लिखी? <span class="year-info">2014, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. डार्विन</button>
+            <button class="option-btn" onclick="check(this, false)">B. ओपेरिन</button>
+            <button class="option-btn" onclick="check(this, false)">C. लैमार्क</button>
+            <button class="option-btn" onclick="check(this, false)">D. मेंडल</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">36. निम्नांकित में से किसे 'अनुवंशिकी का पिता' कहा जाता है? <span class="year-info">2016, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. चार्ल्स डार्विन</button>
+            <button class="option-btn" onclick="check(this, true)">B. ग्रेगर जॉन मेंडल</button>
+            <button class="option-btn" onclick="check(this, false)">C. लामार्क</button>
+            <button class="option-btn" onclick="check(this, false)">D. वाइज़मान</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">37. हरे पौधे कहलाते हैं? <span class="year-info">2014, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. उत्पादक (Producer)</button>
+            <button class="option-btn" onclick="check(this, false)">B. अपघटक</button>
+            <button class="option-btn" onclick="check(this, false)">C. उपभोक्ता</button>
+            <button class="option-btn" onclick="check(this, false)">D. आहार श्रृंखला</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">38. ओजोन परत के अवक्षय के लिए मुख्य रूप से कौन जिम्मेदार है? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. CO2</button>
+            <button class="option-btn" onclick="check(this, false)">B. SO2</button>
+            <button class="option-btn" onclick="check(this, true)">C. CFC (क्लोरोफ्लोरो कार्बन)</button>
+            <button class="option-btn" onclick="check(this, false)">D. NO2</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">39. टिहरी बाँध का निर्माण किस प्रदेश में किया गया है? <span class="year-info">2014, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. उत्तर प्रदेश</button>
+            <button class="option-btn" onclick="check(this, true)">B. उत्तराखंड</button>
+            <button class="option-btn" onclick="check(this, false)">C. राजस्थान</button>
+            <button class="option-btn" onclick="check(this, false)">D. मध्य प्रदेश</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">40. विद्युत चुम्बकीय प्रेरण की खोज किसने की थी? <span class="year-info">2012, 2019, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. फैराडे ने</button>
+            <button class="option-btn" onclick="check(this, false)">B. मैक्सवेल ने</button>
+            <button class="option-btn" onclick="check(this, false)">C. एम्पियर ने</button>
+            <button class="option-btn" onclick="check(this, false)">D. फ्लेमिंग ने</button>
+        </div>
+    </div>
+
+
+    <div class="quiz-card">
+        <div class="question">41. किस वर्ण (रंग) का तरंगदैर्ध्य (wavelength) सबसे बड़ा है? <span class="year-info">2013, 2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. लाल</button>
+            <button class="option-btn" onclick="check(this, false)">B. नीला</button>
+            <button class="option-btn" onclick="check(this, false)">C. पीला</button>
+            <button class="option-btn" onclick="check(this, false)">D. बैंगनी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">42. किसी कुंडली का प्रतिरोध (Resistance) ज्ञात करने का सूत्र है? <span class="year-info">2011, 2017</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. R = V × I</button>
+            <button class="option-btn" onclick="check(this, true)">B. R = V / I</button>
+            <button class="option-btn" onclick="check(this, false)">C. R = I / V</button>
+            <button class="option-btn" onclick="check(this, false)">D. R = V + I</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">43. एंड्रोजेन (Androgen) क्या है? <span class="year-info">2018, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. नर लिंग हार्मोन</button>
+            <button class="option-btn" onclick="check(this, false)">B. स्त्री लिंग हार्मोन</button>
+            <button class="option-btn" onclick="check(this, false)">C. पाचक रस</button>
+            <button class="option-btn" onclick="check(this, false)">D. थायराइड हार्मोन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">44. शुक्राणु (Sperm) का निर्माण कहाँ होता है? <span class="year-info">2015, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. वृषण में</button>
+            <button class="option-btn" onclick="check(this, false)">B. गर्भाशय में</button>
+            <button class="option-btn" onclick="check(this, false)">C. अंडाशय में</button>
+            <button class="option-btn" onclick="check(this, false)">D. मूत्राशय में</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">45. सौर सेल (Solar Cell) सौर ऊर्जा को किस ऊर्जा में रूपांतरित करते हैं? <span class="year-info">2021, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. प्रकाश ऊर्जा</button>
+            <button class="option-btn" onclick="check(this, false)">B. गतिज ऊर्जा</button>
+            <button class="option-btn" onclick="check(this, false)">C. ताप ऊर्जा</button>
+            <button class="option-btn" onclick="check(this, true)">D. विद्युत ऊर्जा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">46. सोना (Gold) की परमाणु संख्या क्या है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 29</button>
+            <button class="option-btn" onclick="check(this, false)">B. 89</button>
+            <button class="option-btn" onclick="check(this, true)">C. 79</button>
+            <button class="option-btn" onclick="check(this, false)">D. 39</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">47. निम्न में से कौन ऑक्सीकरण की क्रिया नहीं है? <span class="year-info">2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. दहन</button>
+            <button class="option-btn" onclick="check(this, false)">B. श्वसन</button>
+            <button class="option-btn" onclick="check(this, false)">C. भोजन का पचना</button>
+            <button class="option-btn" onclick="check(this, true)">D. अवक्षेपण</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">48. सिरका (Vinegar) में कौन-सा अम्ल पाया जाता है? <span class="year-info">2017, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. गंधकाम्ल</button>
+            <button class="option-btn" onclick="check(this, false)">B. हाइड्रोक्लोरिक अम्ल</button>
+            <button class="option-btn" onclick="check(this, false)">C. फॉर्मिक अम्ल</button>
+            <button class="option-btn" onclick="check(this, true)">D. एसिटिक अम्ल</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">49. चींटी के डंक में कौन-सा अम्ल पाया जाता है? <span class="year-info">2020, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. मेथेनोइक अम्ल</button>
+            <button class="option-btn" onclick="check(this, false)">B. एथेनोइक अम्ल</button>
+            <button class="option-btn" onclick="check(this, false)">C. सिट्रिक अम्ल</button>
+            <button class="option-btn" onclick="check(this, false)">D. ऑक्जेलिक अम्ल</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">50. कूटपाद किसमें पाया जाता है? <span class="year-info">2013, 2016, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. पैरामीशियम</button>
+            <button class="option-btn" onclick="check(this, false)">B. यूग्लीना</button>
+            <button class="option-btn" onclick="check(this, true)">C. अमीबा</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+    <div class="quiz-card">
+        <div class="question">51. पौधों में 'जाइलम' (Xylem) उत्तरदायी है? <span class="year-info">2012, 2018, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. जल का वहन</button>
+            <button class="option-btn" onclick="check(this, false)">B. भोजन का वहन</button>
+            <button class="option-btn" onclick="check(this, false)">C. अमीनो अम्ल का वहन</button>
+            <button class="option-btn" onclick="check(this, false)">D. ऑक्सीजन का वहन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">52. स्वपोषी पोषण के लिए आवश्यक है? <span class="year-info">2013, 2019, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. क्लोरोफिल</button>
+            <button class="option-btn" onclick="check(this, false)">B. कार्बन डाइऑक्साइड</button>
+            <button class="option-btn" onclick="check(this, false)">C. सूर्य का प्रकाश</button>
+            <button class="option-btn" onclick="check(this, true)">D. इनमें से सभी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">53. पाइरुवेट के विखंडन से कार्बन डाइऑक्साइड, जल तथा ऊर्जा देता है और यह क्रिया होती है? <span class="year-info">2012, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. कोशिका द्रव्य में</button>
+            <button class="option-btn" onclick="check(this, true)">B. माइटोकॉन्ड्रिया में</button>
+            <button class="option-btn" onclick="check(this, false)">C. हरित लवक में</button>
+            <button class="option-btn" onclick="check(this, false)">D. केंद्रक में</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">54. डायनेमो से कैसी धारा प्राप्त होती है? <span class="year-info">2011, 2017</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. दिष्ट धारा (DC)</button>
+            <button class="option-btn" onclick="check(this, false)">B. प्रत्यावर्ती धारा (AC)</button>
+            <button class="option-btn" onclick="check(this, true)">C. दोनों (AC और DC)</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">55. डेंगू उत्पन्न करने वाला मच्छर किस तरह के जल में रहता है? <span class="year-info">2011, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. साफ जल</button>
+            <button class="option-btn" onclick="check(this, false)">B. गंदा जल</button>
+            <button class="option-btn" onclick="check(this, false)">C. खारा जल</button>
+            <button class="option-btn" onclick="check(this, false)">D. मृदु जल</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">56. ताँबा और जिंक के मिश्रधातु को क्या कहते हैं? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. पीतल</button>
+            <button class="option-btn" onclick="check(this, false)">B. काँसा</button>
+            <button class="option-btn" onclick="check(this, false)">C. सोल्डर</button>
+            <button class="option-btn" onclick="check(this, false)">D. स्टील</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">57. अम्लमराज (Aqua regia) में HCl और HNO3 का अनुपात होता है? <span class="year-info">2013, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 3:1</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1:3</button>
+            <button class="option-btn" onclick="check(this, false)">C. 2:2</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1:2</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">58. निम्न में से किसे 'कोशिका का ऊर्जा मुद्रा' (Energy Currency) के रूप में जाना जाता है? <span class="year-info">2018, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. ADP</button>
+            <button class="option-btn" onclick="check(this, true)">B. ATP</button>
+            <button class="option-btn" onclick="check(this, false)">C. DTP</button>
+            <button class="option-btn" onclick="check(this, false)">D. PDP</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">59. मनुष्य में वृक्क (Kidney) एक तंत्र का भाग है जो संबंधित है? <span class="year-info">2012, 2017</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. पोषण</button>
+            <button class="option-btn" onclick="check(this, false)">B. श्वसन</button>
+            <button class="option-btn" onclick="check(this, true)">C. उत्सर्जन</button>
+            <button class="option-btn" onclick="check(this, false)">D. परिवहन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">60. हाइड्रा में क्या पाया जाता है? <span class="year-info">2020, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. मस्तिष्क</button>
+            <button class="option-btn" onclick="check(this, false)">B. तंत्रिका</button>
+            <button class="option-btn" onclick="check(this, false)">C. मुख</button>
+            <button class="option-btn" onclick="check(this, true)">D. स्पर्शक (Tentacles)</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">61. किसी वस्तु का प्रतिबिम्ब आँख के जिस भाग पर पड़ता है, वह है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. कॉर्निया</button>
+            <button class="option-btn" onclick="check(this, true)">B. रेटिना</button>
+            <button class="option-btn" onclick="check(this, false)">C. पुतली</button>
+            <button class="option-btn" onclick="check(this, false)">D. आइरिस</button>
+        </div>
+    </div>
+    [attachment_0](attachment)
+
+    <div class="quiz-card">
+        <div class="question">62. एक एम्पियर (A) बराबर होता है? <span class="year-info">2016, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 1 कूलॉम / 1 सेकंड</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1 जूल / 1 सेकंड</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1 वोल्ट / 1 सेकंड</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">63. ग्लोबल वार्मिंग (Global Warming) के लिए उत्तरदायी गैस है? <span class="year-info">2012, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. O2</button>
+            <button class="option-btn" onclick="check(this, false)">B. NH3</button>
+            <button class="option-btn" onclick="check(this, true)">C. CO2</button>
+            <button class="option-btn" onclick="check(this, false)">D. N2</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">64. ओजोन परत के अवक्षय के लिए मुख्य रूप से कौन जिम्मेदार है? <span class="year-info">2015, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. CFC</button>
+            <button class="option-btn" onclick="check(this, false)">B. CH4</button>
+            <button class="option-btn" onclick="check(this, false)">C. CO2</button>
+            <button class="option-btn" onclick="check(this, false)">D. NO2</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">65. विद्युत शक्ति का SI मात्रक होता है? <span class="year-info">2013, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. वाट (Watt)</button>
+            <button class="option-btn" onclick="check(this, false)">B. वोल्ट</button>
+            <button class="option-btn" onclick="check(this, false)">C. एम्पियर</button>
+            <button class="option-btn" onclick="check(this, false)">D. ओम</button>
+        </div>
+    </div>
+    <div class="quiz-card">
+        <div class="question">66. विभवांतर मापने वाले यंत्र को क्या कहा जाता है? <span class="year-info">2016, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. एमीटर</button>
+            <button class="option-btn" onclick="check(this, true)">B. वोल्टमीटर</button>
+            <button class="option-btn" onclick="check(this, false)">C. गैल्वेनोमीटर</button>
+            <button class="option-btn" onclick="check(this, false)">D. मैनोमीटर</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">67. पवन चक्की से उपयोगी ऊर्जा प्राप्त करने के लिए पवन की न्यूनतम चाल होनी चाहिए? <span class="year-info">2014, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 20 km/h</button>
+            <button class="option-btn" onclick="check(this, true)">B. 15 km/h</button>
+            <button class="option-btn" onclick="check(this, false)">C. 30 km/h</button>
+            <button class="option-btn" onclick="check(this, false)">D. 40 km/h</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">68. सौर सेल बनाने के लिए किसका उपयोग किया जाता है? <span class="year-info">2019, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. लोहे का</button>
+            <button class="option-btn" onclick="check(this, false)">B. ताँबे का</button>
+            <button class="option-btn" onclick="check(this, true)">C. सिलिकॉन का</button>
+            <button class="option-btn" onclick="check(this, false)">D. एल्युमिनियम का</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">69. नर युग्मक एवं मादा युग्मक के संगलन को क्या कहते हैं? <span class="year-info">2013, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. निषेचन (Fertilization)</button>
+            <button class="option-btn" onclick="check(this, false)">B. अंकुरण</button>
+            <button class="option-btn" onclick="check(this, false)">C. परागण</button>
+            <button class="option-btn" onclick="check(this, false)">D. किण्वन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">70. द्विखंडन (Binary Fission) किसमें होता है? <span class="year-info">2015, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. अमीबा में</button>
+            <button class="option-btn" onclick="check(this, false)">B. पैरामीशियम में</button>
+            <button class="option-btn" onclick="check(this, false)">C. लीशमैनिया में</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से सभी में</button>
+        </div>
+    </div>
+    [attachment_0](attachment)
+
+    <div class="quiz-card">
+        <div class="question">71. मुकुलन (Budding) द्वारा प्रजनन किसमें होता है? <span class="year-info">2012, 2018, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. अमीबा</button>
+            <button class="option-btn" onclick="check(this, true)">B. यीस्ट (Yeast)</button>
+            <button class="option-btn" onclick="check(this, false)">C. मलेरिया परजीवी</button>
+            <button class="option-btn" onclick="check(this, false)">D. पैरामीशियम</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">72. किसी जीव की जीनी संरचना कहलाती है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. फेनोटाइप</button>
+            <button class="option-btn" onclick="check(this, true)">B. जीनोटाइप</button>
+            <button class="option-btn" onclick="check(this, false)">C. आनुवंशिकी</button>
+            <button class="option-btn" onclick="check(this, false)">D. विभिन्नता</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">73. स्त्री-केसर के आधारीय भाग को क्या कहते हैं? <span class="year-info">2016, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. वर्तिकाग्र</button>
+            <button class="option-btn" onclick="check(this, true)">B. अंडाशय</button>
+            <button class="option-btn" onclick="check(this, false)">C. वर्तिका</button>
+            <button class="option-btn" onclick="check(this, false)">D. पुष्पासन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">74. शुद्ध जल का pH मान कितना होता है? <span class="year-info">2019, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 6</button>
+            <button class="option-btn" onclick="check(this, true)">B. 7</button>
+            <button class="option-btn" onclick="check(this, false)">C. 8</button>
+            <button class="option-btn" onclick="check(this, false)">D. 9</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">75. कौन सा अधातु विद्युत का सुचालक होता है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. सल्फर</button>
+            <button class="option-btn" onclick="check(this, true)">B. ग्रेफाइट</button>
+            <button class="option-btn" onclick="check(this, false)">C. क्लोरीन</button>
+            <button class="option-btn" onclick="check(this, false)">D. आयोडीन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">76. संगमरमर का रासायनिक सूत्र क्या है? <span class="year-info">2013, 2017, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. CaCO3</button>
+            <button class="option-btn" onclick="check(this, false)">B. MgCO3</button>
+            <button class="option-btn" onclick="check(this, false)">C. Ca(HCO3)2</button>
+            <button class="option-btn" onclick="check(this, false)">D. Mg(HCO3)2</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">77. दाँतों को साफ करने के लिए दंत-मंजन प्रायः होता है? <span class="year-info">2018, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. क्षारीय</button>
+            <button class="option-btn" onclick="check(this, false)">B. अम्लीय</button>
+            <button class="option-btn" onclick="check(this, false)">C. लवणयुक्त</button>
+            <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">78. निम्न में से कौन सा उभयलिंगी जंतु है? <span class="year-info">2012, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. केंचुआ</button>
+            <button class="option-btn" onclick="check(this, false)">B. मछली</button>
+            <button class="option-btn" onclick="check(this, false)">C. शेर</button>
+            <button class="option-btn" onclick="check(this, false)">D. बकरी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">79. प्राकृतिक चयन का सिद्धांत किसने दिया है? <span class="year-info">2011, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. लैमार्क</button>
+            <button class="option-btn" onclick="check(this, false)">B. अरस्तू</button>
+            <button class="option-btn" onclick="check(this, true)">C. डार्विन</button>
+            <button class="option-btn" onclick="check(this, false)">D. स्पेंसर</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">80. प्रकाश संश्लेषण की क्रिया होती है? <span class="year-info">2015, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. कवकों में</button>
+            <button class="option-btn" onclick="check(this, false)">B. जंतुओं में</button>
+            <button class="option-btn" onclick="check(this, true)">C. हरे पौधों में</button>
+            <button class="option-btn" onclick="check(this, false)">D. परजीवियों में</button>
+        </div>
+    </div>
+    [attachment_1](attachment)
+
+    <div class="quiz-card">
+        <div class="question">81. प्रकाश के अपवर्तन के कितने नियम हैं? <span class="year-info">2012, 2016, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. एक</button>
+            <button class="option-btn" onclick="check(this, true)">B. दो</button>
+            <button class="option-btn" onclick="check(this, false)">C. तीन</button>
+            <button class="option-btn" onclick="check(this, false)">D. चार</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">82. सरल सूक्ष्मदर्शी में किसका उपयोग होता है? <span class="year-info">2014, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. अवतल दर्पण</button>
+            <button class="option-btn" onclick="check(this, false)">B. उत्तल दर्पण</button>
+            <button class="option-btn" onclick="check(this, false)">C. अवतल लेंस</button>
+            <button class="option-btn" onclick="check(this, true)">D. उत्तल लेंस</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">83. जो नेत्र निकट स्थित वस्तु को साफ नहीं देख सकता, उसमें होता है? <span class="year-info">2013, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. दूर-दृष्टि दोष</button>
+            <button class="option-btn" onclick="check(this, false)">B. निकट-दृष्टि दोष</button>
+            <button class="option-btn" onclick="check(this, false)">C. जरा-दृष्टि दोष</button>
+            <button class="option-btn" onclick="check(this, false)">D. वर्णांधता</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">84. श्वेत प्रकाश की किरण जब किसी प्रिज्म से होकर गुजरती है, तो कौन सा रंग सबसे कम विचलित होता है? <span class="year-info">2011, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. बैंगनी</button>
+            <button class="option-btn" onclick="check(this, false)">B. नीला</button>
+            <button class="option-btn" onclick="check(this, true)">C. लाल</button>
+            <button class="option-btn" onclick="check(this, false)">D. पीला</button>
+        </div>
+    </div>
+    [attachment_0](attachment)
+
+    <div class="quiz-card">
+        <div class="question">85. किलोवाट-घंटा (kWh) मात्रक है? <span class="year-info">2015, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. धारा का</button>
+            <button class="option-btn" onclick="check(this, false)">B. समय का</button>
+            <button class="option-btn" onclick="check(this, true)">C. विद्युत ऊर्जा का</button>
+            <button class="option-btn" onclick="check(this, false)">D. शक्ति का</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">86. 'ओम का नियम' निहित है? <span class="year-info">2012, 2018</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. V = R / I</button>
+            <button class="option-btn" onclick="check(this, true)">B. V = I × R</button>
+            <button class="option-btn" onclick="check(this, false)">C. I = V × R</button>
+            <button class="option-btn" onclick="check(this, false)">D. R = V × I</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">87. संगमरमर का रासायनिक सूत्र (दोबारा महत्वपूर्ण)? <span class="year-info">2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. CaCO3</button>
+            <button class="option-btn" onclick="check(this, false)">B. MgCO3</button>
+            <button class="option-btn" onclick="check(this, false)">C. Ca(OH)2</button>
+            <button class="option-btn" onclick="check(this, false)">D. CaO</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">88. सीसा और टिन की मिश्रधातु को कहते हैं? <span class="year-info">2014, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. सोल्डर</button>
+            <button class="option-btn" onclick="check(this, false)">B. स्टील</button>
+            <button class="option-btn" onclick="check(this, false)">C. गन मेटल</button>
+            <button class="option-btn" onclick="check(this, false)">D. उपधातु</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">89. निम्न में से किसे 'चाकू से काटा' जा सकता है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. लिथियम (या सोडियम)</button>
+            <button class="option-btn" onclick="check(this, false)">B. कैल्शियम</button>
+            <button class="option-btn" onclick="check(this, false)">C. कॉपर</button>
+            <button class="option-btn" onclick="check(this, false)">D. आयरन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">90. इथाइल अल्कोहल का अणुसूत्र होता है? <span class="year-info">2015, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. CH3OH</button>
+            <button class="option-btn" onclick="check(this, true)">B. C2H5OH</button>
+            <button class="option-btn" onclick="check(this, false)">C. C2H2OH</button>
+            <button class="option-btn" onclick="check(this, false)">D. C2H6OH</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">91. आवर्त सारणी के प्रथम वर्ग के सदस्य होते हैं? <span class="year-info">2012, 2017</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. अम्लीय धातु</button>
+            <button class="option-btn" onclick="check(this, true)">B. क्षारीय धातु</button>
+            <button class="option-btn" onclick="check(this, false)">C. अक्रिय गैस</button>
+            <button class="option-btn" onclick="check(this, false)">D. मिश्रधातु</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">92. एक पिकोमीटर (pm) बराबर होता है? <span class="year-info">2013, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 10^-12 m</button>
+            <button class="option-btn" onclick="check(this, false)">B. 10^-10 m</button>
+            <button class="option-btn" onclick="check(this, false)">C. 10^12 m</button>
+            <button class="option-btn" onclick="check(this, false)">D. 10^-6 m</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">93. पादप में 'फ्लोएम' (Phloem) उत्तरदायी है? <span class="year-info">2012, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. भोजन संवहन</button>
+            <button class="option-btn" onclick="check(this, false)">B. अमीनो अम्ल संवहन</button>
+            <button class="option-btn" onclick="check(this, false)">C. जल संवहन</button>
+            <button class="option-btn" onclick="check(this, false)">D. ऑक्सीजन संवहन</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">94. कवक में पोषण की कौन सी विधि है? <span class="year-info">2014, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. स्वपोषी</button>
+            <button class="option-btn" onclick="check(this, true)">B. मृतजीवी</button>
+            <button class="option-btn" onclick="check(this, false)">C. संभोजई</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">95. मानव में 'डायलिसिस थैली' है? <span class="year-info">2011, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. नेफ्रॉन</button>
+            <button class="option-btn" onclick="check(this, false)">B. न्यूरॉन</button>
+            <button class="option-btn" onclick="check(this, false)">C. माइटोकॉन्ड्रिया</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+    [attachment_1](attachment)
+
+    <div class="quiz-card">
+        <div class="question">96. पुष्पी पौधों में लैंगिक जनन किसके द्वारा होता है? <span class="year-info">2013, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. पत्तियों द्वारा</button>
+            <button class="option-btn" onclick="check(this, false)">B. तने द्वारा</button>
+            <button class="option-btn" onclick="check(this, true)">C. फूलों द्वारा</button>
+            <button class="option-btn" onclick="check(this, false)">D. बीजों द्वारा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">97. निम्न में से कौन एक 'जैविक प्रक्रम' द्वारा अपघटित होने वाला पदार्थ है? <span class="year-info">2012, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. सूखे घास-पत्ते</button>
+            <button class="option-btn" onclick="check(this, false)">B. पॉलीथीन बैग</button>
+            <button class="option-btn" onclick="check(this, false)">C. रबर</button>
+            <button class="option-btn" onclick="check(this, false)">D. प्लास्टिक की बोतलें</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">98. हरे पौधे कहलाते हैं? <span class="year-info">2014, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. उत्पादक</button>
+            <button class="option-btn" onclick="check(this, false)">B. अपघटक</button>
+            <button class="option-btn" onclick="check(this, false)">C. उपभोक्ता</button>
+            <button class="option-btn" onclick="check(this, false)">D. आहार श्रृंखला</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">99. ओजोन के एक अणु में ऑक्सीजन के परमाणुओं की संख्या होती है? <span class="year-info">2011, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1</button>
+            <button class="option-btn" onclick="check(this, false)">B. 2</button>
+            <button class="option-btn" onclick="check(this, true)">C. 3</button>
+            <button class="option-btn" onclick="check(this, false)">D. 4</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">100. विद्युत ऊर्जा का व्यापारिक मात्रक क्या है? <span class="year-info">2013, 2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. वाट</button>
+            <button class="option-btn" onclick="check(this, false)">B. वाट/घंटा</button>
+            <button class="option-btn" onclick="check(this, true)">C. यूनिट (kWh)</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+
+<div style="text-align: center; margin-top: 30px;">
+    <button onclick="showFinalScore()" style="padding: 15px 30px; background: #27ae60; color: white; border: none; border-radius: 8px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+        अपना रिजल्ट देखें (Check Result)
+    </button>
+</div>
+
+<div id="resultBox" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 15px; box-shadow: 0 0 50px rgba(0,0,0,0.5); text-align: center; z-index: 1000; width: 80%;">
+    <h2 style="color: #27ae60;">🎉 बहुत अच्छा, मंजीत दोस्त!</h2>
+    <p id="scoreText" style="font-size: 24px; font-weight: bold; margin: 20px 0;"></p>
+    <button onclick="location.reload()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">फिर से कोशिश करें</button>
+</div>
+
+<script>
+    let score = 0;
+    let questionsAnswered = 0;
+
+    // साउंड फाइल्स (इंटरनेट पर चलते समय आवाज़ आएगी)
+    const correctSound = new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3');
+    const wrongSound = new Audio('https://www.soundjay.com/misc/sounds/fail-trombone-01.mp3');
+
+    function check(btn, isCorrect) {
+        let parent = btn.parentElement;
+        let buttons = parent.getElementsByClassName('option-btn');
+        let totalQuestions = document.querySelectorAll('.quiz-card').length;
+        
+        // 1. सभी बटनों को लॉक करना ताकि दोबारा क्लिक न हो
+        for(let i=0; i < buttons.length; i++) {
+            buttons[i].disabled = true;
+        }
+
+        if(isCorrect) {
+            // अगर जवाब सही है
+            btn.classList.add('correct');
+            correctSound.play().catch(e => console.log("Sound error")); // सही आवाज़
+            score++;
+        } else {
+            // अगर जवाब गलत है
+            btn.classList.add('wrong');
+            wrongSound.play().catch(e => console.log("Sound error")); // गलत आवाज़
+
+            // 2. ऑटो-करेक्ट: यह ब्राउज़र में 'true' वाले बटन को खुद ढूँढ लेगा
+            for(let i=0; i < buttons.length; i++) {
+                // यह लाइन बटन के अंदर छिपे 'true' शब्द को पहचान लेती है
+                if(buttons[i].outerHTML.includes('true')) {
+                    buttons[i].classList.add('correct');
+                }
+            }
+        }
+        
+        questionsAnswered++;
+
+        // 3. जैसे ही सारे सवाल खत्म होंगे, रिजल्ट बॉक्स खुल जाएगा
+        if(questionsAnswered === totalQuestions) {
+            setTimeout(showFinalScore, 1000); 
+        }
+    }
+
+    function showFinalScore() {
+        let total = document.querySelectorAll('.quiz-card').length;
+        let resBox = document.getElementById('resultBox');
+        if(resBox) {
+            resBox.style.display = 'block';
+            document.getElementById('scoreText').innerHTML = "मंजीत भाई की क्लास - रिजल्ट<br>आपका स्कोर: " + score + " / " + total;
+        }
+    }
+</script>
+
+
+
+<script>
+    let score = 0;
+    let questionsAnswered = 0;
+
+    function check(btn, isCorrect) {
+        // 1. सबसे पहले पता लगाओ कि आपकी वेबसाइट पर कुल कितने "quiz-card" हैं
+        // इससे आपको बार-बार नंबर नहीं बदलना पड़ेगा
+        let totalQuestions = document.querySelectorAll('.quiz-card').length;
+
+        let parent = btn.parentElement;
+        let buttons = parent.getElementsByClassName('option-btn');
+        
+        // बटन को लॉक करना ताकि दोबारा क्लिक न हो
+        for(let i=0; i<buttons.length; i++) {
+            buttons[i].disabled = true;
+        }
+
+        // सही या गलत चेक करना
+        if(isCorrect) {
+            btn.classList.add('correct');
+            score++;
+        } else {
+            btn.classList.add('wrong');
+        }
+        
+        questionsAnswered++; // जवाबों की गिनती बढ़ाना
+
+        // --- AUTOMATIC RESULT LOGIC ---
+        // जैसे ही जवाबों की संख्या कुल सवालों के बराबर होगी, रिजल्ट खुल जाएगा
+        if(questionsAnswered === totalQuestions) {
+            setTimeout(function() {
+                showFinalScore(totalQuestions);
+            }, 800); // 0.8 सेकंड का इंतज़ार
+        }
+    }
+
+    function showFinalScore(total) {
+        let resBox = document.getElementById('resultBox');
+        let resText = document.getElementById('scoreText');
+        
+        if(resBox && resText) {
+            resBox.style.display = 'block';
+            resText.innerHTML = "आपका फाइनल स्कोर:<br><span style='font-size:40px; color:#27ae60;'>" + score + " / " + total + "</span>";
+        } else {
+            alert("टेस्ट पूरा हुआ! आपका स्कोर: " + score + " / " + total);
+        }
+    }
+</script>
+
+<script>
+    let score = 0;
+    let questionsAnswered = 0;
+
+    // साउंड लोड करने के लिए (ये फ्री ऑनलाइन साउंड लिंक्स हैं)
+    const correctSound = new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3');
+    const wrongSound = new Audio('https://www.soundjay.com/misc/sounds/fail-trombone-01.mp3');
+
+    function check(btn, isCorrect) {
+        let totalQuestions = document.querySelectorAll('.quiz-card').length;
+        let parent = btn.parentElement;
+        let buttons = parent.getElementsByClassName('option-btn');
+        
+        for(let i=0; i<buttons.length; i++) {
+            buttons[i].disabled = true;
+        }
+
+        if(isCorrect) {
+            btn.classList.add('correct');
+            correctSound.play(); // सही होने पर घंटी बजेगी
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            wrongSound.play(); // गलत होने पर बाजा बजेगा
+        }
+        
+        questionsAnswered++;
+
+        if(questionsAnswered === totalQuestions) {
+            setTimeout(function() {
+                showFinalScore(totalQuestions);
+            }, 1000);
+        }
+    }
+
+    function showFinalScore(total) {
+        let resBox = document.getElementById('resultBox');
+        let resText = document.getElementById('scoreText');
+        if(resBox && resText) {
+            resBox.style.display = 'block';
+            resText.innerHTML = "आपका स्कोर: " + score + " / " + total;
+        }
+    }
+</script>
+
+
+
+<script>
+    function check(btn, isCorrect) {
+        // Ek baar click hone ke baad buttons ko disable karne ke liye (Option)
+        let parent = btn.parentElement;
+        let buttons = parent.getElementsByClassName('option-btn');
+        
+        if(isCorrect) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            // Sahi wala bhi dikha do
+            alert("Galat jawab! Sahi jawab chuniye.");
+        }
+    }
+</script>
+
+
+
+</body>
+</html>

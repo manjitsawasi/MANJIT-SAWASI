@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मंजीत स्टडी - सामाजिक विज्ञान (50 VVI)</title>
+    <style>
+        :root { --primary: #2c3e50; --success: #27ae60; --wrong: #e74c3c; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); margin: 0; padding: 15px; }
+        .container { max-width: 700px; margin: auto; }
+        header { text-align: center; background: var(--primary); color: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        
+        .quiz-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid var(--primary); }
+        .question { font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; color: #333; }
+        .year-info { font-size: 0.8rem; color: #e67e22; background: #fef5e7; padding: 2px 8px; border-radius: 5px; float: right; }
+        
+        .options-container { display: grid; gap: 10px; margin-top: 10px; }
+        .option-btn { padding: 12px; border: 2px solid #eee; border-radius: 8px; background: white; cursor: pointer; text-align: left; font-size: 1rem; transition: 0.3s; }
+        .option-btn:hover { background: #f9f9f9; border-color: #3498db; }
+        
+        .correct { background: var(--success) !important; color: white !important; border-color: var(--success) !important; }
+        .wrong { background: var(--wrong) !important; color: white !important; border-color: var(--wrong) !important; }
+        
+        #resultBox { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; box-shadow: 0 0 50px rgba(0,0,0,0.4); text-align: center; z-index: 1000; width: 85%; }
+        .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index: 999; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>सामाजिक विज्ञान (Social Science)</h1>
+        <p>महत्वपूर्ण 50 वस्तुनिष्ठ प्रश्न</p>
+    </header>
+
+    <div class="quiz-card">
+        <div class="question">1. मेजिनी का संबंध किस संगठन से था? <span class="year-info">2012, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. लाल सेना</button>
+            <button class="option-btn" onclick="check(this, true)">B. कार्बोनरी</button>
+            <button class="option-btn" onclick="check(this, false)">C. फिलिक हेटारिया</button>
+            <button class="option-btn" onclick="check(this, false)">D. डाइट</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">2. अंकुरवाट का मंदिर कहाँ स्थित है? <span class="year-info">2012, 2015, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. वियतनाम</button>
+            <button class="option-btn" onclick="check(this, false)">B. थायलैंड</button>
+            <button class="option-btn" onclick="check(this, false)">C. लाओस</button>
+            <button class="option-btn" onclick="check(this, true)">D. कंबोडिया</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">3. 'रक्त एवं लौह' की नीति का अवलम्बन किसने किया था? <span class="year-info">2011, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. मेजिनी</button>
+            <button class="option-btn" onclick="check(this, false)">B. हिटलर</button>
+            <button class="option-btn" onclick="check(this, true)">C. बिस्मार्क</button>
+            <button class="option-btn" onclick="check(this, false)">D. विलियम I</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">4. फ्रैंकफर्ट की संधि कब हुई? <span class="year-info">2012, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1864</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1866</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1870</button>
+            <button class="option-btn" onclick="check(this, true)">D. 1871</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">5. दास कैपिटल का प्रकाशन किस वर्ष हुआ था? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1848</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1864</button>
+            <button class="option-btn" onclick="check(this, true)">C. 1867</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1883</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">6. बिहार में नहरों द्वारा सर्वाधिक सिंचाई किस जिले में होती है? <span class="year-info">2014, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. रोहतास</button>
+            <button class="option-btn" onclick="check(this, false)">B. सीवान</button>
+            <button class="option-btn" onclick="check(this, false)">C. गया</button>
+            <button class="option-btn" onclick="check(this, false)">D. पश्चिम चम्पारण</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">7. 'हिंद-चीन' पहुँचने वाले प्रथम व्यापारी कौन थे? <span class="year-info">2016, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. अंग्रेज</button>
+            <button class="option-btn" onclick="check(this, false)">B. फ्रांसीसी</button>
+            <button class="option-btn" onclick="check(this, true)">C. पुर्तगाली</button>
+            <button class="option-btn" onclick="check(this, false)">D. डच</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">8. सविनय अवज्ञा आंदोलन कब शुरू हुआ? <span class="year-info">2019, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1920</button>
+            <button class="option-btn" onclick="check(this, true)">B. 1930</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1935</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1942</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">9. राउरकेला लोहा-इस्पात उद्योग कहाँ स्थित है? <span class="year-info">2020, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. ओडिशा में</button>
+            <button class="option-btn" onclick="check(this, false)">B. झारखण्ड में</button>
+            <button class="option-btn" onclick="check(this, false)">C. मध्य प्रदेश में</button>
+            <button class="option-btn" onclick="check(this, false)">D. पश्चिम बंगाल में</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">10. गिरमिटिया मजदूर बिहार के किस क्षेत्र से भेजे जाते थे? <span class="year-info">2013, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. पूर्वी क्षेत्र</button>
+            <button class="option-btn" onclick="check(this, true)">B. पश्चिमी क्षेत्र</button>
+            <button class="option-btn" onclick="check(this, false)">C. उत्तरी क्षेत्र</button>
+            <button class="option-btn" onclick="check(this, false)">D. दक्षिणी क्षेत्र</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">11. काली मृदा का दूसरा नाम क्या है? <span class="year-info">2011, 2017</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. बलुई मृदा</button>
+            <button class="option-btn" onclick="check(this, true)">B. रेगुर मृदा</button>
+            <button class="option-btn" onclick="check(this, false)">C. लाल मृदा</button>
+            <button class="option-btn" onclick="check(this, false)">D. पर्वतीय मृदा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">12. संजय गाँधी जैविक उद्यान किस नगर में स्थित है? <span class="year-info">2013, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. राजगीर</button>
+            <button class="option-btn" onclick="check(this, false)">B. बोधगया</button>
+            <button class="option-btn" onclick="check(this, false)">C. बिहारशरीफ</button>
+            <button class="option-btn" onclick="check(this, true)">D. पटना</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">13. भारतीय रिजर्व बैंक (RBI) की स्थापना कब हुई? <span class="year-info">2011, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1934</button>
+            <button class="option-btn" onclick="check(this, true)">B. 1935</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1948</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1951</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">14. सुनामी का मुख्य कारण क्या है? <span class="year-info">2015, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. समुद्र में भूकंप आना</button>
+            <button class="option-btn" onclick="check(this, false)">B. द्वीप पर भूकंप आना</button>
+            <button class="option-btn" onclick="check(this, false)">C. स्थलीय क्षेत्र में भूकंप आना</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">15. सीमेंट उद्योग का सबसे प्रमुख कच्चा माल क्या है? <span class="year-info">2011, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. चूना पत्थर</button>
+            <button class="option-btn" onclick="check(this, false)">B. बॉक्साइट</button>
+            <button class="option-btn" onclick="check(this, false)">C. ग्रेनाइट</button>
+            <button class="option-btn" onclick="check(this, false)">D. लोहा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">16. 'यंग इटली' की स्थापना किसने की थी? <span class="year-info">2012, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. काबूर</button>
+            <button class="option-btn" onclick="check(this, true)">B. मेजिनी</button>
+            <button class="option-btn" onclick="check(this, false)">C. बिस्मार्क</button>
+            <button class="option-btn" onclick="check(this, false)">D. गैरीबाल्डी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">17. रूस में कृषक दास प्रथा का अंत कब हुआ? <span class="year-info">2013, 2017</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 1861</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1862</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1863</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1864</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">18. विश्व में सर्वप्रथम मुद्रण की शुरुआत कहाँ हुई? <span class="year-info">2012, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. भारत</button>
+            <button class="option-btn" onclick="check(this, false)">B. जापान</button>
+            <button class="option-btn" onclick="check(this, true)">C. चीन</button>
+            <button class="option-btn" onclick="check(this, false)">D. अमेरिका</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">19. 'यूरोप का मरीज' किसे कहा जाता था? <span class="year-info">2016, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. तुर्की</button>
+            <button class="option-btn" onclick="check(this, false)">B. इटली</button>
+            <button class="option-btn" onclick="check(this, false)">C. इंग्लैंड</button>
+            <button class="option-btn" onclick="check(this, false)">D. फ्रांस</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">20. सविनय अवज्ञा आंदोलन कब शुरू हुआ? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1920</button>
+            <button class="option-btn" onclick="check(this, true)">B. 1930</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1935</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1942</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">21. भारत का राष्ट्रीय पक्षी है? <span class="year-info">2017, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. कबूतर</button>
+            <button class="option-btn" onclick="check(this, false)">B. हंस</button>
+            <button class="option-btn" onclick="check(this, true)">C. मोर</button>
+            <button class="option-btn" onclick="check(this, false)">D. तोता</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">22. राजनीतिक दलों की नींव सर्वप्रथम किस देश में पड़ी? <span class="year-info">2012, 2018</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. ब्रिटेन</button>
+            <button class="option-btn" onclick="check(this, false)">B. भारत</button>
+            <button class="option-btn" onclick="check(this, false)">C. फ्रांस</button>
+            <button class="option-btn" onclick="check(this, false)">D. अमेरिका</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">23. भारत में वित्तीय वर्ष कहा जाता है? <span class="year-info">2016, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1 जनवरी से 31 दिसंबर</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1 जुलाई से 30 जून</button>
+            <button class="option-btn" onclick="check(this, true)">C. 1 अप्रैल से 31 मार्च</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1 सितंबर से 31 अगस्त</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">24. लोकतंत्र जनता का, जनता द्वारा और जनता के लिए शासन है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. अरस्तू</button>
+            <button class="option-btn" onclick="check(this, true)">B. अब्राहम लिंकन</button>
+            <button class="option-btn" onclick="check(this, false)">C. सुकरात</button>
+            <button class="option-btn" onclick="check(this, false)">D. रूसो</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">25. तारापुर परमाणु ऊर्जा केंद्र कहाँ स्थित है? <span class="year-info">2019, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. गुजरात</button>
+            <button class="option-btn" onclick="check(this, false)">B. छत्तीसगढ़</button>
+            <button class="option-btn" onclick="check(this, true)">C. महाराष्ट्र</button>
+            <button class="option-btn" onclick="check(this, false)">D. राजस्थान</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">26. काली मिट्टी किस फसल के लिए उपयुक्त है? <span class="year-info">2015, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. कपास</button>
+            <button class="option-btn" onclick="check(this, false)">B. गेहूँ</button>
+            <button class="option-btn" onclick="check(this, false)">C. चावल</button>
+            <button class="option-btn" onclick="check(this, false)">D. चाय</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">27. भारत का सबसे बड़ा लौह-उत्पादक राज्य कौन सा है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. कर्नाटक</button>
+            <button class="option-btn" onclick="check(this, false)">B. गोवा</button>
+            <button class="option-btn" onclick="check(this, false)">C. ओडिशा</button>
+            <button class="option-btn" onclick="check(this, false)">D. झारखण्ड</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">28. पीतल बनाया जाता है? <span class="year-info">2013, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. ताँबे से</button>
+            <button class="option-btn" onclick="check(this, false)">B. जस्ते से</button>
+            <button class="option-btn" onclick="check(this, true)">C. ताँबा और जस्ता दोनों से</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">29. बिहार का सर्वाधिक जनसंख्या वाला जिला कौन सा है? <span class="year-info">2020, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. गया</button>
+            <button class="option-btn" onclick="check(this, true)">B. पटना</button>
+            <button class="option-btn" onclick="check(this, false)">C. मुजफ्फरपुर</button>
+            <button class="option-btn" onclick="check(this, false)">D. दरभंगा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">30. सासाराम नगर का विकास हुआ था? <span class="year-info">2015, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. मध्य युग में</button>
+            <button class="option-btn" onclick="check(this, false)">B. प्राचीन युग में</button>
+            <button class="option-btn" onclick="check(this, false)">C. वर्तमान युग में</button>
+            <button class="option-btn" onclick="check(this, false)">D. आधुनिक युग में</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">31. गिरमिटिया मजदूर किसे कहा जाता था? <span class="year-info">2013, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. अनुबंधित मजदूर को</button>
+            <button class="option-btn" onclick="check(this, false)">B. रोगियों को</button>
+            <button class="option-btn" onclick="check(this, false)">C. छिपकली को</button>
+            <button class="option-btn" onclick="check(this, false)">D. अंग्रेजों को</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">32. यंग यूरोप का संस्थापक कौन था? <span class="year-info">2019, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. मेजिनी</button>
+            <button class="option-btn" onclick="check(this, false)">B. गैरीबाल्डी</button>
+            <button class="option-btn" onclick="check(this, false)">C. विक्टर इमैनुएल</button>
+            <button class="option-btn" onclick="check(this, false)">D. मुसोलिनी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">33. भारत में मतदाता होने की न्यूनतम आयु क्या है? <span class="year-info">2011, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 16 वर्ष</button>
+            <button class="option-btn" onclick="check(this, false)">B. 17 वर्ष</button>
+            <button class="option-btn" onclick="check(this, true)">C. 18 वर्ष</button>
+            <button class="option-btn" onclick="check(this, false)">D. 19 वर्ष</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">34. बिहार के किस जिले की प्रति व्यक्ति आय सर्वाधिक है? <span class="year-info">2014, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. पटना</button>
+            <button class="option-btn" onclick="check(this, false)">B. गया</button>
+            <button class="option-btn" onclick="check(this, false)">C. शिवहर</button>
+            <button class="option-btn" onclick="check(this, false)">D. नालंदा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">35. सुनामी किस स्थान पर आती है? <span class="year-info">2012, 2020</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. तटीय क्षेत्र</button>
+            <button class="option-btn" onclick="check(this, true)">B. समुद्र</button>
+            <button class="option-btn" onclick="check(this, false)">C. आसमान</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">36. वियतनाम में 'टोकन फ्री स्कूल' की स्थापना कब हुई? <span class="year-info">2011, 2015</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 1907</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1908</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1910</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1911</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">37. जनेवा समझौता कब हुआ था? <span class="year-info">2013, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 1954</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1960</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1950</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1946</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">38. सौर ऊर्जा निम्नलिखित में से कौन सा संसाधन है? <span class="year-info">2014, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. मानवकृत</button>
+            <button class="option-btn" onclick="check(this, true)">B. नवीकरणीय</button>
+            <button class="option-btn" onclick="check(this, false)">C. अजैव</button>
+            <button class="option-btn" onclick="check(this, false)">D. अनवीकरणीय</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">39. भाखड़ा नांगल परियोजना किस नदी पर अवस्थित है? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. नर्मदा</button>
+            <button class="option-btn" onclick="check(this, false)">B. झेलम</button>
+            <button class="option-btn" onclick="check(this, true)">C. सतलज</button>
+            <button class="option-btn" onclick="check(this, false)">D. व्यास</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">40. बिहार का सबसे बड़ा नगर कौन है? <span class="year-info">2020, 2023</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. पटना</button>
+            <button class="option-btn" onclick="check(this, false)">B. गया</button>
+            <button class="option-btn" onclick="check(this, false)">C. भागलपुर</button>
+            <button class="option-btn" onclick="check(this, false)">D. दरभंगा</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">41. सूचना का अधिकार कानून कब लागू हुआ? <span class="year-info">2011, 2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 2004</button>
+            <button class="option-btn" onclick="check(this, true)">B. 2005</button>
+            <button class="option-btn" onclick="check(this, false)">C. 2006</button>
+            <button class="option-btn" onclick="check(this, false)">D. 2007</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">42. वर्तमान में नेपाल की शासन प्रणाली क्या है? <span class="year-info">2018, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. लोकतन्त्र</button>
+            <button class="option-btn" onclick="check(this, false)">B. राजतन्त्र</button>
+            <button class="option-btn" onclick="check(this, false)">C. सैनिक तन्त्र</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">43. डब्ल्यू. टी. ओ. (WTO) की स्थापना किस वर्ष की गई? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 1995</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1994</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1996</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1990</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">44. भारतीय राष्ट्रीय कांग्रेस की स्थापना कब हुई? <span class="year-info">2012, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 1885</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1890</button>
+            <button class="option-btn" onclick="check(this, false)">C. 1895</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1900</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">45. गांधीजी ने साबरमती आश्रम की स्थापना किस वर्ष की? <span class="year-info">2019, 2022</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1895</button>
+            <button class="option-btn" onclick="check(this, false)">B. 1900</button>
+            <button class="option-btn" onclick="check(this, true)">C. 1915</button>
+            <button class="option-btn" onclick="check(this, false)">D. 1916</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">46. झारखंड राज्य का गठन कब हुआ था? <span class="year-info">2011, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. 1 नवंबर 2000</button>
+            <button class="option-btn" onclick="check(this, false)">B. 9 नवंबर 2000</button>
+            <button class="option-btn" onclick="check(this, true)">C. 15 नवंबर 2000</button>
+            <button class="option-btn" onclick="check(this, false)">D. 15 नवंबर 2001</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">47. मानव पूँजी के प्रमुख घटक हैं? <span class="year-info">2013, 2018</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, false)">A. ज्ञान</button>
+            <button class="option-btn" onclick="check(this, false)">B. कौशल</button>
+            <button class="option-btn" onclick="check(this, false)">C. अनुभव</button>
+            <button class="option-btn" onclick="check(this, true)">D. इनमें से सभी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">48. 'योजना आयोग' को भंग कर कौन सा आयोग बना? <span class="year-info">2018, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. नीति आयोग</button>
+            <button class="option-btn" onclick="check(this, false)">B. वित्त आयोग</button>
+            <button class="option-btn" onclick="check(this, false)">C. राज्य वित्त आयोग</button>
+            <button class="option-btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">49. नरेगा के अंतर्गत मजदूरों को साल में कितने दिनों का रोजगार मिलता है? <span class="year-info">2015, 2021</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. 100 दिनों के लिए</button>
+            <button class="option-btn" onclick="check(this, false)">B. 125 दिनों के लिए</button>
+            <button class="option-btn" onclick="check(this, false)">C. 150 दिनों के लिए</button>
+            <button class="option-btn" onclick="check(this, false)">D. 200 दिनों के लिए</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">50. ब्रह्म समाज की स्थापना किसने की? <span class="year-info">2012, 2019</span></div>
+        <div class="options-container">
+            <button class="option-btn" onclick="check(this, true)">A. राजा राममोहन राय</button>
+            <button class="option-btn" onclick="check(this, false)">B. दयानंद सरस्वती</button>
+            <button class="option-btn" onclick="check(this, false)">C. विवेकानंद</button>
+            <button class="option-btn" onclick="check(this, false)">D. रामकृष्ण परमहंस</button>
+        </div>
+    </div>
+
+
+
+
+</div>
+<div class="quiz-card">
+    <div class="question">51. भारत में कहाँ महिलाओं के लिए आरक्षण की व्यवस्था है? <span class="year-info">2011, 2019</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. लोकसभा</button>
+        <button class="option-btn" onclick="check(this, false)">B. विधानसभा</button>
+        <button class="option-btn" onclick="check(this, true)">C. पंचायती राज संस्थाएँ</button>
+        <button class="option-btn" onclick="check(this, false)">D. मंत्रिमंडल</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">52. विश्वव्यापी आर्थिक संकट किस वर्ष आरम्भ हुआ था? <span class="year-info">2019, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 1914</button>
+        <button class="option-btn" onclick="check(this, false)">B. 1922</button>
+        <button class="option-btn" onclick="check(this, true)">C. 1929</button>
+        <button class="option-btn" onclick="check(this, false)">D. 1927</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">53. हंगरी की भाषा क्या थी? <span class="year-info">2014, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. इतालवी</button>
+        <button class="option-btn" onclick="check(this, true)">B. मैग्यार</button>
+        <button class="option-btn" onclick="check(this, false)">C. पोलिश</button>
+        <button class="option-btn" onclick="check(this, false)">D. फ्रेंच</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">54. सौर ऊर्जा निम्नलिखित में से कौन-सा संसाधन है? <span class="year-info">2014, 2019</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. मानवकृत</button>
+        <button class="option-btn" onclick="check(this, true)">B. पुनः पूर्ति योग्य (नवीकरणीय)</button>
+        <button class="option-btn" onclick="check(this, false)">C. अजैव</button>
+        <button class="option-btn" onclick="check(this, false)">D. अचक्रीय</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">55. वृहद क्षेत्र में जल की उपस्थिति के कारण ही पृथ्वी को कहते हैं? <span class="year-info">2014, 2017</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. उजला ग्रह</button>
+        <button class="option-btn" onclick="check(this, true)">B. नीला ग्रह</button>
+        <button class="option-btn" onclick="check(this, false)">C. लाल ग्रह</button>
+        <button class="option-btn" onclick="check(this, false)">D. हरा ग्रह</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">56. भारत का राष्ट्रीय पक्षी है? <span class="year-info">2017, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. कबूतर</button>
+        <button class="option-btn" onclick="check(this, false)">B. हंस</button>
+        <button class="option-btn" onclick="check(this, true)">C. मयूर (मोर)</button>
+        <button class="option-btn" onclick="check(this, false)">D. तोता</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">57. यूरेनियम का प्रमुख उत्पादक स्थल है? <span class="year-info">2013, 2015</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. डिगबोई</button>
+        <button class="option-btn" onclick="check(this, false)">B. झरिया</button>
+        <button class="option-btn" onclick="check(this, false)">C. घाटशिला</button>
+        <button class="option-btn" onclick="check(this, true)">D. जादूगोड़ा</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">58. निम्न में से किसे 'पिछड़ा राज्य' कहा जाता है? <span class="year-info">2015, 2020</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. पंजाब</button>
+        <button class="option-btn" onclick="check(this, false)">B. केरल</button>
+        <button class="option-btn" onclick="check(this, true)">C. बिहार</button>
+        <button class="option-btn" onclick="check(this, false)">D. दिल्ली</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">59. उपभोक्ता अधिकार दिवस कब मनाया जाता है? <span class="year-info">2013, 2018</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 17 मार्च</button>
+        <button class="option-btn" onclick="check(this, true)">B. 15 मार्च</button>
+        <button class="option-btn" onclick="check(this, false)">C. 19 अप्रैल</button>
+        <button class="option-btn" onclick="check(this, false)">D. 22 अप्रैल</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">60. टाटा आयरन एंड स्टील कंपनी की स्थापना की गई? <span class="year-info">2012, 2019, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 1854 में</button>
+        <button class="option-btn" onclick="check(this, true)">B. 1907 में</button>
+        <button class="option-btn" onclick="check(this, false)">C. 1915 में</button>
+        <button class="option-btn" onclick="check(this, false)">D. 1923 में</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">61. मरुस्थलीय मृदा का विस्तार निम्न में से कहाँ है? <span class="year-info">2014, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. उत्तर प्रदेश</button>
+        <button class="option-btn" onclick="check(this, true)">B. राजस्थान</button>
+        <button class="option-btn" onclick="check(this, false)">C. कर्नाटक</button>
+        <button class="option-btn" onclick="check(this, false)">D. महाराष्ट्र</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">62. यूरेनियम का प्रमुख उत्पादक स्थल है? <span class="year-info">2013, 2019</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. डिगबोई</button>
+        <button class="option-btn" onclick="check(this, false)">B. झरिया</button>
+        <button class="option-btn" onclick="check(this, false)">C. घाटशिला</button>
+        <button class="option-btn" onclick="check(this, true)">D. जादूगोड़ा</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">63. पंजाब में भूमि निम्नीकरण का मुख्य कारण क्या है? <span class="year-info">2012, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. वनोन्मूलन</button>
+        <button class="option-btn" onclick="check(this, false)">B. अति पशुचारण</button>
+        <button class="option-btn" onclick="check(this, true)">C. अधिक सिंचाई</button>
+        <button class="option-btn" onclick="check(this, false)">D. गहन खेती</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">64. बिहार में कितने प्रतिशत भौगोलिक क्षेत्र में वन का फैलाव है? <span class="year-info">2018, 2023</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 15%</button>
+        <button class="option-btn" onclick="check(this, false)">B. 20%</button>
+        <button class="option-btn" onclick="check(this, false)">C. 10%</button>
+        <button class="option-btn" onclick="check(this, true)">D. 7%</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">65. बिहार का कौन-सा क्षेत्र बाढ़ ग्रस्त क्षेत्र है? <span class="year-info">2015, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. पूर्वी बिहार</button>
+        <button class="option-btn" onclick="check(this, false)">B. दक्षिणी बिहार</button>
+        <button class="option-btn" onclick="check(this, false)">C. पश्चिमी बिहार</button>
+        <button class="option-btn" onclick="check(this, true)">D. उत्तरी बिहार</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">66. भारत का सबसे लंबा बाँध कौन है? <span class="year-info">2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. रिहंद बाँध</button>
+        <button class="option-btn" onclick="check(this, true)">B. हीराकुंड बाँध</button>
+        <button class="option-btn" onclick="check(this, false)">C. भाखड़ा नांगल</button>
+        <button class="option-btn" onclick="check(this, false)">D. नरोरा बाँध</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">67. सविनय अवज्ञा आंदोलन की शुरुआत किस यात्रा से हुई? <span class="year-info">2019, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. दिल्ली यात्रा</button>
+        <button class="option-btn" onclick="check(this, false)">B. चम्पारण यात्रा</button>
+        <button class="option-btn" onclick="check(this, true)">C. दांडी यात्रा</button>
+        <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">68. जालियांवाला बाग हत्याकांड कब हुआ था? <span class="year-info">2011, 2019, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. 13 अप्रैल 1919</button>
+        <button class="option-btn" onclick="check(this, false)">B. 14 अप्रैल 1919</button>
+        <button class="option-btn" onclick="check(this, false)">C. 15 अप्रैल 1919</button>
+        <button class="option-btn" onclick="check(this, false)">D. 16 अप्रैल 1919</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">69. चिपको आंदोलन के प्रणेता कौन हैं? <span class="year-info">2015, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. मेधा पाटेकर</button>
+        <button class="option-btn" onclick="check(this, false)">B. महात्मा गांधी</button>
+        <button class="option-btn" onclick="check(this, true)">C. सुन्दरलाल बहुगुणा</button>
+        <button class="option-btn" onclick="check(this, false)">D. संदीप पांडेय</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">70. कोयला किस प्रकार का संसाधन है? <span class="year-info">2011, 2020</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. अनवीकरणीय</button>
+        <button class="option-btn" onclick="check(this, false)">B. नवीकरणीय</button>
+        <button class="option-btn" onclick="check(this, false)">C. जैव</button>
+        <button class="option-btn" onclick="check(this, false)">D. अजैव</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">71. भारत में पहला परमाणु ऊर्जा स्टेशन कहाँ स्थापित हुआ? <span class="year-info">2016, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. कलपक्कम</button>
+        <button class="option-btn" onclick="check(this, false)">B. नरोरा</button>
+        <button class="option-btn" onclick="check(this, false)">C. राणा प्रताप सागर</button>
+        <button class="option-btn" onclick="check(this, true)">D. तारापुर</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">72. सूचना का अधिकार अधिनियम कानून कब लागू हुआ? <span class="year-info">2011, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 2004</button>
+        <button class="option-btn" onclick="check(this, true)">B. 2005</button>
+        <button class="option-btn" onclick="check(this, false)">C. 2006</button>
+        <button class="option-btn" onclick="check(this, false)">D. 2007</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">73. लोकतंत्र का प्राण किसे कहा गया है? <span class="year-info">2018, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. राजनीतिक दल को</button>
+        <button class="option-btn" onclick="check(this, false)">B. संविधान को</button>
+        <button class="option-btn" onclick="check(this, false)">C. न्यायपालिका को</button>
+        <button class="option-btn" onclick="check(this, false)">D. प्रेस को</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">74. सुनामी का संबंध किससे है? <span class="year-info">2015, 2020</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. स्थल से</button>
+        <button class="option-btn" onclick="check(this, false)">B. आकाश से</button>
+        <button class="option-btn" onclick="check(this, true)">C. समुद्र से</button>
+        <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">75. मलबे के नीचे दबे हुए लोगों का पता लगाने के लिए किस यंत्र की मदद ली जाती है? <span class="year-info">2017, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. दूरबीन</button>
+        <button class="option-btn" onclick="check(this, true)">B. इंफ्रारेड कैमरा</button>
+        <button class="option-btn" onclick="check(this, false)">C. हेलीकॉप्टर</button>
+        <button class="option-btn" onclick="check(this, false)">D. टेलिस्कोप</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">76. रबर की खेती भारत के किस राज्य में की जाती है? <span class="year-info">2014, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. केरल</button>
+        <button class="option-btn" onclick="check(this, false)">B. गुजरात</button>
+        <button class="option-btn" onclick="check(this, false)">C. आंध्र प्रदेश</button>
+        <button class="option-btn" onclick="check(this, false)">D. छत्तीसगढ़</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">77. कांडला विशेष आर्थिक क्षेत्र कहाँ है? <span class="year-info">2021, 2023</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. महाराष्ट्र</button>
+        <button class="option-btn" onclick="check(this, false)">B. केरल</button>
+        <button class="option-btn" onclick="check(this, false)">C. पश्चिम बंगाल</button>
+        <button class="option-btn" onclick="check(this, true)">D. गुजरात</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">78. निम्न में से कौन-सा राज्य रेल मार्ग से नहीं जुड़ा है? <span class="year-info">2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. असम</button>
+        <button class="option-btn" onclick="check(this, false)">B. नगालैंड</button>
+        <button class="option-btn" onclick="check(this, true)">C. मेघालय</button>
+        <button class="option-btn" onclick="check(this, false)">D. मणिपुर</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">79. सविनय अवज्ञा आंदोलन के समय भारत के वायसराय कौन थे? <span class="year-info">2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. लॉर्ड डलहौजी</button>
+        <button class="option-btn" onclick="check(this, true)">B. लॉर्ड इरविन</button>
+        <button class="option-btn" onclick="check(this, false)">C. लॉर्ड चेम्सफोर्ड</button>
+        <button class="option-btn" onclick="check(this, false)">D. लॉर्ड मिंटो</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">80. जेनेवा समझौता कब हुआ था? <span class="year-info">2011, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. 1954</button>
+        <button class="option-btn" onclick="check(this, false)">B. 1960</button>
+        <button class="option-btn" onclick="check(this, false)">C. 1950</button>
+        <button class="option-btn" onclick="check(this, false)">D. 1946</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">81. चौरा-चौरी कांड कब हुआ था? <span class="year-info">2022, 2023</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 1920</button>
+        <button class="option-btn" onclick="check(this, true)">B. 1922</button>
+        <button class="option-btn" onclick="check(this, false)">C. 1930</button>
+        <button class="option-btn" onclick="check(this, false)">D. 1942</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">82. विश्व का पहला समाजवादी देश कौन था? <span class="year-info">2011, 2020</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. जर्मनी</button>
+        <button class="option-btn" onclick="check(this, false)">B. फ्रांस</button>
+        <button class="option-btn" onclick="check(this, true)">C. रूस</button>
+        <button class="option-btn" onclick="check(this, false)">D. वियतनाम</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">83. वियतनाम की राजधानी कहाँ है? <span class="year-info">2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. हनोई</button>
+        <button class="option-btn" onclick="check(this, false)">B. साइगॉन</button>
+        <button class="option-btn" onclick="check(this, false)">C. बैंकाक</button>
+        <button class="option-btn" onclick="check(this, false)">D. नोम पेन्ह</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">84. अखिल भारतीय ट्रेड यूनियन कांग्रेस (AITUC) की स्थापना कब हुई? <span class="year-info">2014, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 1848</button>
+        <button class="option-btn" onclick="check(this, false)">B. 1881</button>
+        <button class="option-btn" onclick="check(this, false)">C. 1885</button>
+        <button class="option-btn" onclick="check(this, true)">D. 1920</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">85. भारतीय राष्ट्रीय कांग्रेस के पहले अध्यक्ष कौन थे? <span class="year-info">2020, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. ए.ओ. ह्यूम</button>
+        <button class="option-btn" onclick="check(this, true)">B. व्योमेश चन्द्र बनर्जी</button>
+        <button class="option-btn" onclick="check(this, false)">C. बदरुद्दीन तैयबजी</button>
+        <button class="option-btn" onclick="check(this, false)">D. एनी बेसेंट</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">86. किस राज्य में सबसे अधिक वन विस्तार है? <span class="year-info">2016, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. मध्य प्रदेश</button>
+        <button class="option-btn" onclick="check(this, false)">B. उत्तर प्रदेश</button>
+        <button class="option-btn" onclick="check(this, false)">C. कर्नाटक</button>
+        <button class="option-btn" onclick="check(this, false)">D. केरल</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">87. फालटा विशेष आर्थिक क्षेत्र कहाँ स्थित है? <span class="year-info">2014, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. बिहार</button>
+        <button class="option-btn" onclick="check(this, true)">B. पश्चिम बंगाल</button>
+        <button class="option-btn" onclick="check(this, false)">C. केरल</button>
+        <button class="option-btn" onclick="check(this, false)">D. ओडिशा</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">88. कहलगाँव तापीय विद्युत परियोजना कहाँ है? <span class="year-info">2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. भागलपुर</button>
+        <button class="option-btn" onclick="check(this, false)">B. मुंगेर</button>
+        <button class="option-btn" onclick="check(this, false)">C. जमुई</button>
+        <button class="option-btn" onclick="check(this, false)">D. साहिबगंज</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">89. निम्न में से कौन प्राकृतिक आपदा नहीं है? <span class="year-info">2013, 2020</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. सुनामी</button>
+        <button class="option-btn" onclick="check(this, false)">B. बाढ़</button>
+        <button class="option-btn" onclick="check(this, true)">C. आतंकवाद</button>
+        <button class="option-btn" onclick="check(this, false)">D. भूकंप</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">90. सूखे के लिए उत्तरदायी कारक कौन है? <span class="year-info">2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. वर्षा की कमी</button>
+        <button class="option-btn" onclick="check(this, false)">B. भूकंप</button>
+        <button class="option-btn" onclick="check(this, false)">C. बाढ़</button>
+        <button class="option-btn" onclick="check(this, false)">D. ज्वालामुखी</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">91. बिहार का सबसे बड़ा नगर कौन है? <span class="year-info">2020, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. पटना</button>
+        <button class="option-btn" onclick="check(this, false)">B. गया</button>
+        <button class="option-btn" onclick="check(this, false)">C. भागलपुर</button>
+        <button class="option-btn" onclick="check(this, false)">D. दरभंगा</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">92. कुशेश्वरस्थान किस जिले में स्थित है? <span class="year-info">2017, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. वैशाली में</button>
+        <button class="option-btn" onclick="check(this, true)">B. दरभंगा में</button>
+        <button class="option-btn" onclick="check(this, false)">C. बेगूसराय में</button>
+        <button class="option-btn" onclick="check(this, false)">D. भागलपुर में</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">93. 15वीं लोकसभा में महिलाओं की भागीदारी कितनी थी? <span class="year-info">2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. 10.86%</button>
+        <button class="option-btn" onclick="check(this, false)">B. 12.20%</button>
+        <button class="option-btn" onclick="check(this, false)">C. 13%</button>
+        <button class="option-btn" onclick="check(this, false)">D. 15%</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">94. नेपाल में वर्तमान में किस प्रकार की शासन प्रणाली है? <span class="year-info">2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, true)">A. लोकतन्त्र</button>
+        <button class="option-btn" onclick="check(this, false)">B. राजतन्त्र</button>
+        <button class="option-btn" onclick="check(this, false)">C. सैनिक शासन</button>
+        <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">95. साख का अर्थ क्या है? <span class="year-info">2014, 2021</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. विश्वास करना</button>
+        <button class="option-btn" onclick="check(this, false)">B. ऋण लौटाने की क्षमता</button>
+        <button class="option-btn" onclick="check(this, true)">C. A और B दोनों</button>
+        <button class="option-btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">96. भारत में नीति आयोग की स्थापना कब हुई? <span class="year-info">2018, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. 1950</button>
+        <button class="option-btn" onclick="check(this, false)">B. 2014</button>
+        <button class="option-btn" onclick="check(this, true)">C. 2015</button>
+        <button class="option-btn" onclick="check(this, false)">D. 2016</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">97. निम्न में से कौन बीमारू (BIMARU) राज्य है? <span class="year-info">2016, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. बिहार</button>
+        <button class="option-btn" onclick="check(this, false)">B. मध्य प्रदेश</button>
+        <button class="option-btn" onclick="check(this, false)">C. ओडिशा</button>
+        <button class="option-btn" onclick="check(this, true)">D. इनमें से सभी</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">98. वैश्वीकरण के मुख्य अंग कितने हैं? <span class="year-info">2011, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. एक</button>
+        <button class="option-btn" onclick="check(this, false)">B. दो</button>
+        <button class="option-btn" onclick="check(this, true)">C. पाँच</button>
+        <button class="option-btn" onclick="check(this, false)">D. चार</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">99. कार्ल मार्क्स का जन्म कहाँ हुआ था? <span class="year-info">2011, 2020</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. इंग्लैंड</button>
+        <button class="option-btn" onclick="check(this, true)">B. जर्मनी</button>
+        <button class="option-btn" onclick="check(this, false)">C. इटली</button>
+        <button class="option-btn" onclick="check(this, false)">D. रूस</button>
+    </div>
+</div>
+
+<div class="quiz-card">
+    <div class="question">100. गुटेनबर्ग ने सर्वप्रथम किस पुस्तक की छपाई की? <span class="year-info">2018, 2022</span></div>
+    <div class="options-container">
+        <button class="option-btn" onclick="check(this, false)">A. कुरान</button>
+        <button class="option-btn" onclick="check(this, false)">B. गीता</button>
+        <button class="option-btn" onclick="check(this, false)">C. हदीस</button>
+        <button class="option-btn" onclick="check(this, true)">D. बाइबिल</button>
+    </div>
+</div>
+
+
+<div class="overlay" id="overlay"></div>
+<div id="resultBox">
+    <h2 style="color: var(--primary);">टेस्ट पूरा हुआ!</h2>
+    <div id="scoreDisplay" style="font-size: 2rem; margin: 20px 0; font-weight: bold; color: var(--success);"></div>
+    <button onclick="location.reload()" style="background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer;">फिर से टेस्ट दें</button>
+</div>
+
+<script>
+    let score = 0;
+    let answered = 0;
+
+    function check(btn, isCorrect) {
+        let parent = btn.parentElement;
+        let buttons = parent.getElementsByClassName('option-btn');
+        let total = document.querySelectorAll('.quiz-card').length;
+
+        for (let b of buttons) { b.disabled = true; }
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            for (let b of buttons) {
+                if (b.getAttribute('onclick').includes('true')) {
+                    b.classList.add('correct');
+                }
+            }
+        }
+
+        answered++;
+        if (answered === total) {
+            setTimeout(() => {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('resultBox').style.display = 'block';
+                document.getElementById('scoreDisplay').innerText = score + " / " + total;
+            }, 800);
+        }
+    }
+</script>
+
+</body>
+</html>
