@@ -22,8 +22,7 @@
 <meta name="google-site-verification" content="mgq782XhMba5Qz3L64CDz4_TzYjFyjH2r5IKImcafOU" />
 
 <meta charset="UTF-8">
-<meta charset="viewport"
-content="width=device-width,initial-scale=1.0">
+
  <link rel="stylesheet"
         href="style.css">
 
@@ -311,13 +310,95 @@ p {
 
 <body>
           
+   <div class="republic-day-container">
+    <div class="flag-wrapper">
+        <span class="flag">🇮🇳</span>
+        <h2 class="republic-text">गणतंत्र दिवस 2026 की हार्दिक शुभकामनाएँ</h2>
+        <span class="flag">🇮🇳</span>
+    </div>
     
+    <div class="flowers">
+        <span>🌸</span><span>🌼</span><span>🌹</span><span>🌸</span><span>🌼</span>
+    </div>
+</div>
+
+<style>
+    .republic-day-container {
+        background: linear-gradient(to right, #FF9933, #FFFFFF, #138808);
+        padding: 20px 10px;
+        border-radius: 15px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        border: 2px solid #fff;
+    }
+
+    .flag-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        animation: pulse 2s infinite;
+    }
+
+    .flag {
+        font-size: 30px;
+        animation: wave 1s infinite alternate;
+    }
+
+    .republic-text {
+        font-size: 20px;
+        color: #000080; /* गहरा नीला - अशोक चक्र का रंग */
+        font-weight: 900;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px white;
+    }
+
+    /* झंडा लहराने का एनीमेशन */
+    @keyframes wave {
+        from { transform: rotate(-10deg); }
+        to { transform: rotate(10deg); }
+    }
+
+    /* टेक्स्ट का धड़कने वाला एनीमेशन */
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    /* फूलों की बारिश का एनीमेशन */
+    .flowers {
+        position: absolute;
+        top: -20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .flowers span {
+        font-size: 20px;
+        animation: rain 3s linear infinite;
+    }
+
+    @keyframes rain {
+        0% { transform: translateY(0) rotate(0); opacity: 1; }
+        100% { transform: translateY(100px) rotate(360deg); opacity: 0; }
+    }
+
+    /* मोबाइल के लिए सेटिंग */
+    @media (max-width: 600px) {
+        .republic-text { font-size: 16px; }
+        .flag { font-size: 24px; }
+    }
+</style>
+ 
     
 
-<div class="republic-day-box">
-    <div class="flag-text">Happy Republic Day 2026</div>
-    <div class="sub-text">जय हिन्द! 🇮🇳 मंजीत की पाठशाला</div>
-</div>
 
 <style>
     .republic-day-box {
