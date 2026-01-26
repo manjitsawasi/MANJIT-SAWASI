@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Dhamaka 2026 - No Alerts</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        
+        
+        .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* दो कॉलम बराबर */
+    gap: 10px;
+    width: 100%; /* पूरा डिब्बा इस्तेमाल करें */
+}
+
+.option-btn, .btn {
+    width: 100%; /* हर बटन एक बराबर चौड़ा होगा */
+    padding: 12px 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+    text-align: center; /* टेक्स्ट बीच में रहेगा */
+    box-sizing: border-box; /* पैडिंग से साइज नहीं बढ़ेगा */
+}
+
+        .quiz-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .question {
+            font-size: 19px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .option-btn {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background-color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        /* Sahi jawab ka rang */
+        .correct {
+            background-color: #27ae60 !important;
+            color: white;
+            border-color: #219150;
+        }
+        /* Galat jawab ka rang */
+        .wrong {
+            background-color: #e74c3c !important;
+            color: white;
+            border-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📐 गणित धमाका 2026</h1>
+    <p>Manjit dost: Sirf Math Objective</p>
+</div>
+
+<div class="btn"
+<a href class="Math.html">Page-1</a></div>
+<div class="btn"
+<a href class="Math2.html">Page-2</a></div>
+<div class="btn"
+<a href class="Math3.html">Page-3</a></div>
+
+
+
+<div class="quiz-container">
+    
+
+    <div class="card">
+        <div class="question">1. वृत (Circle) का क्षेत्रफल का सूत्र क्या है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2πr</button>
+            <button class="btn" onclick="check(this, true)">B. πr²</button>
+            <button class="btn" onclick="check(this, false)">C. 4πr²</button>
+            <button class="btn" onclick="check(this, false)">D. πr</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">2. यदि sin θ = 3/5 हो, तो cos θ का मान होगा:</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 3/4</button>
+            <button class="btn" onclick="check(this, true)">B. 4/5</button>
+            <button class="btn" onclick="check(this, false)">C. 5/3</button>
+            <button class="btn" onclick="check(this, false)">D. 4/3</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">3. सबसे छोटी 'अभाज्य' (Prime) संख्या कौन है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. 3</button>
+            <button class="btn" onclick="check(this, false)">D. 5</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">4. चक्रीय चतुर्भुज के सम्मुख कोणों का योग कितना होता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 90°</button>
+            <button class="btn" onclick="check(this, true)">B. 180°</button>
+            <button class="btn" onclick="check(this, false)">C. 360°</button>
+            <button class="btn" onclick="check(this, false)">D. 120°</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">5. tan² 60° का मान क्या होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 3</button>
+            <button class="btn" onclick="check(this, false)">C. 1/3</button>
+            <button class="btn" onclick="check(this, false)">D. √3</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">6. रैखिक समीकरण का घात (Power) कितना होता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 1</button>
+            <button class="btn" onclick="check(this, false)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. 0</button>
+            <button class="btn" onclick="check(this, false)">D. 3</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">7. अर्धवृत्त का कोण (Angle of semi-circle) कितना होता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 60°</button>
+            <button class="btn" onclick="check(this, true)">B. 90°</button>
+            <button class="btn" onclick="check(this, false)">C. 180°</button>
+            <button class="btn" onclick="check(this, false)">D. 360°</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">8. दो परिमेय संख्याओं के बीच कितनी परिमेय संख्याएँ हो सकती हैं?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, false)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. 3</button>
+            <button class="btn" onclick="check(this, true)">D. अनन्त (Infinite)</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">9. √5 एक संख्या है:</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. परिमेय</button>
+            <button class="btn" onclick="check(this, true)">B. अपरिमेय</button>
+            <button class="btn" onclick="check(this, false)">C. पूर्णांक</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">10. मूल बिन्दु (Origin) से बिंदु (3, 4) की दूरी क्या होगी?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 3</button>
+            <button class="btn" onclick="check(this, false)">B. 4</button>
+            <button class="btn" onclick="check(this, true)">C. 5</button>
+            <button class="btn" onclick="check(this, false)">D. 7</button>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <div class="question">11. द्विघात बहुपद के शून्यकों का योग (α + β) क्या होता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. c/a</button>
+            <button class="btn" onclick="check(this, true)">B. -b/a</button>
+            <button class="btn" onclick="check(this, false)">C. b/a</button>
+            <button class="btn" onclick="check(this, false)">D. -c/a</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">12. यदि किसी वृत की त्रिज्या (r) आधी कर दी जाए, तो पुराने और नए वृतों के क्षेत्रफलों का अनुपात होगा:</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2:1</button>
+            <button class="btn" onclick="check(this, true)">B. 4:1</button>
+            <button class="btn" onclick="check(this, false)">C. 1:4</button>
+            <button class="btn" onclick="check(this, false)">D. 1:2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">13. 'sin 90° - θ' किसके बराबर होता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. sin θ</button>
+            <button class="btn" onclick="check(this, true)">B. cos θ</button>
+            <button class="btn" onclick="check(this, false)">C. tan θ</button>
+            <button class="btn" onclick="check(this, false)">D. cot θ</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">14. निश्चित घटना की प्रायिकता (Probability) कितनी होती है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 0</button>
+            <button class="btn" onclick="check(this, true)">B. 1</button>
+            <button class="btn" onclick="check(this, false)">C. 0.5</button>
+            <button class="btn" onclick="check(this, false)">D. अनन्त</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">15. (sec² θ - tan² θ) का मान क्या है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 1</button>
+            <button class="btn" onclick="check(this, false)">B. 0</button>
+            <button class="btn" onclick="check(this, false)">C. -1</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">16. संचयी बारंबारता वक्र (Cumulative frequency curve) को क्या कहते हैं?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. तोरण (Ogive)</button>
+            <button class="btn" onclick="check(this, false)">B. आयत चित्र</button>
+            <button class="btn" onclick="check(this, false)">C. बारंबारता बहुभुज</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">17. 2, 3, 0, 3, 2, 6, 3 का बहुलक (Mode) क्या होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2</button>
+            <button class="btn" onclick="check(this, true)">B. 3</button>
+            <button class="btn" onclick="check(this, false)">C. 0</button>
+            <button class="btn" onclick="check(this, false)">D. 6</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">18. बेलन (Cylinder) का आयतन (Volume) का सूत्र है:</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. πrh</button>
+            <button class="btn" onclick="check(this, true)">B. πr²h</button>
+            <button class="btn" onclick="check(this, false)">C. 2πrh</button>
+            <button class="btn" onclick="check(this, false)">D. 1/3 πr²h</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">19. सभी समबाहु त्रिभुज (Equilateral triangles) होते हैं:</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. समरूप (Similar)</button>
+            <button class="btn" onclick="check(this, false)">B. सर्वांगसम</button>
+            <button class="btn" onclick="check(this, false)">C. दोनों</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">20. बिन्दु (-3, -5) किस पाद (Quadrant) में स्थित है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. प्रथम</button>
+            <button class="btn" onclick="check(this, false)">B. द्वितीय</button>
+            <button class="btn" onclick="check(this, true)">C. तृतीय</button>
+            <button class="btn" onclick="check(this, false)">D. चतुर्थ</button>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="question">21. किसी वृत्त के बाहरी बिंदु से कितनी स्पर्श रेखाएं (Tangent lines) खींची जा सकती हैं?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. 3</button>
+            <button class="btn" onclick="check(this, false)">D. अनन्त</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">22. यदि गोले (Sphere) की त्रिज्या r हो, तो उसका आयतन (Volume) होगा:</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2/3 πr³</button>
+            <button class="btn" onclick="check(this, true)">B. 4/3 πr³</button>
+            <button class="btn" onclick="check(this, false)">C. πr²h</button>
+            <button class="btn" onclick="check(this, false)">D. 4πr²</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">23. संचयी बारंबारता वक्र को क्या कहा जाता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. तोरण (Ogive)</button>
+            <button class="btn" onclick="check(this, false)">B. आयत चित्र</button>
+            <button class="btn" onclick="check(this, false)">C. दंड आलेख</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">24. cos 60° का मान क्या होता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1/2</button>
+            <button class="btn" onclick="check(this, true)">B. 1/2</button>
+            <button class="btn" onclick="check(this, false)">C. √3/2</button>
+            <button class="btn" onclick="check(this, false)">D. 1/√2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">25. दो वृत्तों की परिधियों का अनुपात 2:3 है, तो उनकी त्रिज्याओं का अनुपात क्या होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 4:9</button>
+            <button class="btn" onclick="check(this, true)">B. 2:3</button>
+            <button class="btn" onclick="check(this, false)">C. 3:2</button>
+            <button class="btn" onclick="check(this, false)">D. 1:2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">26. बहुलक (Mode) निकालने का सूत्र क्या है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. सबसे अधिक बार आने वाला मान</button>
+            <button class="btn" onclick="check(this, false)">B. औसत मान</button>
+            <button class="btn" onclick="check(this, false)">C. बीच का मान</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">27. √3 / √12 एक संख्या है:</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. परिमेय</button>
+            <button class="btn" onclick="check(this, false)">B. अपरिमेय</button>
+            <button class="btn" onclick="check(this, false)">C. अभाज्य</button>
+            <button class="btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">28. बिंदु (4, -3) किस चतुर्थांश (Quadrant) में है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. प्रथम</button>
+            <button class="btn" onclick="check(this, false)">B. द्वितीय</button>
+            <button class="btn" onclick="check(this, false)">C. तृतीय</button>
+            <button class="btn" onclick="check(this, true)">D. चतुर्थ</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">29. AP: 2, 7, 12... का 10वां पद क्या होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 45</button>
+            <button class="btn" onclick="check(this, true)">B. 47</button>
+            <button class="btn" onclick="check(this, false)">C. 50</button>
+            <button class="btn" onclick="check(this, false)">D. 52</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">30. असंभव घटना की प्रायिकता (Probability) क्या होती है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 0</button>
+            <button class="btn" onclick="check(this, false)">B. 1</button>
+            <button class="btn" onclick="check(this, false)">C. 0.5</button>
+            <button class="btn" onclick="check(this, false)">D. -1</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">31. गोले का पृष्ठीय क्षेत्रफल (Surface Area of Sphere) क्या होता है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2πr²</button>
+            <button class="btn" onclick="check(this, false)">B. 3πr²</button>
+            <button class="btn" onclick="check(this, true)">C. 4πr²</button>
+            <button class="btn" onclick="check(this, false)">D. πr²</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">32. प्रथम पाँच प्राकृतिक संख्याओं का माध्य (Mean) क्या होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2</button>
+            <button class="btn" onclick="check(this, true)">B. 3</button>
+            <button class="btn" onclick="check(this, false)">C. 4</button>
+            <button class="btn" onclick="check(this, false)">D. 5</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">33. दो प्रतिच्छेदी वृत्तों की उभयनिष्ठ स्पर्श रेखाओं की संख्या कितनी होती है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. 3</button>
+            <button class="btn" onclick="check(this, false)">D. 4</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">34. sin² 45° का मान क्या होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 1/2</button>
+            <button class="btn" onclick="check(this, false)">C. 1/√2</button>
+            <button class="btn" onclick="check(this, false)">D. 1/4</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">35. संचयी बारंबारता आलेख को क्या कहते हैं?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. तोरण</button>
+            <button class="btn" onclick="check(this, false)">B. आयतचित्र</button>
+            <button class="btn" onclick="check(this, false)">C. बारंबारता बहुभुज</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">36. यदि विवेचक (D > 0) हो, तो मूल कैसे होंगे?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. वास्तविक और असमान</button>
+            <button class="btn" onclick="check(this, false)">B. वास्तविक और समान</button>
+            <button class="btn" onclick="check(this, false)">C. काल्पनिक</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">37. π/2 का मान (रेडियन में) डिग्री में कितना होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 45°</button>
+            <button class="btn" onclick="check(this, true)">B. 90°</button>
+            <button class="btn" onclick="check(this, false)">C. 180°</button>
+            <button class="btn" onclick="check(this, false)">D. 360°</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">38. कार्तीय तल में स्थित किसी बिंदु (6, 4) में 'कोटि' (Ordinate) का मान क्या है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 6</button>
+            <button class="btn" onclick="check(this, true)">B. 4</button>
+            <button class="btn" onclick="check(this, false)">C. 10</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">39. शंकु (Cone) के छिन्नक का आयतन का सूत्र क्या है?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 1/3 πh(R² + r² + Rr)</button>
+            <button class="btn" onclick="check(this, false)">B. 1/3 πr²h</button>
+            <button class="btn" onclick="check(this, false)">C. πr(R+r)</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">40. वर्ग अंतराल 10-20 का 'वर्ग चिन्ह' (Class Mark) क्या होगा?</div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 10</button>
+            <button class="btn" onclick="check(this, true)">B. 15</button>
+            <button class="btn" onclick="check(this, false)">C. 20</button>
+            <button class="btn" onclick="check(this, false)">D. 30</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="question">41. (sec² 60° - 1) का मान क्या है? <br><small style="color:red;">[BSEB 2020, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2</button>
+            <button class="btn" onclick="check(this, true)">B. 3</button>
+            <button class="btn" onclick="check(this, false)">C. 4</button>
+            <button class="btn" onclick="check(this, false)">D. 0</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">42. दो बेलनों की त्रिज्याओं का अनुपात 2:3 है और उनकी ऊंचाइयों का अनुपात 5:3 है, तो उनके आयतनों का अनुपात होगा: <br><small style="color:red;">[BSEB 2018, 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 4:9</button>
+            <button class="btn" onclick="check(this, false)">B. 11:12</button>
+            <button class="btn" onclick="check(this, true)">C. 20:27</button>
+            <button class="btn" onclick="check(this, false)">D. 20:9</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">43. यदि जीवा AB, वृत्त के केंद्र पर 60° का कोण बनाती है, तो A और B बिंदुओं पर खींची गई स्पर्श रेखाओं के बीच का कोण होगा: <br><small style="color:red;">[BSEB 2019]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 30°</button>
+            <button class="btn" onclick="check(this, false)">B. 60°</button>
+            <button class="btn" onclick="check(this, false)">C. 90°</button>
+            <button class="btn" onclick="check(this, true)">D. 120°</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">44. निम्न में से कौन-सा अपरिमेय (Irrational) नहीं है? <br><small style="color:red;">[BSEB 2022, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. √10</button>
+            <button class="btn" onclick="check(this, false)">B. √24</button>
+            <button class="btn" onclick="check(this, false)">C. √35</button>
+            <button class="btn" onclick="check(this, true)">D. √121</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">45. बहुपद x² - 4x + 1 के मूलों का योग (Sum of zeros) क्या है? <br><small style="color:red;">[BSEB 2017, 2020]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 4</button>
+            <button class="btn" onclick="check(this, false)">C. -4</button>
+            <button class="btn" onclick="check(this, false)">D. 0</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">46. 1 + tan² θ किसके बराबर होता है? <br><small style="color:red;">[BSEB 2015, 2021, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. sec² θ</button>
+            <button class="btn" onclick="check(this, false)">B. cosec² θ</button>
+            <button class="btn" onclick="check(this, false)">C. cot² θ</button>
+            <button class="btn" onclick="check(this, false)">D. cos² θ</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">47. प्रथम 200 प्राकृतिक संख्याओं का योग क्या होगा? <br><small style="color:red;">[BSEB 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 20100</button>
+            <button class="btn" onclick="check(this, true)">B. 20100</button>
+            <button class="btn" onclick="check(this, false)">C. 40200</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">48. (sin 18° / cos 72°) का मान क्या होगा? <br><small style="color:red;">[BSEB 2013, 2019, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 0</button>
+            <button class="btn" onclick="check(this, true)">B. 1</button>
+            <button class="btn" onclick="check(this, false)">C. -1</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">49. बहुलक (Mode) सामान्यतः वह मान होता है जिसकी बारंबारता होती है: <br><small style="color:red;">[BSEB 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. सबसे कम</button>
+            <button class="btn" onclick="check(this, true)">B. सर्वाधिक (Maximum)</button>
+            <button class="btn" onclick="check(this, false)">C. मध्यम</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">50. √2 cos θ = 1, तो θ का मान क्या होगा? <br><small style="color:red;">[BSEB 2014, 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 30°</button>
+            <button class="btn" onclick="check(this, true)">B. 45°</button>
+            <button class="btn" onclick="check(this, false)">C. 60°</button>
+            <button class="btn" onclick="check(this, false)">D. 90°</button>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <div class="question">51. y-अक्ष का समीकरण (Equation of y-axis) क्या होता है? <br><small style="color:red;">[BSEB 2021, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. x = 0</button>
+            <button class="btn" onclick="check(this, false)">B. y = 0</button>
+            <button class="btn" onclick="check(this, false)">C. x = y</button>
+            <button class="btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">52. यदि tan θ = 1 हो, तो θ का मान होगा: <br><small style="color:red;">[BSEB 2018, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 30°</button>
+            <button class="btn" onclick="check(this, true)">B. 45°</button>
+            <button class="btn" onclick="check(this, false)">C. 60°</button>
+            <button class="btn" onclick="check(this, false)">D. 90°</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">53. चक्रीय चतुर्भुज के चारों कोणों का योग कितना होता है? <br><small style="color:red;">[BSEB 2019]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 180°</button>
+            <button class="btn" onclick="check(this, true)">B. 360°</button>
+            <button class="btn" onclick="check(this, false)">C. 90°</button>
+            <button class="btn" onclick="check(this, false)">D. 270°</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">54. sin² 22° + cos² 22° का मान क्या होगा? <br><small style="color:red;">[BSEB 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 0</button>
+            <button class="btn" onclick="check(this, true)">B. 1</button>
+            <button class="btn" onclick="check(this, false)">C. 2</button>
+            <button class="btn" onclick="check(this, false)">D. -1</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">55. दो वृत्तों की त्रिज्याओं का अनुपात 3:4 है, तो उनके क्षेत्रफलों का अनुपात होगा: <br><small style="color:red;">[BSEB 2020, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 3:4</button>
+            <button class="btn" onclick="check(this, false)">B. 4:3</button>
+            <button class="btn" onclick="check(this, true)">C. 9:16</button>
+            <button class="btn" onclick="check(this, false)">D. 16:9</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">56. निम्न में से कौन-सा अपरिमेय (Irrational) संख्या है? <br><small style="color:red;">[BSEB 2017, 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. √16</button>
+            <button class="btn" onclick="check(this, false)">B. √25</button>
+            <button class="btn" onclick="check(this, true)">C. √7</button>
+            <button class="btn" onclick="check(this, false)">D. √100</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">57. समांतर श्रेणी (AP): 4, 10, 16, 22... का 'सार्व अन्तर' (d) क्या है? <br><small style="color:red;">[BSEB 2015, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 4</button>
+            <button class="btn" onclick="check(this, true)">B. 6</button>
+            <button class="btn" onclick="check(this, false)">C. 10</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">58. वृत की सबसे बड़ी जीवा (Chord) क्या कहलाती है? <br><small style="color:red;">[BSEB 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. चाप</button>
+            <button class="btn" onclick="check(this, true)">B. व्यास (Diameter)</button>
+            <button class="btn" onclick="check(this, false)">C. त्रिज्या</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">59. 8, 7, 12, 15, 10, 9, 11 की 'माध्यिका' (Median) क्या होगी? <br><small style="color:red;">[BSEB 2018, 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 10</button>
+            <button class="btn" onclick="check(this, false)">B. 9</button>
+            <button class="btn" onclick="check(this, false)">C. 11</button>
+            <button class="btn" onclick="check(this, false)">D. 12</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">60. (tan θ . cot θ) का मान किसके बराबर होता है? <br><small style="color:red;">[BSEB 2014, 2021, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 1</button>
+            <button class="btn" onclick="check(this, false)">B. 0</button>
+            <button class="btn" onclick="check(this, false)">C. -1</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">61. y-अक्ष से बिन्दु (3, 5) की दूरी क्या होगी? <br><small style="color:red;">[BSEB 2021, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 5</button>
+            <button class="btn" onclick="check(this, true)">B. 3</button>
+            <button class="btn" onclick="check(this, false)">C. 8</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">62. (2 tan 30°) / (1 + tan² 30°) का मान क्या होगा? <br><small style="color:red;">[BSEB 2020, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. sin 60°</button>
+            <button class="btn" onclick="check(this, false)">B. cos 60°</button>
+            <button class="btn" onclick="check(this, false)">C. tan 60°</button>
+            <button class="btn" onclick="check(this, false)">D. sin 30°</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">63. 8 cm और 6 cm त्रिज्या वाले दो वृत्तों के क्षेत्रफलों के योग के बराबर क्षेत्रफल वाले वृत्त की त्रिज्या क्या होगी? <br><small style="color:red;">[BSEB 2019, 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 14 cm</button>
+            <button class="btn" onclick="check(this, true)">B. 10 cm</button>
+            <button class="btn" onclick="check(this, false)">C. 48 cm</button>
+            <button class="btn" onclick="check(this, false)">D. 7 cm</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">64. एक घात (1 Power) वाले बहुपद को क्या कहते हैं? <br><small style="color:red;">[BSEB 2016, 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. द्विघात बहुपद</button>
+            <button class="btn" onclick="check(this, false)">B. त्रिघात बहुपद</button>
+            <button class="btn" onclick="check(this, true)">C. रैखिक बहुपद</button>
+            <button class="btn" onclick="check(this, false)">D. शून्य बहुपद</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">65. √(1 + tan² A) किसके बराबर है? <br><small style="color:red;">[BSEB 2018, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. sec A</button>
+            <button class="btn" onclick="check(this, false)">B. cos A</button>
+            <button class="btn" onclick="check(this, false)">C. sin A</button>
+            <button class="btn" onclick="check(this, false)">D. cot A</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">66. प्रथम पाँच विषम संख्याओं का माध्य (Mean) क्या होगा? <br><small style="color:red;">[BSEB 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 4</button>
+            <button class="btn" onclick="check(this, true)">B. 5</button>
+            <button class="btn" onclick="check(this, false)">C. 6</button>
+            <button class="btn" onclick="check(this, false)">D. 3</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">67. यदि द्विघात समीकरण का विवेचक (D = 0) हो, तो मूल कैसे होंगे? <br><small style="color:red;">[BSEB 2017, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. वास्तविक और समान</button>
+            <button class="btn" onclick="check(this, false)">B. वास्तविक और भिन्न</button>
+            <button class="btn" onclick="check(this, false)">C. काल्पनिक</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">68. 2, 6, 4, 5, 0, 2, 1, 3, 2 का बहुलक (Mode) क्या है? <br><small style="color:red;">[BSEB 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 3</button>
+            <button class="btn" onclick="check(this, true)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. 1</button>
+            <button class="btn" onclick="check(this, false)">D. 6</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">69. AP: 10, 7, 4... का 30-वाँ पद क्या होगा? <br><small style="color:red;">[BSEB 2013, 2020]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 75</button>
+            <button class="btn" onclick="check(this, true)">B. -77</button>
+            <button class="btn" onclick="check(this, false)">C. 55</button>
+            <button class="btn" onclick="check(this, false)">D. -67</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">70. किसी घटना की प्रायिकता (Probability) नहीं हो सकती: <br><small style="color:red;">[BSEB 2021, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 0</button>
+            <button class="btn" onclick="check(this, false)">B. 1</button>
+            <button class="btn" onclick="check(this, false)">C. 0.2</button>
+            <button class="btn" onclick="check(this, true)">D. -1.5</button>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <div class="question">71. अर्धवृत्त का परिमाप (Perimeter of semi-circle) क्या होता है? <br><small style="color:red;">[BSEB 2018, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. πr</button>
+            <button class="btn" onclick="check(this, true)">B. πr + 2r</button>
+            <button class="btn" onclick="check(this, false)">C. 2πr</button>
+            <button class="btn" onclick="check(this, false)">D. πr²</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">72. बिन्दु (2, 3) और (4, 1) के बीच की दूरी क्या होगी? <br><small style="color:red;">[BSEB 2021, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 2</button>
+            <button class="btn" onclick="check(this, true)">B. 2√2</button>
+            <button class="btn" onclick="check(this, false)">C. 4</button>
+            <button class="btn" onclick="check(this, false)">D. √2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">73. द्विघात समीकरण ax² + bx + c = 0 के मूल वास्तविक नहीं होंगे यदि: <br><small style="color:red;">[BSEB 2019]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. b²-4ac > 0</button>
+            <button class="btn" onclick="check(this, false)">B. b²-4ac = 0</button>
+            <button class="btn" onclick="check(this, true)">C. b²-4ac < 0</button>
+            <button class="btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">74. (1 - cos² θ)(1 + cot² θ) का मान क्या है? <br><small style="color:red;">[BSEB 2020, 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 0</button>
+            <button class="btn" onclick="check(this, true)">B. 1</button>
+            <button class="btn" onclick="check(this, false)">C. -1</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">75. किसी वृत्त की परिधि 44 cm है, तो उसकी त्रिज्या होगी: <br><small style="color:red;">[BSEB 2015, 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 14 cm</button>
+            <button class="btn" onclick="check(this, true)">B. 7 cm</button>
+            <button class="btn" onclick="check(this, false)">C. 21 cm</button>
+            <button class="btn" onclick="check(this, false)">D. 44 cm</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">76. 5, 3, 7, 6, 4, 2, 1 की माध्यिका (Median) क्या है? <br><small style="color:red;">[BSEB 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 3</button>
+            <button class="btn" onclick="check(this, true)">B. 4</button>
+            <button class="btn" onclick="check(this, false)">C. 5</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">77. दो समान कोणीय त्रिभुजों में उनकी संगत भुजाओं का अनुपात सदैव समान रहता है, यह किसने कहा? <br><small style="color:red;">[BSEB 2019, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. पाइथागोरस</button>
+            <button class="btn" onclick="check(this, true)">B. थेल्स (Thales)</button>
+            <button class="btn" onclick="check(this, false)">C. यूक्लिड</button>
+            <button class="btn" onclick="check(this, false)">D. आर्यभट्ट</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">78. बाह्य बिन्दु से वृत्त पर खींची गई स्पर्श रेखाओं की लम्बाई होती है: <br><small style="color:red;">[BSEB 2021, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. असमान</button>
+            <button class="btn" onclick="check(this, true)">B. समान (Equal)</button>
+            <button class="btn" onclick="check(this, false)">C. दुगुनी</button>
+            <button class="btn" onclick="check(this, false)">D. आधी</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">79. यदि एक पासे (Dice) को फेंका जाए, तो विषम संख्या आने की प्रायिकता क्या होगी? <br><small style="color:red;">[BSEB 2020, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 1/2</button>
+            <button class="btn" onclick="check(this, false)">C. 1/3</button>
+            <button class="btn" onclick="check(this, false)">D. 1/6</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">80. 9sec² A - 9tan² A बराबर है: <br><small style="color:red;">[BSEB 2015, 2019, 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 9</button>
+            <button class="btn" onclick="check(this, false)">C. 8</button>
+            <button class="btn" onclick="check(this, false)">D. 0</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="question">81. रैखिक समीकरण युग्म x + 3y - 4 = 0 तथा 2x - 5y - 1 = 0 हैं: <br><small style="color:red;">[BSEB 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. अविरोधी (Consistent)</button>
+            <button class="btn" onclick="check(this, false)">B. विरोधी</button>
+            <button class="btn" onclick="check(this, false)">C. आश्रित</button>
+            <button class="btn" onclick="check(this, false)">D. इनमें से कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">82. tan 30° . sin 30° . cot 60° . cosec 30° का मान क्या होगा? <br><small style="color:red;">[BSEB 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1/2</button>
+            <button class="btn" onclick="check(this, true)">B. 1/3</button>
+            <button class="btn" onclick="check(this, false)">C. 1/4</button>
+            <button class="btn" onclick="check(this, false)">D. 1</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">83. समान ऊँचाई वाले दो बेलनों के आयतनों का अनुपात 9:16 है, तो उनके वक्र पृष्ठों के क्षेत्रफलों का अनुपात क्या होगा? <br><small style="color:red;">[BSEB 2021, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 9:16</button>
+            <button class="btn" onclick="check(this, true)">B. 3:4</button>
+            <button class="btn" onclick="check(this, false)">C. 27:64</button>
+            <button class="btn" onclick="check(this, false)">D. 4:3</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">84. यदि P(A) = 0.05 है, तो P(A') (घटना नहीं होने की प्रायिकता) क्या होगी? <br><small style="color:red;">[BSEB 2018, 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 0.05</button>
+            <button class="btn" onclick="check(this, false)">B. 0.5</button>
+            <button class="btn" onclick="check(this, true)">C. 0.95</button>
+            <button class="btn" onclick="check(this, false)">D. 1.05</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">85. बिन्दु (-12, -18) का 'भुज' (Abscissa) क्या है? <br><small style="color:red;">[BSEB 2020, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. -12</button>
+            <button class="btn" onclick="check(this, false)">B. -18</button>
+            <button class="btn" onclick="check(this, false)">C. 12</button>
+            <button class="btn" onclick="check(this, false)">D. 18</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">86. 1 + cot² A / 1 + tan² A किसके बराबर होता है? <br><small style="color:red;">[BSEB 2014, 2019, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. sec² A</button>
+            <button class="btn" onclick="check(this, false)">B. cosec² A</button>
+            <button class="btn" onclick="check(this, true)">C. cot² A</button>
+            <button class="btn" onclick="check(this, false)">D. tan² A</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">87. यदि एक वृत्त का परिमाप और क्षेत्रफल संख्यात्मक रूप से बराबर है, तो वृत्त की त्रिज्या है: <br><small style="color:red;">[BSEB 2012, 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 2 मात्रक</button>
+            <button class="btn" onclick="check(this, false)">B. π मात्रक</button>
+            <button class="btn" onclick="check(this, false)">C. 4 मात्रक</button>
+            <button class="btn" onclick="check(this, false)">D. 7 मात्रक</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">88. √2 एक _____ संख्या है। <br><small style="color:red;">[BSEB 2011, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. परिमेय</button>
+            <button class="btn" onclick="check(this, true)">B. अपरिमेय</button>
+            <button class="btn" onclick="check(this, false)">C. पूर्णांक</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">89. दो क्रमिक सम संख्याओं का HCF (म.स.) क्या होगा? <br><small style="color:red;">[BSEB 2020]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, true)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. 3</button>
+            <button class="btn" onclick="check(this, false)">D. 5</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">90. बहुपद x² - 5x + 6 के शून्यक (Zeros) हैं: <br><small style="color:red;">[BSEB 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. (1, -1)</button>
+            <button class="btn" onclick="check(this, false)">B. (2, 1)</button>
+            <button class="btn" onclick="check(this, true)">C. (2, 3)</button>
+            <button class="btn" onclick="check(this, false)">D. (-2, -3)</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">91. बिन्दु (4, 10) और (2, 2) को मिलाने वाली रेखाखंड के 'मध्य-बिन्दु' (Mid-point) के निर्देशांक हैं: <br><small style="color:red;">[BSEB 2021, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. (3, 6)</button>
+            <button class="btn" onclick="check(this, false)">B. (5, 6)</button>
+            <button class="btn" onclick="check(this, false)">C. (6, 3)</button>
+            <button class="btn" onclick="check(this, false)">D. (3, 5)</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">92. यदि किसी समांतर श्रेणी (AP) का सामान्य पद (5n - 7) है, तो इसका 'प्रथम पद' क्या होगा? <br><small style="color:red;">[BSEB 2019, 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 0</button>
+            <button class="btn" onclick="check(this, false)">B. 5</button>
+            <button class="btn" onclick="check(this, true)">C. -2</button>
+            <button class="btn" onclick="check(this, false)">D. 2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">93. sin 60° . cos 30° + cos 60° . sin 30° का मान क्या होगा? <br><small style="color:red;">[BSEB 2017, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 1</button>
+            <button class="btn" onclick="check(this, false)">B. 0</button>
+            <button class="btn" onclick="check(this, false)">C. 2</button>
+            <button class="btn" onclick="check(this, false)">D. 1/2</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">94. दो वृत्तों के क्षेत्रफलों का अनुपात 4:9 है, तो उनकी परिधियों (Circumferences) का अनुपात होगा: <br><small style="color:red;">[BSEB 2020, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 4:9</button>
+            <button class="btn" onclick="check(this, true)">B. 2:3</button>
+            <button class="btn" onclick="check(this, false)">C. 16:81</button>
+            <button class="btn" onclick="check(this, false)">D. 9:4</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">95. एक पासे (Dice) को फेंकने पर '6' आने की प्रायिकता क्या है? <br><small style="color:red;">[BSEB 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. 1</button>
+            <button class="btn" onclick="check(this, false)">B. 1/2</button>
+            <button class="btn" onclick="check(this, true)">C. 1/6</button>
+            <button class="btn" onclick="check(this, false)">D. 0</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">96. 0.3 (3 के ऊपर बार) का सरलतम रूप (p/q) क्या है? <br><small style="color:red;">[BSEB 2018, 2023]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 1/3</button>
+            <button class="btn" onclick="check(this, false)">B. 3/10</button>
+            <button class="btn" onclick="check(this, false)">C. 3/100</button>
+            <button class="btn" onclick="check(this, false)">D. 1/9</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">97. यदि θ = 30° हो, तो 2cos 2θ का मान क्या होगा? <br><small style="color:red;">[BSEB 2022]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. 1</button>
+            <button class="btn" onclick="check(this, false)">B. 2</button>
+            <button class="btn" onclick="check(this, false)">C. √3</button>
+            <button class="btn" onclick="check(this, false)">D. 0</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">98. सभी 'वृत्त' होते हैं: <br><small style="color:red;">[BSEB 2015, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. समरूप (Similar)</button>
+            <button class="btn" onclick="check(this, false)">B. सर्वांगसम</button>
+            <button class="btn" onclick="check(this, false)">C. दोनों</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">99. यूक्लिड विभाजन एल्गोरिथ्म दो धनात्मक पूर्णांकों के क्या निकालने की तकनीक है? <br><small style="color:red;">[BSEB 2011, 2021]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, false)">A. L.C.M.</button>
+            <button class="btn" onclick="check(this, true)">B. H.C.F.</button>
+            <button class="btn" onclick="check(this, false)">C. भागफल</button>
+            <button class="btn" onclick="check(this, false)">D. शेषफल</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question">100. संचयी बारंबारता वक्र कहलाती है: <br><small style="color:red;">[BSEB 2014, 2020, 2024]</small></div>
+        <div class="options-grid">
+            <button class="btn" onclick="check(this, true)">A. तोरण (Ogive)</button>
+            <button class="btn" onclick="check(this, false)">B. आयतचित्र</button>
+            <button class="btn" onclick="check(this, false)">C. बारंबारता बहुभुज</button>
+            <button class="btn" onclick="check(this, false)">D. कोई नहीं</button>
+        </div>
+    </div>
+
+
+<audio id="sahiSound" src="https://www.myinstants.com/media/sounds/correct.mp3"></audio>
+<audio id="galatSound" src="https://www.myinstants.com/media/sounds/wrong-answer-sound-effect.mp3"></audio>
+
+<script>
+    function check(btn, isCorrect) {
+        // Pehle se kisi button par click hai toh use hatayein nahi, bas naya rang dein
+        if (isCorrect) {
+            document.getElementById('sahiSound').play();
+            btn.classList.add('correct');
+        } else {
+            document.getElementById('galatSound').play();
+            btn.classList.add('wrong');
+        }
+        // Notification (Alert) hata diya gaya hai
+    }
+</script>
+
+</body>
+</html>
