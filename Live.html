@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjit Pro Live</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d); 
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            font-family: 'Poppins', sans-serif; overflow: hidden;
+        }
+        #quiz-container {
+            width: 95%; max-width: 450px; background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px; padding: 35px; text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 4px solid #fff;
+        }
+        .timer-box {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: #2c3e50; color: #fff; font-size: 35px;
+            font-weight: bold; line-height: 80px; margin: -75px auto 20px;
+            border: 5px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .question-box { font-size: 22px; font-weight: 700; color: #2c3e50; margin-bottom: 25px; line-height: 1.4; }
+        .options-list { display: grid; gap: 15px; }
+        .option-btn {
+            background: #fff; border: 2px solid #ddd; padding: 18px;
+            border-radius: 15px; color: #333; font-size: 18px;
+            cursor: pointer; text-align: left; font-weight: 600; transition: 0.3s;
+        }
+        /* लॉक होने पर हल्का रंग */
+        .selected-locked { background: #e0e0e0 !important; border-color: #999 !important; transform: scale(0.98); }
+        .correct { background: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
+        .wrong { background: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
+        #ready-screen { font-size: 90px; font-weight: bold; color: #fff; display: none; text-shadow: 2px 5px 10px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div id="ready-screen">3</div>
+    <div id="quiz-content">
+        <div class="timer-box" id="main-timer">10</div>
+        <div class="question-box" id="question">सवाल आ रहा है...</div>
+        <div class="options-list" id="options"></div>
+    </div>
+</div>
+
+<script>
+// --- सवाल ---
+const QUESTIONS = [
+    { q: "नाखून क्यों बढ़ते हैं, इसके लेखक कौन हैं?", options: ["हजारी प्रसाद द्विवेदी", "अमरकांत", "अशोक वाजपेयी", "गुणाकर मुले"], correct: "हजारी प्रसाद द्विवेदी" },
+    { q: "मछली किस प्रकार की कहानी है?", options: ["सामाजिक", "मनोवैज्ञानिक", "ऐतिहासिक", "सांस्कृतिक"], correct: "सामाजिक" }
+];
+
+const Q_TIME = 10; 
+const WAIT_TIME = 5;
+
+// --- बेहतरीन साउंड्स ---
+const bgMusic = new Audio('https://www.soundjay.com/free-music/sounds/action-movie-trailer-1.mp3'); // थ्रिलर म्यूजिक
+const tickSnd = new Audio('https://www.soundjay.com/clock/sounds/clock-ticking-2.mp3');
+const lockSnd = new Audio('https://www.soundjay.com/button/sounds/button-10.mp3'); // लॉक साउंड
+const winSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
+const loseSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2004/2004-preview.mp3');
+
+bgMusic.volume = 0.3; bgMusic.loop = true;
+
+let currentIdx = -1;
+let startTime = new Date().getTime();
+let userSelectedBtn = null; // छात्र ने क्या चुना
+
+function updateQuiz() {
+    const now = new Date().getTime();
+    const diff = Math.floor((now - startTime) / 1000);
+    let totalCycle = Q_TIME + WAIT_TIME; 
+    let qIdx = Math.floor(diff / totalCycle);
+    let secInQ = diff % totalCycle;
+
+    if (qIdx >= QUESTIONS.length) {
+        bgMusic.pause();
+        document.getElementById('quiz-container').innerHTML = "<h2>🏁 आज का दंगल समाप्त!</h2>";
+        return;
+    }
+
+    if (qIdx !== currentIdx) {
+        currentIdx = qIdx;
+        userSelectedBtn = null; // नया सवाल तो सिलेक्शन साफ़
+        loadNewQuestion(QUESTIONS[qIdx]);
+    }
+
+    handleLogic(secInQ, QUESTIONS[qIdx].correct);
+}
+
+function loadNewQuestion(data) {
+    bgMusic.play().catch(() => {}); // म्यूजिक शुरू
+    const optionsDiv = document.getElementById('options');
+    document.getElementById('question').innerText = (currentIdx + 1) + ". " + data.q;
+    optionsDiv.innerHTML = "";
+    
+    let shuffled = [...data.options].sort(() => Math.random() - 0.5);
+    shuffled.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = "option-btn";
+        btn.innerHTML = `<strong>${['A','B','C','D'][i]}.</strong> ${opt}`;
+        btn.onclick = () => {
+            if(!userSelectedBtn) {
+                userSelectedBtn = btn;
+                btn.classList.add('selected-locked');
+                lockSnd.play();
+                // अभी रिजल्ट नहीं दिखाएंगे
+                const all = document.querySelectorAll('.option-btn');
+                all.forEach(b => b.disabled = true);
+            }
+        };
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function handleLogic(sec, correct) {
+    const timerBox = document.getElementById('main-timer');
+    const content = document.getElementById('quiz-content');
+    const ready = document.getElementById('ready-screen');
+
+    if (sec < Q_TIME) {
+        ready.style.display = 'none';
+        content.style.display = 'block';
+        timerBox.innerText = Q_TIME - sec;
+        tickSnd.play();
+    } else {
+        tickSnd.pause();
+        timerBox.innerText = "0";
+        
+        // --- यहाँ सस्पेंस खत्म होगा (Time Over) ---
+        revealResult(correct);
+        
+        let waitLeft = totalCycle - sec;
+        if(waitLeft <= 3) {
+            content.style.display = 'none';
+            ready.style.display = 'inline-block';
+            ready.innerText = waitLeft;
+        }
+    }
+}
+
+function revealResult(correct) {
+    const btns = document.querySelectorAll('.option-btn');
+    let isCorrect = false;
+
+    btns.forEach(b => {
+        b.disabled = true;
+        if (b.innerText.includes(correct)) {
+            b.classList.add('correct');
+            if(b === userSelectedBtn) isCorrect = true;
+        }
+    });
+
+    if (userSelectedBtn && !isCorrect) {
+        userSelectedBtn.classList.add('wrong');
+        loseSnd.play();
+    } else if (isCorrect) {
+        winSnd.play();
+    }
+}
+
+setInterval(updateQuiz, 1000);
+
+
+
+</script>
+<script>
+  // --- मंजीत दोस्त के लिए नए और बेहतर साउंड्स ---
+const bgMusic = new Audio('https://assets.mixkit.co/active_storage/sfx/123/123-preview.mp3'); // जोश भरा म्यूजिक
+const countSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3'); // नया डिजिटल टाइमर साउंड
+const lockSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'); // प्रीमियम लॉक साउंड
+const winSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3'); // जीत की नई धुन
+const loseSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2021/2021-preview.mp3'); // हार का बजर
+
+bgMusic.volume = 0.2; 
+bgMusic.loop = true;
+
+// टिक-टिक को हटाकर हमने नया काउंटडाउन साउंड डाला है
+function handleLogic(sec, correct) {
+    const timerBox = document.getElementById('main-timer');
+    const content = document.getElementById('quiz-content');
+    const ready = document.getElementById('ready-screen');
+
+    if (sec < Q_TIME) {
+        ready.style.display = 'none';
+        content.style.display = 'block';
+        let timeLeft = Q_TIME - sec;
+        timerBox.innerText = timeLeft;
+        
+        // हर सेकंड नया काउंटडाउन साउंड बजेगा
+        countSnd.currentTime = 0;
+        countSnd.play();
+    } else {
+        countSnd.pause();
+        timerBox.innerText = "0";
+        revealResult(correct);
+        
+        let waitLeft = (Q_TIME + WAIT_TIME) - sec;
+        if(waitLeft <= 3) {
+            content.style.display = 'none';
+            ready.style.display = 'inline-block';
+            ready.innerText = waitLeft;
+        }
+    }
+}
+
+</script>
+</body>
+</html>
