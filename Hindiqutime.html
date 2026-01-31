@@ -1,126 +1,145 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" oncontextmenu="return false;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manjit Sawasi Online - Hindi Dangal</title>
+    <title>Manjeet Sawasi Online - Hindi All Chapters</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; transition: all 0.3s ease; }
-        body {
-            margin: 0; background: #050a18; font-family: 'Poppins', sans-serif; color: white;
-            display: flex; flex-direction: column; align-items: center; padding: 20px;
-            min-height: 100vh;
-        }
-        header { text-align: center; border-bottom: 2px solid #ffd700; width: 100%; max-width: 500px; padding-bottom: 10px; margin-bottom: 25px; }
-        header h1 { font-size: 26px; color: #ffd700; margin: 0; text-shadow: 0 0 15px rgba(255,215,0,0.3); }
-        
-        .dashboard { width: 100%; max-width: 500px; z-index: 10; }
-        
-        /* --- Card Styles --- */
-        .card { 
-            background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 20px; 
-            border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px; 
-            backdrop-filter: blur(5px);
-        }
-        
-        .status { font-size: 10px; font-weight: 900; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
-        .live { background: #ef4444; color: white; animation: pulse 1s infinite; box-shadow: 0 0 10px #ef4444; }
-        .waiting { background: #1e40af; color: white; }
-        .upcoming { background: #334155; color: #94a3b8; }
-        .finished { background: #1e293b; opacity: 0.5; }
+        * { box-sizing: border-box; transition: 0.3s; -webkit-user-select: none; user-select: none; }
+        body { margin: 0; background: #ffffff; font-family: 'Poppins', sans-serif; color: #1a1a1a; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 
-        .ch-name { font-size: 18px; font-weight: 700; margin-bottom: 5px; color: #fff; }
-        .ch-date { font-size: 12px; opacity: 0.7; margin-bottom: 15px; color: #ffd700; }
+        /* Navigation Bar */
+        .nav-bar { background: #ffffff; padding: 12px 0; width: 100%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-bottom: 2px solid #ffd700; }
+        .nav-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .brand { font-weight: 900; font-size: 20px; text-decoration: none; color: #1a237e; }
+        .brand span { color: #d4af37; }
+        .quiz-btn { background: linear-gradient(45deg, #ffd700, #ffae00); color: #000 !important; padding: 8px 15px; border-radius: 12px; font-weight: 900; text-decoration: none; animation: pulse-glow 2s infinite; font-size: 14px; }
 
-        .btn { display: block; text-align: center; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 900; }
-        .btn-lock { background: #1e293b; color: #475569; pointer-events: none; border: 1px solid #334155; }
-        .btn-live { background: linear-gradient(45deg, #ff0000, #ff8c00); color: white; box-shadow: 0 5px 15px rgba(255,0,0,0.4); }
+        /* Watermark */
+        .watermark-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; display: flex; flex-wrap: wrap; justify-content: space-around; align-content: space-around; opacity: 0.04; }
+        .watermark-item { font-size: 22px; font-weight: 900; transform: rotate(-30deg); padding: 50px; white-space: nowrap; }
 
-        /* --- Decorations --- */
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-        .watermark { position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); font-size: 10vw; color: rgba(255,255,255,0.02); z-index: -1; white-space: nowrap; font-weight: 900; pointer-events: none; }
-        footer { margin-top: 30px; font-size: 12px; opacity: 0.5; }
+        header { text-align: center; margin: 30px 0; }
+        header h1 { font-size: 28px; color: #1a237e; margin: 0; font-weight: 900; text-transform: uppercase; }
+        header p { color: #d4af37; font-weight: 700; margin-top: 5px; }
+
+        .section-title { width: 100%; max-width: 500px; padding: 10px 20px; background: #1a237e; color: white; border-radius: 10px; margin: 20px 0 10px; font-weight: 700; text-align: center; }
+
+        .dashboard { width: 100%; max-width: 500px; padding: 0 20px; }
+        .card { background: #fff; border-radius: 20px; padding: 20px; margin-bottom: 15px; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .status { font-size: 10px; font-weight: 900; padding: 4px 10px; border-radius: 50px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
+        .timer-glow { background: #e3f2fd; color: #1e88e5; border: 1px solid #bbdefb; }
+        .urgent { background: #ffebee; color: #e53935; border: 1px solid #ffcdd2; animation: pulse-glow 1s infinite; }
+        .live { background: #e53935; color: #fff; animation: pulse-glow 1s infinite; }
+        .upcoming { background: #f5f5f5; color: #9e9e9e; }
+        .finished { background: #fafafa; opacity: 0.6; }
+
+        .ch-name { font-size: 16px; font-weight: 900; color: #333; margin-bottom: 5px; }
+        .ch-date { font-size: 11px; color: #777; margin-bottom: 12px; }
+
+        .btn { display: block; text-align: center; text-decoration: none; padding: 10px; border-radius: 10px; font-weight: 900; font-size: 14px; }
+        .btn-lock { background: #f1f2f6; color: #a1a1a1; pointer-events: none; }
+        .btn-live { background: #1a237e; color: white; box-shadow: 0 4px 15px rgba(26,35,126,0.3); }
+
+        @keyframes pulse-glow { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        footer { margin: 40px 0; font-weight: 900; opacity: 0.5; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="watermark">MANJIT SAWASI ONLINE</div>
+    <div class="watermark-overlay" id="watermark-box"></div>
+
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <a href="#" class="brand">MANJEET <span>SAWASI</span></a>
+            <a href="#" class="quiz-btn">🔥 Play Quiz</a>
+        </div>
+    </nav>
 
     <header>
-        <h1>Manjit Sawasi Online 🏆</h1>
-        <p style="font-size: 12px; margin: 5px 0;">हिन्दी गद्य खण्ड: डेली लाइव दंगल</p>
+        <h1>हिन्दी महा-दंगल 2026 🏆</h1>
+        <p>गोधूलि + वर्णिका: Complete Preparation</p>
     </header>
 
-    <div class="dashboard" id="schedule-box">
-        </div>
+    <div class="dashboard" id="main-schedule"></div>
 
-    <footer>Designed by Manjit Sawasi</footer>
+    <footer>DESIGNED BY: MANJEET SAWASI DOST</footer>
 
     <script>
-        // --- मंजीत भाई का फुल 12 चैप्टर शेड्यूल ---
+        // Watermark generator
+        for(let i=0; i<30; i++) document.getElementById('watermark-box').innerHTML += `<div class="watermark-item">MANJEET SAWASI</div>`;
+
+        // FULL SYLLABUS DATA
         const CHAPTERS = [
-            { date: "2026-01-31", name: "01. श्रम विभाजन और जाति प्रथा", file: "Jatipratha.html" },
+            // GADH KHAND
+            { section: "गोधूलि: गद्य खण्ड (Stories)", date: "2026-01-31", name: "01. श्रम विभाजन और जाति प्रथा", file: "Jatipratha.html" },
             { date: "2026-02-01", name: "02. विष के दाँत", file: "Vishdant.html" },
-            { date: "2026-02-02", name: "03. भारत से हम क्या सीखें?", file: "chapter3.html" },
-            { date: "2026-02-03", name: "04. नाखून क्यों बढ़ते हैं?", file: "chapter4.html" },
-            { date: "2026-02-04", name: "05. नागरी लिपि", file: "chapter5.html" },
-            { date: "2026-02-05", name: "06. बहादुर", file: "chapter6.html" },
-            { date: "2026-02-06", name: "07. परंपरा का मूल्यांकन", file: "chapter7.html" },
-            { date: "2026-02-07", name: "08. जित-जित मैं निरखत हूँ", file: "chapter8.html" },
-            { date: "2026-02-08", name: "09. आविन्यों", file: "chapter9.html" },
-            { date: "2026-02-09", name: "10. मछली", file: "chapter10.html" },
-            { date: "2026-02-10", name: "11. नौबतखाने में इबादत", file: "chapter11.html" },
-            { date: "2026-02-11", name: "12. शिक्षा और संस्कृति", file: "chapter12.html" }
+            { date: "2026-02-02", name: "03. भारत से हम क्या सीखें?", file: "ch3.html" },
+            { date: "2026-02-03", name: "04. नाखून क्यों बढ़ते हैं?", file: "ch4.html" },
+            { date: "2026-02-04", name: "05. नागरी लिपि", file: "ch5.html" },
+            { date: "2026-02-05", name: "06. बहादुर", file: "ch6.html" },
+            { date: "2026-02-06", name: "07. परंपरा का मूल्यांकन", file: "ch7.html" },
+            { date: "2026-02-07", name: "08. जित-जित मैं निरखत हूँ", file: "ch8.html" },
+            { date: "2026-02-08", name: "09. आविन्यों", file: "ch9.html" },
+            { date: "2026-02-09", name: "10. मछली", file: "ch10.html" },
+            { date: "2026-02-10", name: "11. नौबतखाने में इबादत", file: "ch11.html" },
+            { date: "2026-02-11", name: "12. शिक्षा और संस्कृति", file: "ch12.html" },
+            // KAVY KHAND
+            { section: "गोधूलि: काव्य खण्ड (Poetry)", date: "2026-02-12", name: "01. राम बिनु बिरथे जगि जनमा", file: "p1.html" },
+            { date: "2026-02-13", name: "02. प्रेम अयनि श्री राधिका", file: "p2.html" },
+            { date: "2026-02-14", name: "03. अति सूधो सनेह को मारग है", file: "p3.html" },
+            { date: "2026-02-15", name: "04. स्वदेशी", file: "p4.html" },
+            { date: "2026-02-16", name: "05. भारतमाता", file: "p5.html" },
+            { date: "2026-02-17", name: "06. जनतंत्र का जन्म", file: "p6.html" },
+            { date: "2026-02-18", name: "07. हिरोशिमा", file: "p7.html" },
+            { date: "2026-02-19", name: "08. एक वृक्ष की हत्या", file: "p8.html" },
+            { date: "2026-02-20", name: "09. हमारी नींद", file: "p9.html" },
+            { date: "2026-02-21", name: "10. अक्षर-ज्ञान", file: "p10.html" },
+            { date: "2026-02-22", name: "11. लौटकर आऊँगा फिर", file: "p11.html" },
+            { date: "2026-02-23", name: "12. मेरे बिना तुम प्रभु", file: "p12.html" },
+            // VARNIKA
+            { section: "वर्णिका भाग-2 (Supplementary)", date: "2026-02-24", name: "01. दही वाली मंगम्मा", file: "v1.html" },
+            { date: "2026-02-25", name: "02. ढहते विश्वास", file: "v2.html" },
+            { date: "2026-02-26", name: "03. माँ", file: "v3.html" },
+            { date: "2026-02-27", name: "04. नगर", file: "v4.html" },
+            { date: "2026-02-28", name: "05. धरती कब तक घूमेगी", file: "v5.html" }
         ];
 
         function updateDashboard() {
-            const box = document.getElementById('schedule-box');
-            if (!box) return;
-            box.innerHTML = "";
+            const box = document.getElementById('main-schedule');
             const now = new Date();
-            
-            // तारीख को सही फॉर्मेट (YYYY-MM-DD) में सेट करना
-            const todayStr = now.getFullYear() + '-' + 
-                            String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-                            String(now.getDate()).padStart(2, '0');
+            let html = "";
 
             CHAPTERS.forEach(ch => {
-                const chDate = new Date(ch.date + "T19:00:00"); // शाम 7:00 बजे का समय
-                const diff = chDate - now;
+                if(ch.section) html += `<div class="section-title">${ch.section}</div>`;
                 
+                const chDate = new Date(ch.date + "T19:00:00"); 
+                const diff = chDate - now;
+                const todayStr = now.toISOString().split('T')[0];
                 let statusClass, statusText, btnClass, btnText, isLive = false;
 
-                if (diff > 0 && ch.date === todayStr) {
-                    // आज होने वाला है (Waiting)
-                    statusClass = "waiting"; statusText = "आज शाम 7:00 बजे";
-                    btnClass = "btn-lock"; btnText = "LOCK 🔒";
-                } else if (diff <= 0 && diff > -3600000 && ch.date === todayStr) {
-                    // अभी चल रहा है (Live)
-                    statusClass = "live"; statusText = "🔴 LIVE NOW";
-                    btnClass = "btn-live"; btnText = "दंगल में जुड़ें ➔";
-                    isLive = true;
-                } else if (ch.date > todayStr) {
-                    // भविष्य में (Upcoming)
-                    statusClass = "upcoming"; statusText = "Upcoming";
-                    btnClass = "btn-lock"; btnText = "अभी लॉक है 🔒";
+                if (diff > 0 && diff <= 86400000) {
+                    const h = Math.floor((diff / 3600000) % 24), m = Math.floor((diff / 60000) % 60), s = Math.floor((diff / 1000) % 60);
+                    statusClass = (h < 2) ? "timer-glow urgent" : "timer-glow";
+                    statusText = `⏳ START IN: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+                    btnClass = "btn-lock"; btnText = "WAITING... 🔒";
+                } 
+                else if (diff <= 0 && diff > -7200000 && ch.date === todayStr) {
+                    statusClass = "live"; statusText = "🔴 LIVE NOW"; btnClass = "btn-live"; btnText = "दंगल में जुड़ें ➔"; isLive = true;
+                } else if (chDate > now) {
+                    statusClass = "upcoming"; statusText = "Upcoming"; btnClass = "btn-lock"; btnText = "LOCK 🔒";
                 } else {
-                    // खत्म हो चुका (Finished)
-                    statusClass = "finished"; statusText = "समाप्त";
-                    btnClass = "btn-lock"; btnText = "EXPIRED";
+                    statusClass = "finished"; statusText = "समाप्त"; btnClass = "btn-lock"; btnText = "EXPIRED";
                 }
 
-                box.innerHTML += `
-                    <div class="card">
-                        <div class="status ${statusClass}">${statusText}</div>
-                        <div class="ch-name">${ch.name}</div>
-                        <div class="ch-date">📅 ${ch.date} | ⏰ 07:00 PM</div>
-                        <a href="${isLive ? ch.file : '#'}" class="btn ${btnClass}">${btnText}</a>
-                    </div>
-                `;
+                html += `<div class="card"><div class="status ${statusClass}">${statusText}</div><div class="ch-name">${ch.name}</div><div class="ch-date">📅 ${ch.date} | ⏰ 07:00 PM</div><a href="${isLive ? ch.file : '#'}" class="btn ${btnClass}">${btnText}</a></div>`;
             });
+            box.innerHTML = html;
         }
 
+        document.onkeydown = function(e) { if (e.keyCode == 123 || (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0)))) return false; };
         setInterval(updateDashboard, 1000);
         updateDashboard();
     </script>
