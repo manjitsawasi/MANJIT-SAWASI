@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjit Sawasi Pro Live - Chapter 1</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d); 
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            font-family: 'Poppins', sans-serif; overflow: hidden;
+        }
+        #quiz-container {
+            width: 95%; max-width: 450px; background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px; padding: 30px; text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 4px solid #fff;
+            position: relative;
+        }
+        .brand-name {
+            font-size: 20px; color: #1a2a6c; font-weight: bold; 
+            margin-bottom: 15px; border-bottom: 2px solid #b21f1f; 
+            padding-bottom: 5px; text-transform: uppercase;
+        }
+        .timer-box {
+            width: 70px; height: 70px; border-radius: 50%;
+            background: #2c3e50; color: #fff; font-size: 30px;
+            font-weight: bold; line-height: 70px; margin: 10px auto 20px;
+            border: 4px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .question-box { font-size: 19px; font-weight: 700; color: #2c3e50; margin-bottom: 20px; line-height: 1.4; text-align: left; min-height: 60px; }
+        .options-list { display: grid; gap: 10px; }
+        .option-btn {
+            background: #fff; border: 2px solid #ddd; padding: 14px;
+            border-radius: 12px; color: #333; font-size: 16px;
+            cursor: pointer; text-align: left; font-weight: 600; transition: 0.3s;
+        }
+        .selected-locked { background: #e0e0e0 !important; border-color: #999 !important; transform: scale(0.98); }
+        .correct { background: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
+        .wrong { background: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
+        #ready-screen { font-size: 100px; font-weight: bold; color: #fff; display: none; text-shadow: 2px 5px 10px rgba(0,0,0,0.3); }
+        .footer-credit { font-size: 12px; color: #666; margin-top: 15px; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div class="brand-name">🚀 Manjit Sawasi Pro Live</div>
+    
+    <div id="ready-screen">3</div>
+    
+    <div id="quiz-content">
+        <div class="timer-box" id="main-timer">10</div>
+        <div id="q-count" style="font-weight: bold; color: #b21f1f; margin-bottom: 8px; font-size: 14px;"></div>
+        <div class="question-box" id="question">लोड हो रहा है...</div>
+        <div class="options-list" id="options"></div>
+        <div class="footer-credit">Designed for Bihar Board Exam 2026</div>
+    </div>
+</div>
+
+<script>
+// --- मंजीत सावासी का महा-दंगल डेटा (30 प्रश्न) ---
+const QUESTIONS = [
+    { q: "बाबा साहेब भीमराव अंबेडकर का जन्म कब हुआ?", options: ["14 अप्रैल 1891", "20 अप्रैल 1892", "15 अगस्त 1889", "14 मार्च 1891"], correct: "14 अप्रैल 1891" },
+    { q: "अंबेडकर का जन्म कहाँ हुआ था?", options: ["मऊ, उत्तर प्रदेश", "महू, मध्य प्रदेश", "वाराणसी, उत्तर प्रदेश", "पटना, बिहार"], correct: "महू, मध्य प्रदेश" },
+    { q: "अंबेडकर के पिता का क्या नाम था?", options: ["रामजी सकपाल", "रामदेव सकपाल", "रामकिशन", "राधेलाल"], correct: "रामजी सकपाल" },
+    { q: "भीमराव अंबेडकर की माता का नाम क्या था?", options: ["मीरा बाई", "भीमा बाई", "सविता बाई", "राधा बाई"], correct: "भीमा बाई" },
+    { q: "अंबेडकर किस जाति से संबंध रखते थे?", options: ["कुर्मी", "दलित (महार)", "ब्राह्मण", "कायस्थ"], correct: "दलित (महार)" },
+    { q: "प्राथमिक शिक्षा के बाद अंबेडकर उच्च शिक्षा के लिए कहाँ गए?", options: ["न्यूयॉर्क (USA)", "लंदन (UK)", "पेरिस", "टोक्यो"], correct: "न्यूयॉर्क (USA)" },
+    { q: "अंबेडकर न्यूयॉर्क से आगे की पढ़ाई करने कहाँ गए?", options: ["जर्मनी", "जापान", "लंदन", "रूस"], correct: "लंदन" },
+    { q: "अंबेडकर के चिंतन के तीन प्रेरक व्यक्ति कौन थे?", options: ["बुद्ध, कबीर, ज्योतिबा फुले", "गांधी, नेहरू, पटेल", "विवेकानंद, दयानंद, कबीर", "बुद्ध, नानक, राय"], correct: "बुद्ध, कबीर, ज्योतिबा फुले" },
+    { q: "अंबेडकर ने पीएचडी (Ph.D) की उपाधि कब प्राप्त की?", options: ["1915", "1916", "1920", "1921"], correct: "1916" },
+    { q: "लेखक की दृष्टि में विडंबना का स्वरूप क्या है?", options: ["जातिवाद के पोषकों की कमी नहीं है", "जातिवाद लोकतंत्र के हित में है", "आर्थिक विकास के लिए जातिवाद जरूरी है", "इनमें से कोई नहीं"], correct: "जातिवाद के पोषकों की कमी नहीं है" },
+    { q: "'The Castes in India' किसकी पहली प्रकाशित रचना है?", options: ["महात्मा गांधी", "भीमराव अंबेडकर", "ज्योतिबा फुले", "नेहरू"], correct: "भीमराव अंबेडकर" },
+    { q: "'Annihilation of Caste' का हिंदी रूपांतरण किसने किया?", options: ["ललई सिंह यादव", "रामविलास शर्मा", "अंबेडकर स्वयं", "प्रेमचंद"], correct: "ललई सिंह यादव" },
+    { q: "अंबेडकर का पूरा वांग्मय कितने खंडों में प्रकाशित है?", options: ["15", "18", "21", "25"], correct: "21" },
+    { q: "आधुनिक सभ्य समाज कार्यकुशलता के लिए किसे आवश्यक मानता है?", options: ["श्रम विभाजन", "जाति विभाजन", "धन विभाजन", "जन विभाजन"], correct: "श्रम विभाजन" },
+    { q: "जाति प्रथा भारत में बेरोजगारी का कैसा कारण है?", options: ["प्रत्यक्ष", "प्रमुख", "दोनों (A और B)", "गौण"], correct: "दोनों (A और B)" },
+    { q: "मूक नायक (Mook Nayak) क्या है?", options: ["अखबार", "पत्रिका", "पुस्तक", "कहानी संग्रह"], correct: "पत्रिका" },
+    { q: "'बुद्धा एंड हिज धम्मा' के लेखक कौन हैं?", options: ["भीमराव अंबेडकर", "मैक्समूलर", "महात्मा गांधी", "रवींद्रनाथ टैगोर"], correct: "भीमराव अंबेडकर" },
+    { q: "'Who are Shudras' किसकी कृति है?", options: ["अंबेडकर", "नेहरू", "गांधी", "विवेकानंद"], correct: "अंबेडकर" },
+    { q: "अंबेडकर की मृत्यु कब और कहाँ हुई?", options: ["1956, दिल्ली", "1957, आगरा", "1958, वाराणसी", "1959, पटना"], correct: "1956, दिल्ली" },
+    { q: "सच्चे लोकतंत्र का दूसरा नाम क्या है?", options: ["कानून", "भाईचारा", "समानता", "स्वतंत्रता"], correct: "भाईचारा" },
+    { q: "अंबेडकर के अनुसार आदर्श समाज किस पर आधारित होना चाहिए?", options: ["स्वतंत्रता", "समता", "भ्रातृत्व", "उपर्युक्त सभी"], correct: "उपर्युक्त सभी" },
+    { q: "जाति प्रथा पेशे का कैसा निर्धारण करती है?", options: ["सुधार", "दोषपूर्ण पूर्वनिर्धारण", "स्वतंत्र", "सकारात्मक"], correct: "दोषपूर्ण पूर्वनिर्धारण" },
+    { q: "लेखक के अनुसार भाईचारे का मिश्रण कैसा होना चाहिए?", options: ["चीनी-पानी जैसा", "दूध-पानी जैसा", "शहद-पानी जैसा", "नमक-पानी जैसा"], correct: "दूध-पानी जैसा" },
+    { q: "बाबा साहेब को किस उपनाम से जाना जाता है?", options: ["संविधान निर्माता", "लौह पुरुष", "लोकनायक", "देशरत्न"], correct: "संविधान निर्माता" },
+    { q: "अंबेडकर ने 'बहिष्कृत हितकारिणी सभा' की स्थापना कब की थी?", options: ["1920", "1924", "1928", "1932"], correct: "1924" },
+    { q: "हिंदू धर्म की किस बुराई के खिलाफ अंबेडकर ने संघर्ष किया?", options: ["सती प्रथा", "छुआछूत", "दहेज प्रथा", "बाल विवाह"], correct: "छुआछूत" },
+    { q: "अंबेडकर के भाषण को किस सम्मेलन के लिए तैयार किया गया था?", options: ["जात-पांत तोड़क मंडल, लाहौर", "हिंदी साहित्य सम्मेलन", "कांग्रेस सम्मेलन", "दलित सम्मेलन"], correct: "जात-पांत तोड़क मंडल, लाहौर" },
+    { q: "विडंबना शब्द का क्या अर्थ है?", options: ["मजाक/उपहास", "सहयोग", "विरोध", "सम्मान"], correct: "मजाक/उपहास" },
+    { q: "भारत में जाति प्रथा का मुख्य कारण क्या है?", options: ["बेरोजगारी", "गरीबी", "अमीर-गरीब", "जनसंख्या"], correct: "बेरोजगारी" },
+    { q: "अंबेडकर ने किस मानवीय अधिकार पर सबसे ज्यादा जोर दिया?", options: ["शिक्षा और स्वाभिमान", "व्यापार", "खेती", "राजनीति"], correct: "शिक्षा और स्वाभिमान" }
+];
+
+const Q_TIME = 10; 
+const WAIT_TIME = 4;
+
+const bgMusic = new Audio('https://www.soundjay.com/free-music/sounds/action-movie-trailer-1.mp3');
+const countSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3');
+const lockSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+const winSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3');
+const loseSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2021/2021-preview.mp3');
+
+bgMusic.volume = 0.2; bgMusic.loop = true;
+
+let currentIdx = -1;
+let startTime = new Date().getTime();
+let userSelectedBtn = null;
+
+function updateQuiz() {
+    const now = new Date().getTime();
+    const diff = Math.floor((now - startTime) / 1000);
+    let totalCycle = Q_TIME + WAIT_TIME; 
+    let qIdx = Math.floor(diff / totalCycle);
+    let secInQ = diff % totalCycle;
+
+    if (qIdx >= QUESTIONS.length) {
+        bgMusic.pause();
+        document.getElementById('quiz-container').innerHTML = `
+            <div class="brand-name">Manjit Sawasi Pro Live</div>
+            <h1 style="color: #b21f1f;">🏁 महा-दंगल समाप्त!</h1>
+            <p style="font-size: 18px;">चैप्टर 1 की तैयारी पूरी हुई।</p>
+            <button onclick="location.reload()" style="padding: 15px 30px; background: #1a2a6c; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">फिर से शुरू करें</button>
+        `;
+        return;
+    }
+
+    if (qIdx !== currentIdx) {
+        currentIdx = qIdx;
+        userSelectedBtn = null;
+        loadNewQuestion(QUESTIONS[qIdx]);
+    }
+
+    handleLogic(secInQ, QUESTIONS[qIdx].correct, totalCycle);
+}
+
+function loadNewQuestion(data) {
+    bgMusic.play().catch(() => {});
+    const optionsDiv = document.getElementById('options');
+    document.getElementById('q-count').innerText = `सवाल: ${currentIdx + 1} / ${QUESTIONS.length}`;
+    document.getElementById('question').innerText = data.q;
+    optionsDiv.innerHTML = "";
+    
+    data.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = "option-btn";
+        btn.innerHTML = `<strong>${['A','B','C','D'][i]}.</strong> ${opt}`;
+        btn.onclick = () => {
+            if(!userSelectedBtn) {
+                userSelectedBtn = btn;
+                btn.classList.add('selected-locked');
+                lockSnd.play();
+                const all = document.querySelectorAll('.option-btn');
+                all.forEach(b => b.disabled = true);
+            }
+        };
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function handleLogic(sec, correct, totalCycle) {
+    const timerBox = document.getElementById('main-timer');
+    const content = document.getElementById('quiz-content');
+    const ready = document.getElementById('ready-screen');
+
+    if (sec < Q_TIME) {
+        ready.style.display = 'none';
+        content.style.display = 'block';
+        timerBox.innerText = Q_TIME - sec;
+        countSnd.currentTime = 0;
+        countSnd.play();
+    } else {
+        timerBox.innerText = "0";
+        revealResult(correct);
+        let waitLeft = totalCycle - sec;
+        if(waitLeft <= 3) {
+            content.style.display = 'none';
+            ready.style.display = 'inline-block';
+            ready.innerText = waitLeft;
+        }
+    }
+}
+
+function revealResult(correct) {
+    const btns = document.querySelectorAll('.option-btn');
+    let isCorrect = false;
+    btns.forEach(b => {
+        b.disabled = true;
+        if (b.innerText.includes(correct)) {
+            b.classList.add('correct');
+            if(b === userSelectedBtn) isCorrect = true;
+        }
+    });
+    if (userSelectedBtn && !isCorrect && !userSelectedBtn.classList.contains('wrong')) {
+        userSelectedBtn.classList.add('wrong');
+        loseSnd.play();
+    } else if (isCorrect && !winSnd.played.length) {
+        winSnd.play();
+    }
+}
+
+setInterval(updateQuiz, 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjit Sawasi Online - Entry Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; transition: 0.4s; }
+        
+        body {
+            margin: 0; background: #ffffff; font-family: 'Poppins', sans-serif;
+            display: flex; flex-direction: column; align-items: center; 
+            justify-content: center; min-height: 100vh; padding: 20px;
+            overflow: hidden; position: relative;
+            -webkit-user-select: none; user-select: none; /* Security: No selection */
+        }
+
+        /* --- 1. Bahut saare Watermarks (Sirf MANJIT SAWASI) --- */
+        .watermark-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+            display: flex; flex-wrap: wrap; 
+            justify-content: space-around; align-content: space-around;
+            opacity: 0.05;
+        }
+        .watermark-item {
+            font-size: 20px; font-weight: 900; 
+            transform: rotate(-30deg);
+            padding: 40px; white-space: nowrap;
+            color: #000;
+        }
+
+        .container { text-align: center; max-width: 500px; width: 100%; position: relative; }
+
+        header h1 { 
+            color: #1a237e; font-size: 35px; font-weight: 900; margin: 0;
+            text-transform: uppercase; line-height: 1.1;
+        }
+        header .sub-title { 
+            color: #d4af37; font-weight: 900; margin-top: 10px; margin-bottom: 40px; 
+            font-size: 18px; display: block; border-bottom: 2px solid #d4af37;
+            display: inline-block; padding-bottom: 5px;
+        }
+
+        /* --- Stylish Choice Buttons --- */
+        .choice-box { display: flex; flex-direction: column; gap: 20px; }
+
+        .btn-class {
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .btn-class:hover {
+            transform: translateY(-8px);
+            border-color: #1a237e;
+            box-shadow: 0 15px 35px rgba(26, 35, 126, 0.15);
+        }
+
+        .text-area { text-align: left; }
+        .text-area h2 { margin: 0; color: #1a237e; font-size: 26px; font-weight: 900; }
+        .text-area p { margin: 5px 0 0; color: #666; font-size: 14px; font-weight: 600; }
+
+        .icon-box {
+            font-size: 40px; background: #f0f2f5; width: 70px; height: 70px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 15px;
+        }
+
+        /* Border colors for distinction */
+        .matric { border-right: 10px solid #ff4757; }
+        .inter { border-right: 10px solid #2e86de; }
+
+        .footer-tag { 
+            margin-top: 50px; font-weight: 900; color: #1a237e; 
+            font-size: 14px; letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;"> <div class="watermark-overlay">
+        <div class="watermark-item">MANJIT SAWASI</div> <div class="watermark-item">MANJIT SAWASI</div>
+        <div class="watermark-item">MANJIT SAWASI</div> <div class="watermark-item">MANJIT SAWASI</div>
+        <div class="watermark-item">MANJIT SAWASI</div> <div class="watermark-item">MANJIT SAWASI</div>
+        <div class="watermark-item">MANJIT SAWASI</div> <div class="watermark-item">MANJIT SAWASI</div>
+        <div class="watermark-item">MANJIT SAWASI</div> <div class="watermark-item">MANJIT SAWASI</div>
+        <div class="watermark-item">MANJIT SAWASI</div> <div class="watermark-item">MANJIT SAWASI</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>MANJIT SAWASI ONLINE</h1>
+            <span class="sub-title">BIHAR BOARD DANGAL 2026</span>
+        </header>
+
+        <div class="choice-box">
+            <a href="Dangalmain.html" class="btn-class matric">
+                <div class="text-area">
+                    <h2>MATRIC</h2>
+                    <p>कक्षा 10वीं के सभी विषय</p>
+                </div>
+                <div class="icon-box">📖</div>
+            </a>
+
+            <a href="#" class="btn-class inter" onclick="alert('इंटर का दंगल जल्द शुरू होगा!')">
+                <div class="text-area">
+                    <h2>INTER</h2>
+                    <p>कक्षा 12वीं के सभी विषय</p>
+                </div>
+                <div class="icon-box">🎓</div>
+            </a>
+        </div>
+
+        <div class="footer-tag">DESIGNED BY: MANJIT SAWASI DOST</div>
+    </div>
+
+    <script>
+        // Security: Block F12 and Ctrl+U
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) return false;
+        };
+    </script>
+</body>
+</html>

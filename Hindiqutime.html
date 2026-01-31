@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjit Sawasi Online - Hindi Dangal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        body {
+            margin: 0; background: #050a18; font-family: 'Poppins', sans-serif; color: white;
+            display: flex; flex-direction: column; align-items: center; padding: 20px;
+            min-height: 100vh;
+        }
+        header { text-align: center; border-bottom: 2px solid #ffd700; width: 100%; max-width: 500px; padding-bottom: 10px; margin-bottom: 25px; }
+        header h1 { font-size: 26px; color: #ffd700; margin: 0; text-shadow: 0 0 15px rgba(255,215,0,0.3); }
+        
+        .dashboard { width: 100%; max-width: 500px; z-index: 10; }
+        
+        /* --- Card Styles --- */
+        .card { 
+            background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 20px; 
+            border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px; 
+            backdrop-filter: blur(5px);
+        }
+        
+        .status { font-size: 10px; font-weight: 900; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
+        .live { background: #ef4444; color: white; animation: pulse 1s infinite; box-shadow: 0 0 10px #ef4444; }
+        .waiting { background: #1e40af; color: white; }
+        .upcoming { background: #334155; color: #94a3b8; }
+        .finished { background: #1e293b; opacity: 0.5; }
+
+        .ch-name { font-size: 18px; font-weight: 700; margin-bottom: 5px; color: #fff; }
+        .ch-date { font-size: 12px; opacity: 0.7; margin-bottom: 15px; color: #ffd700; }
+
+        .btn { display: block; text-align: center; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 900; }
+        .btn-lock { background: #1e293b; color: #475569; pointer-events: none; border: 1px solid #334155; }
+        .btn-live { background: linear-gradient(45deg, #ff0000, #ff8c00); color: white; box-shadow: 0 5px 15px rgba(255,0,0,0.4); }
+
+        /* --- Decorations --- */
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        .watermark { position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); font-size: 10vw; color: rgba(255,255,255,0.02); z-index: -1; white-space: nowrap; font-weight: 900; pointer-events: none; }
+        footer { margin-top: 30px; font-size: 12px; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <div class="watermark">MANJIT SAWASI ONLINE</div>
+
+    <header>
+        <h1>Manjit Sawasi Online 🏆</h1>
+        <p style="font-size: 12px; margin: 5px 0;">हिन्दी गद्य खण्ड: डेली लाइव दंगल</p>
+    </header>
+
+    <div class="dashboard" id="schedule-box">
+        </div>
+
+    <footer>Designed by Manjit Sawasi</footer>
+
+    <script>
+        // --- मंजीत भाई का फुल 12 चैप्टर शेड्यूल ---
+        const CHAPTERS = [
+            { date: "2026-01-31", name: "01. श्रम विभाजन और जाति प्रथा", file: "Jatipratha.html" },
+            { date: "2026-02-01", name: "02. विष के दाँत", file: "Vishdant.html" },
+            { date: "2026-02-02", name: "03. भारत से हम क्या सीखें?", file: "chapter3.html" },
+            { date: "2026-02-03", name: "04. नाखून क्यों बढ़ते हैं?", file: "chapter4.html" },
+            { date: "2026-02-04", name: "05. नागरी लिपि", file: "chapter5.html" },
+            { date: "2026-02-05", name: "06. बहादुर", file: "chapter6.html" },
+            { date: "2026-02-06", name: "07. परंपरा का मूल्यांकन", file: "chapter7.html" },
+            { date: "2026-02-07", name: "08. जित-जित मैं निरखत हूँ", file: "chapter8.html" },
+            { date: "2026-02-08", name: "09. आविन्यों", file: "chapter9.html" },
+            { date: "2026-02-09", name: "10. मछली", file: "chapter10.html" },
+            { date: "2026-02-10", name: "11. नौबतखाने में इबादत", file: "chapter11.html" },
+            { date: "2026-02-11", name: "12. शिक्षा और संस्कृति", file: "chapter12.html" }
+        ];
+
+        function updateDashboard() {
+            const box = document.getElementById('schedule-box');
+            if (!box) return;
+            box.innerHTML = "";
+            const now = new Date();
+            
+            // तारीख को सही फॉर्मेट (YYYY-MM-DD) में सेट करना
+            const todayStr = now.getFullYear() + '-' + 
+                            String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                            String(now.getDate()).padStart(2, '0');
+
+            CHAPTERS.forEach(ch => {
+                const chDate = new Date(ch.date + "T19:00:00"); // शाम 7:00 बजे का समय
+                const diff = chDate - now;
+                
+                let statusClass, statusText, btnClass, btnText, isLive = false;
+
+                if (diff > 0 && ch.date === todayStr) {
+                    // आज होने वाला है (Waiting)
+                    statusClass = "waiting"; statusText = "आज शाम 7:00 बजे";
+                    btnClass = "btn-lock"; btnText = "LOCK 🔒";
+                } else if (diff <= 0 && diff > -3600000 && ch.date === todayStr) {
+                    // अभी चल रहा है (Live)
+                    statusClass = "live"; statusText = "🔴 LIVE NOW";
+                    btnClass = "btn-live"; btnText = "दंगल में जुड़ें ➔";
+                    isLive = true;
+                } else if (ch.date > todayStr) {
+                    // भविष्य में (Upcoming)
+                    statusClass = "upcoming"; statusText = "Upcoming";
+                    btnClass = "btn-lock"; btnText = "अभी लॉक है 🔒";
+                } else {
+                    // खत्म हो चुका (Finished)
+                    statusClass = "finished"; statusText = "समाप्त";
+                    btnClass = "btn-lock"; btnText = "EXPIRED";
+                }
+
+                box.innerHTML += `
+                    <div class="card">
+                        <div class="status ${statusClass}">${statusText}</div>
+                        <div class="ch-name">${ch.name}</div>
+                        <div class="ch-date">📅 ${ch.date} | ⏰ 07:00 PM</div>
+                        <a href="${isLive ? ch.file : '#'}" class="btn ${btnClass}">${btnText}</a>
+                    </div>
+                `;
+            });
+        }
+
+        setInterval(updateDashboard, 1000);
+        updateDashboard();
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjit Sawasi Online - Mega Quiz</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        /* --- एनिमेटेड प्रीमियम बैकग्राउंड --- */
+        body { 
+            margin: 0; 
+            background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #22c1c3);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- तिरछा वॉटरमार्क --- */
+        body::before {
+            content: "Manjit Sawasi Online";
+            position: absolute;
+            font-size: 6vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.07);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- क्विज़ बॉक्स (कांच जैसा इफ़ेक्ट) --- */
+        #quiz-container {
+            width: 92%; max-width: 480px; 
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 40px; padding: 30px; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4); 
+            border: 2px solid rgba(255,255,255,0.5);
+            position: relative; z-index: 1;
+        }
+
+        .brand-header {
+            font-size: 22px; color: #1a2a6c; font-weight: 800; 
+            margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+
+        .timer-box {
+            width: 85px; height: 85px; border-radius: 50%;
+            background: radial-gradient(#2c3e50, #000); 
+            color: #ffdb58; font-size: 40px;
+            font-weight: bold; line-height: 85px; margin: 0 auto 20px;
+            border: 6px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .question-box { 
+            font-size: 20px; font-weight: 700; color: #333; 
+            margin-bottom: 25px; line-height: 1.5; text-align: left;
+            background: rgba(26, 42, 108, 0.05); padding: 15px; border-radius: 15px;
+        }
+
+        .options-list { display: grid; gap: 12px; }
+
+        .option-btn {
+            background: #f8f9fa; border: 2px solid #eee; padding: 16px;
+            border-radius: 18px; color: #444; font-size: 17px;
+            cursor: pointer; text-align: left; font-weight: 600; 
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* लॉक और रिजल्ट कलर्स */
+        .selected-locked { background: #dcdde1 !important; border-color: #7f8c8d !important; opacity: 0.8; }
+        .correct { background: #27ae60 !important; color: white !important; border-color: #2ecc71 !important; animation: pulse 0.5s; }
+        .wrong { background: #c0392b !important; color: white !important; border-color: #e74c3c !important; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        #ready-screen { font-size: 120px; font-weight: 900; color: #fff; display: none; }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div class="brand-header">🚀 MANJIT SAWASI ONLINE</div>
+    <div id="ready-screen">3</div>
+    
+    <div id="quiz-content">
+        <div class="timer-box" id="main-timer">10</div>
+        <div id="q-count" style="font-weight: 800; color: #b21f1f; margin-bottom: 10px;"></div>
+        <div class="question-box" id="question">दंगल शुरू हो रहा है...</div>
+        <div class="options-list" id="options"></div>
+    </div>
+</div>
+
+<script>
+// --- Chapter 2 Data ---
+const QUESTIONS = [
+    { q: "विष के दाँत कहानी के रचयिता कौन हैं?", options: ["अमरकांत", "नलिन विलोचन शर्मा", "यतीन्द्र मिश्र", "मैक्समूलर"], correct: "नलिन विलोचन शर्मा" },
+    { q: "खोखा (काशू) किसका बेटा था?", options: ["सेन साहब का", "गिरधरलाल का", "पत्रकार का", "सोफर का"], correct: "सेन साहब का" },
+    { q: "मदन ने काशू के कितने दाँत तोड़ डाले?", options: ["एक", "दो", "तीन", "चार"], correct: "दो" },
+    { q: "सेन साहब की कार की कीमत कितनी थी?", options: ["साढ़े सात हजार", "साढ़े आठ हजार", "साढ़े नौ हजार", "साढ़े छह हजार"], correct: "साढ़े सात हजार" },
+    { q: "गिरधरलाल सेन साहब की फैक्ट्री में क्या था?", options: ["ड्राइवर", "मैनेजर", "किरानी", "चपरासी"], correct: "किरानी" },
+    { q: "खोखा को सेन साहब क्या बनाना चाहते थे?", options: ["डॉक्टर", "इंजीनियर", "नेता", "शिक्षक"], correct: "इंजीनियर" },
+    { q: "मदन अक्सर किसके हाथों से पिटता था?", options: ["पिता", "माता", "सेन साहब", "खोखा"], correct: "पिता" },
+    { q: "नलिन विलोचन शर्मा का जन्म कब हुआ था?", options: ["18 फरवरी 1916", "14 अप्रैल 1891", "24 अगस्त 1917", "12 अक्टूबर 1915"], correct: "18 फरवरी 1916" },
+    { q: "सेन साहब की नई कार किस रंग की थी?", options: ["सफ़ेद", "नीली", "काली", "लाल"], correct: "काली" },
+    { q: "विष के दाँत कैसी कहानी है?", options: ["सामाजिक", "ऐतिहासिक", "मनोवैज्ञानिक", "धार्मिक"], correct: "मनोवैज्ञानिक" }
+    // मंजीत भाई, यहाँ आप बाकी 20 सवाल भी पिछले कोड से जोड़ सकते हैं।
+];
+
+const Q_TIME = 10; 
+const WAIT_TIME = 4;
+
+// प्रीमियम ऑडियो लिंक्स
+const bgMusic = new Audio('https://www.soundjay.com/free-music/sounds/action-movie-trailer-1.mp3');
+const tickSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3');
+const lockSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+const winSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3');
+const loseSnd = new Audio('https://assets.mixkit.co/active_storage/sfx/2021/2021-preview.mp3');
+
+bgMusic.volume = 0.15; bgMusic.loop = true;
+
+let currentIdx = -1;
+let startTime = new Date().getTime();
+let userSelectedBtn = null;
+
+function updateQuiz() {
+    const now = new Date().getTime();
+    const diff = Math.floor((now - startTime) / 1000);
+    let totalCycle = Q_TIME + WAIT_TIME; 
+    let qIdx = Math.floor(diff / totalCycle);
+    let secInQ = diff % totalCycle;
+
+    if (qIdx >= QUESTIONS.length) {
+        bgMusic.pause();
+        document.getElementById('quiz-container').innerHTML = `
+            <h2 style="color:#1a2a6c">🏁 महा-दंगल समाप्त!</h2>
+            <p>Manjit Sawasi Online पर आने के लिए धन्यवाद।</p>
+            <button onclick="location.reload()" style="padding:12px 25px; border-radius:10px; border:none; background:#b21f1f; color:#fff; cursor:pointer;">RESTART</button>
+        `;
+        return;
+    }
+
+    if (qIdx !== currentIdx) {
+        currentIdx = qIdx;
+        userSelectedBtn = null;
+        loadNewQuestion(QUESTIONS[qIdx]);
+    }
+
+    handleLogic(secInQ, QUESTIONS[qIdx].correct, totalCycle);
+}
+
+function loadNewQuestion(data) {
+    bgMusic.play().catch(() => {});
+    const optionsDiv = document.getElementById('options');
+    document.getElementById('q-count').innerText = `प्रश्न: ${currentIdx + 1} / ${QUESTIONS.length}`;
+    document.getElementById('question').innerText = data.q;
+    optionsDiv.innerHTML = "";
+    
+    data.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = "option-btn";
+        btn.innerHTML = `<strong>${['A','B','C','D'][i]}.</strong> ${opt}`;
+        btn.onclick = () => {
+            if(!userSelectedBtn) {
+                userSelectedBtn = btn;
+                btn.classList.add('selected-locked');
+                lockSnd.play();
+                document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+            }
+        };
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function handleLogic(sec, correct, totalCycle) {
+    const timerBox = document.getElementById('main-timer');
+    const content = document.getElementById('quiz-content');
+    const ready = document.getElementById('ready-screen');
+
+    if (sec < Q_TIME) {
+        ready.style.display = 'none';
+        content.style.display = 'block';
+        timerBox.innerText = Q_TIME - sec;
+        tickSnd.currentTime = 0; tickSnd.play();
+    } else {
+        timerBox.innerText = "0";
+        revealResult(correct);
+        let waitLeft = totalCycle - sec;
+        if(waitLeft <= 3) {
+            content.style.display = 'none';
+            ready.style.display = 'block';
+            ready.innerText = waitLeft;
+        }
+    }
+}
+
+function revealResult(correct) {
+    const btns = document.querySelectorAll('.option-btn');
+    let isCorrect = false;
+    btns.forEach(b => {
+        if (b.innerText.includes(correct)) {
+            b.classList.add('correct');
+            if(b === userSelectedBtn) isCorrect = true;
+        }
+    });
+    if (userSelectedBtn && !isCorrect && !userSelectedBtn.classList.contains('wrong')) {
+        userSelectedBtn.classList.add('wrong');
+        loseSnd.play();
+    } else if (isCorrect && !winSnd.played.length) {
+        winSnd.play();
+    }
+}
+
+setInterval(updateQuiz, 1000);
+</script>
+</body>
+</html>
