@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Exam Special - Manjitsawasi</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body { 
+            font-family: 'Poppins', Arial, sans-serif; 
+            background-color: #f0f2f5; 
+            padding: 15px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><text x="50%" y="50%" text-anchor="middle" fill="rgba(0,0,0,0.03)" font-size="22" font-family="Arial" font-weight="bold" transform="rotate(-45, 150, 150)">Manjitsawasi</text></svg>');
+            background-repeat: repeat;
+            background-attachment: fixed;
+        }
+
+        /* PRINT BUTTON STYLE - Sabse Alag aur Bada */
+        .print-area {
+            text-align: center;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+        }
+
+        .my-print-btn {
+            background: #800757; /* Lal Rang */
+            color: white;
+            border: 4px solid #ffffff;
+            padding: 5px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .my-print-btn:hover {
+            background#e0d6d6
+            transform: scale(1.1);
+        }
+
+        .header { 
+            text-align: center; 
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); 
+            color: white; padding: 25px; border-radius: 20px; margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .question-card { 
+            background: white; padding: 22px; border-radius: 15px; 
+            margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+            border-top: 6px solid #6a11cb; position: relative; overflow: hidden;
+            border-left: 2px solid #620545;
+        }
+
+        .question-card::before {
+            content: "Manjitsawasi";
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 35px; color: rgba(0, 0, 0, 0.03);
+            font-weight: bold; pointer-events: none;
+        }
+
+        .ans-container { background-color: #f1f8e9; border-radius: 10px; padding: 12px; border-left: 5px solid #4caf50; margin-top: 10px; }
+        .ans-value { color: #1b5e20; font-size: 1.1em; font-weight: bold; }
+
+        /* PRINT SETTINGS */
+        @media print {
+            .print-area { display: none !important; } /* Print karte waqt button chup jayega */
+            body { background-image: none !important; background-color: white !important; padding: 0 !important; }
+            .question-card { box-shadow: none !important; border: 1px solid #000 !important; break-inside: avoid; }
+            .header { background: none !important; color: black !important; border: 1px solid #000 !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="print-area">
+    <button class="my-print-btn" onclick="window.print()">🖨️ PRINT / DOWNLOAD PDF</button>
+</div>
+
+<div class="header">
+    <h1>📐 3 Feb Math Special (PYQ)</h1>
+    <p>Most Important Questions by Manjitsawasi</p>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 1.</span> \( \frac{d}{dx} (\sin^{-1} x + \cos^{-1} x) \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 2.</span> \( \int \frac{1}{x} dx \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \log |x| + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 3.</span> \( |kA| \) where \( A \) is \( 3 \times 3 \)
+    <div class="ans-container"><span class="ans-value">Ans: \( k^3 |A| \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 4.</span> \( \vec{i} \cdot \vec{j} \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 5.</span> \( \frac{d}{dx} (\tan^{-1} x) \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{1+x^2} \)</span></div>
+</div>
+
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 6.</span> \( \int \sec^2 x \, dx \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \tan x + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 7.</span> \( \tan^{-1} x + \cot^{-1} x \) किसके बराबर है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/2 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 8.</span> सदिश \( \vec{i} + \vec{j} + \vec{k} \) का परिमाण (Magnitude) क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \sqrt{3} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 9.</span> \( \frac{d}{dx} (e^x) \) का अवकलन क्या होता है?
+    <div class="ans-container"><span class="ans-value">Ans: \( e^x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 10.</span> \( \vec{j} \times \vec{k} \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \vec{i} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 11.</span> \( \int_0^{\pi/2} \cos x \, dx \) का मान निकालें:
+    <div class="ans-container"><span class="ans-value">Ans: 1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 12.</span> \( \frac{d}{dx} (\log x) \) किसके बराबर है?
+    <div class="ans-container"><span class="ans-value">Ans: \( 1/x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 13.</span> \( \sin^{-1} (1/2) \) का मुख्य मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/6 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 14.</span> \( \vec{k} \cdot \vec{k} \) का मान क्या होता है?
+    <div class="ans-container"><span class="ans-value">Ans: 1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 15.</span> \( \frac{d}{dx} (a^x) \) का सूत्र क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( a^x \log_e a \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 16.</span> \( \int \frac{dx}{x^2+a^2} \) किसके बराबर है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{a} \tan^{-1} \frac{x}{a} + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 17.</span> किसी निश्चित घटना की प्रायिकता (Probability) क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: 1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 18.</span> \( \vec{i} \times \vec{i} \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \vec{0} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 19.</span> मूल बिंदु (Origin) से बिंदु \( (3, 4, 5) \) की दूरी:
+    <div class="ans-container"><span class="ans-value">Ans: \( 5\sqrt{2} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 20.</span> अवकल समीकरण \( \frac{dy}{dx} = e^{x-y} \) का हल क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( e^y = e^x + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 21.</span> यदि \( P(A) = 3/8, P(B) = 1/2 \) और \( P(A \cap B) = 1/4 \), तो \( P(A \cup B) \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( 5/8 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 22.</span> \( \vec{i} \cdot (\vec{j} \times \vec{k}) \) का मान क्या होगा?
+    <div class="ans-container"><span class="ans-value">Ans: 1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 23.</span> \( \int_0^{\pi/2} \frac{\sin x}{\sin x + \cos x} dx \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/4 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 24.</span> \( z \)-अक्ष की दिक्-कोज्याएँ (Direction Cosines) क्या हैं?
+    <div class="ans-container"><span class="ans-value">Ans: (0, 0, 1)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 25.</span> \( \frac{d}{dx} (\sin 2x) \) किसके बराबर है?
+    <div class="ans-container"><span class="ans-value">Ans: \( 2\cos 2x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 26.</span> यदि दो रेखाएं लंबवत (Perpendicular) हों, तो उनके दिक्-अनुपातों का गुणनफल \( a_1 a_2 + b_1 b_2 + c_1 c_2 \) क्या होगा?
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 27.</span> \( \int \frac{dx}{\sqrt{1-x^2}} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \sin^{-1} x + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 28.</span> \( \tan^{-1} (\sqrt{3}) \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/3 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 29.</span> \( \frac{d}{dx} (\sqrt{x}) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{2\sqrt{x}} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 30.</span> सदिश \( \vec{a} \) और \( \vec{b} \) के लिए \( \vec{a} \times \vec{b} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( -(\vec{b} \times \vec{a}) \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 31.</span> \( \int \log x \, dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( x \log x - x + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 32.</span> \( \frac{d}{dx} (\cot x) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( -\csc^2 x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 33.</span> दो स्वतंत्र घटनाओं \( A \) और \( B \) के लिए \( P(A \cup B) \) का सूत्र क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( P(A) + P(B) - P(A)P(B) \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 34.</span> \( \vec{j} \cdot \vec{j} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 35.</span> \( \int \frac{1}{1+x^2} dx \) की सीमा \( 0 \) से \( 1 \) तक क्या होगी?
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/4 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 36.</span> अवकल समीकरण \( \frac{dy}{dx} = \frac{x}{y} \) का हल क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( y^2 - x^2 = C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 37.</span> \( \cos^{-1} (-1/2) \) का मुख्य मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( 2\pi/3 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 38.</span> \( \frac{d}{dx} (\sin^2 x) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \sin 2x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 39.</span> \( (\vec{a} \times \vec{a}) \cdot \vec{b} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 40.</span> \( \int \frac{1}{\sqrt{x}} dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 2\sqrt{x} + C \)</span></div>
+</div>
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 41.</span> यदि \( f(x) = x^2 \), तो \( f'(2) \) का मान क्या होगा?
+    <div class="ans-container"><span class="ans-value">Ans: 4</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 42.</span> \( \int_0^1 e^x dx \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( e - 1 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 43.</span> \( \sin^{-1} x + \cos^{-1} x \) का मान \( x \in [-1, 1] \) के लिए क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/2 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 44.</span> सदिश \( 3\hat{i} - 4\hat{j} + 12\hat{k} \) की दिक्-कोज्याएँ (D.C's) क्या होंगी?
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{3}{13}, \frac{-4}{13}, \frac{12}{13} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 45.</span> \( \frac{d}{dx} (\sin 4x) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 4\cos 4x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 46.</span> तल (Plane) \( 2x + 3y + 4z = 5 \) के अभिलंब (Normal) के दिक्-अनुपात क्या हैं?
+    <div class="ans-container"><span class="ans-value">Ans: (2, 3, 4)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 47.</span> \( \int \frac{1}{1+\cos x} dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \tan(x/2) + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 48.</span> \( \tan^{-1} (1/2) + \tan^{-1} (1/3) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/4 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 49.</span> \( \frac{d}{dx} (\log \cos x) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( -\tan x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 50.</span> \( \vec{i} \cdot (\vec{j} + \vec{k}) \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 51.</span> \( \int \tan x \, dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \log |\sec x| + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 52.</span> \( \frac{d}{dx} ( \cos^{-1} \sin x) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: -1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 53.</span> यदि \( P(A) = 1/2 \) और \( P(B) = 0 \), तो \( P(A|B) \) है:
+    <div class="ans-container"><span class="ans-value">Ans: अपरिभाषित (Not Defined)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 54.</span> \( \int \frac{dx}{x^2 - a^2} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{2a} \log | \frac{x-a}{x+a} | + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 55.</span> \( y \)-अक्ष की दिक्-कोज्याएँ (D.C's) क्या हैं?
+    <div class="ans-container"><span class="ans-value">Ans: (0, 1, 0)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 56.</span> \( \frac{d}{dx} (x^2 + \sin x) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 2x + \cos x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 57.</span> \( \int_0^1 \frac{1}{\sqrt{1-x^2}} dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/2 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 58.</span> \( \vec{k} \times \vec{i} \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \vec{j} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 59.</span> तल \( x=0 \) के समांतर तल का समीकरण क्या होगा?
+    <div class="ans-container"><span class="ans-value">Ans: \( x = k \) (जहाँ k अचर है)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 60.</span> \( \frac{d}{dx} ( \sec x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \sec x \tan x \)</span></div>
+</div>
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 61.</span> यदि \( A \) एक \( 2 \times 2 \) आव्यूह है, तो \( |A^{-1}| \) किसके बराबर होगा?
+    <div class="ans-container"><span class="ans-value">Ans: \( 1/|A| \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 62.</span> \( \int \frac{dx}{\sqrt{a^2-x^2}} \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \sin^{-1}(x/a) + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 63.</span> \( \frac{d}{dx} (\sin^{-1} \sqrt{x} + \cos^{-1} \sqrt{x}) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 64.</span> सदिश \( \vec{a} = \hat{i} - 2\hat{j} + \hat{k} \) पर सदिश \( \vec{b} = 4\hat{i} - 4\hat{j} + 7\hat{k} \) का प्रक्षेप (Projection) क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( 19/\sqrt{6} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 65.</span> \( \int e^x (\tan x + \sec^2 x) dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( e^x \tan x + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 66.</span> \( \tan^{-1} (x) + \tan^{-1} (y) \) का सूत्र क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \tan^{-1} \left( \frac{x+y}{1-xy} \right) \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 67.</span> \( \frac{d}{dx} ( \log \log x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{x \log x} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 68.</span> \( \int_0^{\pi/4} \tan x \, dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{2} \log 2 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 69.</span> \( \vec{a} \cdot \vec{a} \) किसके बराबर है?
+    <div class="ans-container"><span class="ans-value">Ans: \( |\vec{a}|^2 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 70.</span> समतल \( x + 2y - 3z + 4 = 0 \) के समांतर एक समतल का समीकरण है:
+    <div class="ans-container"><span class="ans-value">Ans: \( x + 2y - 3z + k = 0 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 71.</span> \( \frac{d}{dx} ( \sin^3 x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 3\sin^2 x \cos x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 72.</span> \( \int \frac{dx}{x^2+1} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \tan^{-1} x + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 73.</span> \( \cos^{-1} (1/2) + 2\sin^{-1} (1/2) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 2\pi/3 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 74.</span> यदि रेखा की दिक्-कोज्याएँ \( l, m, n \) हों, तो \( l^2 + m^2 + n^2 = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 75.</span> \( \frac{d}{dx} ( 13^x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 13^x \log 13 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 76.</span> \( \int_0^a \frac{dx}{x^2+a^2} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/4a \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 77.</span> \( \vec{j} \cdot \vec{k} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 78.</span> फलन \( f(x) = \sqrt{x-1} \) का प्रांत (Domain) क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( [1, \infty) \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 79.</span> \( \frac{d}{dx} ( \tan^2 x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 2\tan x \sec^2 x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 80.</span> \( \int \frac{dx}{x^2-1} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{2} \log \left| \frac{x-1}{x+1} \right| + C \)</span></div>
+</div>
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 81.</span> \( \int_0^\pi \cos x \, dx \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 82.</span> \( \frac{d}{dx} ( \sin^{-1} x ) + \frac{d}{dx} ( \cos^{-1} x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 83.</span> यदि \( \vec{a} \) और \( \vec{b} \) परस्पर लंबवत हों, तो \( \vec{a} \cdot \vec{b} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 84.</span> \( \int \frac{dx}{x \log x} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \log |\log x| + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 85.</span> \( \frac{d}{dx} ( \tan^{-1} x + \cot^{-1} x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 0</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 86.</span> \( \int_0^1 \frac{dx}{1+x^2} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/4 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 87.</span> \( \vec{k} \times \vec{j} \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( -\vec{i} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 88.</span> \( \frac{d}{dx} ( e^{3x} ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 3e^{3x} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 89.</span> \( \sin^{-1} ( \sin \frac{2\pi}{3} ) \) का मान क्या है?
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/3 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 90.</span> \( \int e^x ( \frac{1}{x} - \frac{1}{x^2} ) dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{e^x}{x} + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 91.</span> यदि \( P(A) = 0.8 \) और \( P(B|A) = 0.4 \), तो \( P(A \cap B) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 0.32</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 92.</span> \( \frac{d}{dx} ( \cos 2x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( -2\sin 2x \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 93.</span> \( \int \frac{1}{\sqrt{x}} dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( 2\sqrt{x} + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 94.</span> बिंदु \( (1, 0, 2) \) का स्थिति सदिश (Position Vector) है:
+    <div class="ans-container"><span class="ans-value">Ans: \( \hat{i} + 2\hat{k} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 95.</span> \( \int \sec x \, dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \log |\sec x + \tan x| + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 96.</span> \( \frac{d}{dx} ( \log_{10} x ) = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \frac{1}{x \log_e 10} \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 97.</span> \( \tan^{-1} 1 + \tan^{-1} \frac{1}{3} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \tan^{-1} 2 \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 98.</span> अवकल समीकरण \( \frac{dy}{dx} = e^x + 1 \) का हल है:
+    <div class="ans-container"><span class="ans-value">Ans: \( y = e^x + x + C \)</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 99.</span> \( \vec{j} \cdot \vec{j} = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: 1</span></div>
+</div>
+
+<div class="question-card">
+    <span style="font-weight:bold; color:#6a11cb;">प्रश्न 100.</span> \( \int_0^{\pi/2} \frac{\sqrt{\sin x}}{\sqrt{\sin x} + \sqrt{\cos x}} dx = ? \)
+    <div class="ans-container"><span class="ans-value">Ans: \( \pi/4 \)</span></div>
+</div>
+
+</body>
+</html>
