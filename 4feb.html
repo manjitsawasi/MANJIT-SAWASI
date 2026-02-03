@@ -86,8 +86,89 @@
 
   .ans-text {
     color: #333;
-    font-weight: 500;
+    font-weight: 500;  
   }
+  
+  <style>
+  /* पूरे पेज का बैकग्राउंड और फॉन्ट */
+  body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 10px;
+  }
+
+  /* हर सवाल के डिब्बे (Card) की डिजाइन */
+  .question-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    border-left: 6px solid #007bff; /* साइड में नीली पट्टी */
+  }
+
+  /* सवाल का नंबर (Q. 121...) */
+  .q-number {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  /* सवाल का टेक्स्ट - इसे मैंने बड़ा कर दिया है */
+  .q-text {
+    font-size: 20px; /* मोबाइल पर साफ़ दिखेगा */
+    font-weight: 600;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  /* उत्तर वाला बॉक्स */
+  .a-box {
+    background: #eef9f1;
+    border: 1px dashed #28a745;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ans-label {
+    font-weight: bold;
+    color: #28a745;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  .ans-text {
+    font-size: 19px;
+    color: #155724;
+    font-weight: bold;
+  }
+
+  /* मोबाइल स्क्रीन के लिए स्पेशल सेटिंग */
+  @media (max-width: 600px) {
+    .q-text {
+      font-size: 18px;
+    }
+    .ans-text {
+      font-size: 17px;
+    }
+    .question-card {
+      padding: 15px;
+    }
+  }
+</style>
+
+  
 </style>
 </head>
 <body>
