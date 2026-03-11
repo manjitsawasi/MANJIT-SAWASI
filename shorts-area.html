@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjit Sawasi - Smart Tech</title>
+    <style>
+        /* Ekdam saaf background */
+        body { background-color: #f8f9fa; font-family: sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
+
+        /* Shorts Grid - No Scrollbar Design */
+        .shorts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Mobile par 2 shorts side-by-side */
+            gap: 10px;
+        }
+
+        .video-container {
+            position: relative; /* Overlay ke liye zaroori */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #000;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: none;
+            display: block;
+        }
+
+        /* Video ke upar ki Smart Title पट्टी */
+        .video-topic {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7); /* Thoda kaala taaki text saaf dikhe */
+            color: white;
+            padding: 8px 5px;
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            pointer-events: none; /* Isse video play karne mein dikkat nahi hogi */
+        }
+
+        .section-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #eb2f06;
+            color: white;
+            padding: 2px 8px;
+            font-size: 9px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="shorts-grid">
+        <div class="video-container">
+            <span class="section-tag">Update</span>
+            <iframe src="https://www.youtube.com/embed/peE4in7xzJs"></iframe>
+            <div class="video-topic">आधार कार्ड नई गाइडलाइन 2026</div>
+        </div>
+
+        <div class="video-container">
+            <span class="section-tag">Tech</span>
+            <iframe src="https://www.youtube.com/embed/XcAewf1cEzM"></iframe>
+            <div class="video-topic">फ्री लैपटॉप योजना लिस्ट चेक</div>
+        </div>
+
+        <div class="video-container">
+            <span class="section-tag">Bihar</span>
+            <iframe src="https://www.youtube.com/embed/ITrCa9TeP9c"></iframe>
+            <div class="video-topic">बिहार बोर्ड रिजल्ट अपडेट</div>
+        </div>
+
+        <div class="video-container">
+            <span class="section-tag">New</span>
+            <iframe src="https://www.youtube.com/embed/VmxAyjm9mjc"></iframe>
+            <div class="video-topic">सरकारी नौकरी भर्ती 2026</div>
+        </div>
+    </div>
+
+</body>
+</html>

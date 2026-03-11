@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjit Sawasi Tutorial</title>
+    
+    <style>
+        body { background-color: #f1f3f4; font-family: sans-serif; margin: 0; padding: 10px; scroll-behavior: smooth; }
+
+        /* Header Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 5px;
+            z-index: 100;
+        }
+
+        .section-name { font-weight: bold; color: #1e3799; font-size: 16px; }
+
+        .view-all-btn {
+            background: #eb2f06;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* Shorts Grid - 1 line mein 3 */
+        .shorts-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin-bottom: 25px;
+        }
+        .short-item iframe { width: 100%; aspect-ratio: 9/16; border-radius: 10px; border: 1px solid #ddd; }
+
+        /* Long Videos - 1 line mein 2 */
+        .long-video-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .video-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 5px; }
+        .video-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 5px; border: none; }
+        .video-card h3 { font-size: 12px; margin-top: 5px; text-align: center; color: #333; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-header">
+        <span class="section-name">Tutorial Shorts 📱</span>
+        <a href="#shorts-area" class="view-all-btn">VIEW ALL</a>
+    </div>
+
+    <div class="shorts-container" id="shorts-area">
+        <div class="short-item"><iframe src="https://www.youtube.com/embed/peE4in7xzJs"></iframe></div>
+        <div class="short-item"><iframe src="https://www.youtube.com/embed/XcAewf1cEzM"></iframe></div>
+        
+        <div class="short-item"><iframe src="https://www.youtube.com/embed/ITrCa9TeP9c"></iframe></div>
+    </div>
+
+    <div class="nav-header">
+        <span class="section-name">Full Tutorials 📺</span>
+        <a href="#long-area" class="view-all-btn">VIEW ALL</a>
+    </div>
+
+    <div class="long-video-container" id="long-area">
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/alHxJf-vyFw"></iframe>
+            <h3>How to Start Blogging</h3>
+        </div>
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
+            <h3>Website Design Tips</h3>
+        </div>
+        
+                <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
+            <h3>Website Design Tips</h3>
+        </div>
+        
+                <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
+            <h3>Website Design Tips</h3>
+        </div>
+        
+                <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
+            <h3>Website Design Tips</h3>
+        </div>
+                <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
+            <h3>Website Design Tips</h3>
+        </div>
+    </div>
+
+</body>
+</html>
