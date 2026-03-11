@@ -68,5 +68,36 @@
         </div>
     </div>
 
+    <script>
+        function playVideo(url, type) {
+            var elem = document.getElementById("cinemaMode");
+            document.getElementById("cinemaFrame").src = url + "?autoplay=1&rel=0";
+            elem.style.display = "block";
+
+            // Fullscreen request
+            if (elem.requestFullscreen) { elem.requestFullscreen(); }
+            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+
+            // SIRF LONG VIDEO ke liye orientation badlega
+            if (type === 'long') {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(e => console.log("Rotate not supported"));
+                }
+            } else {
+                // Shorts ke liye hamesha seedha (Portrait) rahega
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('portrait').catch(e => console.log("Rotate not supported"));
+                }
+            }
+        }
+
+        function closeFull() {
+            document.getElementById("cinemaMode").style.display = "none";
+            document.getElementById("cinemaFrame").src = "";
+            if (document.exitFullscreen) { document.exitFullscreen(); }
+            // Close karne par wapas portrait mode
+            if (screen.orientation && screen.orientation.unlock) { screen.orientation.unlock(); }
+        }
+    </script>
 </body>
 </html>
