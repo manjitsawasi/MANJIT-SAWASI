@@ -3,100 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manjit Sawasi - Pro Tech</title>
+    <title>MS Tech - Shorts Portal</title>
     <style>
-        body { background-color: #0f0f0f; color: white; font-family: sans-serif; margin: 0; padding: 10px; }
+        body { background-color: #0f0f0f; color: white; font-family: sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
 
-        /* Back Button - Teer */
+        /* Back Button */
         .back-nav { position: fixed; top: 15px; left: 15px; z-index: 1000; }
         .back-nav a { color: #ffffff; text-decoration: none; font-size: 28px; font-weight: bold; }
 
-        .header { text-align: center; padding: 40px 0 10px; font-size: 18px; color: #eb2f06; font-weight: bold; }
+        .header { text-align: center; padding: 45px 0 15px; font-size: 20px; color: #eb2f06; font-weight: bold; text-transform: uppercase; }
 
-        /* YouTube Grid */
-        .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        /* Shorts Grid (2 in a row) */
+        .shorts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .short-card { display: flex; flex-direction: column; cursor: pointer; transition: 0.3s; }
+        .short-card:active { transform: scale(0.95); }
 
-        .video-card { display: flex; flex-direction: column; gap: 5px; }
-
-        .thumbnail-box {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #333;
+        /* Thumbnail - Shorts Ratio (9:16) */
+        .thumb-box { 
+            width: 100%; 
+            aspect-ratio: 9/16; 
+            background: #000; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid #333; 
+            position: relative;
         }
 
-        /* Isse video bahar nahi bhagega */
-        .thumbnail-box iframe { width: 100%; height: 100%; border: none; }
+        /* Iframe Control */
+        .thumb-box iframe { width: 100%; height: 100%; border: none; pointer-events: none; }
+        .video-title { font-size: 12px; color: #f1f1f1; padding: 8px 5px; text-align: center; font-weight: 500; }
 
-        .video-title { font-size: 11px; color: #f1f1f1; line-height: 1.3; height: 30px; overflow: hidden; padding: 0 2px; }
+        /* Full Screen Shorts Player */
+        .cinema-mode { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh; 
+            background: #000; 
+            z-index: 20000; 
+        }
+        .cinema-mode iframe { width: 100%; height: 100%; border: none; }
+        
+        .close-btn { 
+            position: absolute; 
+            top: 25px; right: 20px; 
+            background: rgba(235, 47, 6, 0.9); 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 50px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            z-index: 20001; 
+        }
     </style>
 </head>
 <body>
 
     <div class="back-nav"><a href="index.html">←</a></div>
-    <div class="header">MANJIT TECH PORTAL</div>
+    <div class="header">LATEST SHORTS</div>
 
-    <div class="video-grid">
-        <div class="video-card">
-            <div class="thumbnail-box">
-                <iframe src="https://www.youtube.com/embed/alHxJf-vyFw?rel=0&modestbranding=1" allowfullscreen></iframe>
+    <div class="shorts-grid">
+        <div class="short-card" onclick="openShort('https://www.youtube.com/embed/peE4in7xzJs')">
+            <div class="thumb-box">
+                <iframe src="https://www.youtube.com/embed/peE4in7xzJs?modestbranding=1&rel=0"></iframe>
             </div>
-            <div class="video-title">वेबसाइट बनाने का सही तरीका</div>
+            <div class="video-title">Republic Day Special</div>
         </div>
 
-        <div class="video-card">
-            <div class="thumbnail-box">
-                <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk?rel=0&modestbranding=1" allowfullscreen></iframe>
+        <div class="short-card" onclick="openShort('https://www.youtube.com/embed/XcAewf1cEzM')">
+            <div class="thumb-box">
+                <iframe src="https://www.youtube.com/embed/XcAewf1cEzM?modestbranding=1&rel=0"></iframe>
             </div>
-            <div class="video-title">बिहार बोर्ड ताज़ा खबर</div>
-        </div>
-
-        <div class="video-card">
-            <div class="thumbnail-box">
-                <iframe src="https://www.youtube.com/embed/akG-8b6rjjE?rel=0&modestbranding=1" allowfullscreen></iframe>
-            </div>
-            <div class="video-title">आधार कार्ड नया अपडेट 2026</div>
-        </div>
-
-        <div class="video-card">
-            <div class="thumbnail-box">
-                <iframe src="https://www.youtube.com/embed/VmxAyjm9mjc?rel=0&modestbranding=1" allowfullscreen></iframe>
-            </div>
-            <div class="video-title">बैंक DBT लिंक कैसे करें</div>
+            <div class="video-title">New Tech Short</div>
         </div>
     </div>
 
+    <div id="cinemaMode" class="cinema-mode">
+        <div class="close-btn" onclick="closeShort()">बंद करें ×</div>
+        <iframe id="cinemaFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+
     <script>
-        function playVideo(url, type) {
-            var elem = document.getElementById("cinemaMode");
-            document.getElementById("cinemaFrame").src = url + "?autoplay=1&rel=0";
-            elem.style.display = "block";
+        function openShort(url) {
+            var player = document.getElementById("cinemaMode");
+            var frame = document.getElementById("cinemaFrame");
+            // Autoplay and No-Related Videos
+            frame.src = url + "?autoplay=1&rel=0&showinfo=0&iv_load_policy=3";
+            player.style.display = "block";
 
-            // Fullscreen request
-            if (elem.requestFullscreen) { elem.requestFullscreen(); }
-            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
-
-            // SIRF LONG VIDEO ke liye orientation badlega
-            if (type === 'long') {
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape').catch(e => console.log("Rotate not supported"));
-                }
-            } else {
-                // Shorts ke liye hamesha seedha (Portrait) rahega
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('portrait').catch(e => console.log("Rotate not supported"));
-                }
-            }
+            // Fullscreen for best experience
+            if (player.requestFullscreen) { player.requestFullscreen(); }
+            else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
         }
 
-        function closeFull() {
+        function closeShort() {
             document.getElementById("cinemaMode").style.display = "none";
             document.getElementById("cinemaFrame").src = "";
             if (document.exitFullscreen) { document.exitFullscreen(); }
-            // Close karne par wapas portrait mode
-            if (screen.orientation && screen.orientation.unlock) { screen.orientation.unlock(); }
+            else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
         }
     </script>
 </body>

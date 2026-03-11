@@ -3,122 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manjit Sawasi - Smart Tech</title>
+    <title>MS Tech - Long Tutorials</title>
     <style>
-        /* Ekdam saaf background */
-        body { background-color: #f8f9fa; font-family: sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
+        body { background-color: #000; color: white; font-family: sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
 
-        /* Shorts Grid - No Scrollbar Design */
-        .shorts-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Mobile par 2 shorts side-by-side */
-            gap: 10px;
+        /* Back Arrow */
+        .back-nav { position: fixed; top: 15px; left: 15px; z-index: 1000; }
+        .back-nav a { color: #ffffff; text-decoration: none; font-size: 30px; font-weight: bold; text-shadow: 0 0 10px #ff0000; }
+
+        .header { text-align: center; padding: 45px 0 15px; font-size: 22px; color: #ff0000; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Long Video Grid (1 per row for BIG size) */
+        .long-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+        
+        .video-card { 
+            background: #111; 
+            border-radius: 18px; 
+            overflow: hidden; 
+            border: 1px solid #222; 
+            cursor: pointer; 
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+            transition: 0.3s;
+        }
+        .video-card:active { transform: scale(0.97); }
+
+        /* Thumbnail - 16:9 Ratio */
+        .thumb-box { width: 100%; aspect-ratio: 16/9; background: #000; position: relative; }
+        .thumb-box iframe { width: 100%; height: 100%; border: none; pointer-events: none; }
+
+        /* Title Overlay at bottom of video */
+        .v-title { 
+            padding: 15px 12px; 
+            font-size: 14px; 
+            color: #fff; 
+            font-weight: 600; 
+            background: linear-gradient(0deg, #111 0%, transparent 100%); 
         }
 
-        .video-container {
-            position: relative; /* Overlay ke liye zaroori */
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            background: #000;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            aspect-ratio: 9/16;
-            border: none;
-            display: block;
-        }
-
-        /* Video ke upar ki Smart Title पट्टी */
-        .video-topic {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7); /* Thoda kaala taaki text saaf dikhe */
-            color: white;
-            padding: 8px 5px;
-            font-size: 11px;
-            font-weight: bold;
-            text-align: center;
-            pointer-events: none; /* Isse video play karne mein dikkat nahi hogi */
-        }
-
-        .section-tag {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #eb2f06;
-            color: white;
-            padding: 2px 8px;
-            font-size: 9px;
-            border-radius: 4px;
-            text-transform: uppercase;
+        /* Full Screen Player */
+        .cinema-mode { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 20000; }
+        .cinema-mode iframe { width: 100%; height: 100%; border: none; }
+        
+        .close-btn { 
+            position: absolute; 
+            top: 20px; right: 20px; 
+            background: #ff0000; 
+            color: white; 
+            padding: 10px 22px; 
+            border-radius: 50px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            z-index: 20001; 
+            box-shadow: 0 0 15px rgba(255,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
-    <div class="shorts-grid">
-        <div class="video-container">
-            <span class="section-tag">Update</span>
-            <iframe src="https://www.youtube.com/embed/peE4in7xzJs"></iframe>
-            <div class="video-topic">आधार कार्ड नई गाइडलाइन 2026</div>
+    <div class="back-nav"><a href="index.html">←</a></div>
+    <div class="header">FULL TUTORIALS</div>
+
+    <div class="long-grid">
+        <div class="video-card" onclick="openLong('https://www.youtube.com/embed/alHxJf-vyFw')">
+            <div class="thumb-box">
+                <iframe src="https://www.youtube.com/embed/alHxJf-vyFw"></iframe>
+            </div>
+            <div class="v-title">वेबसाइट बनाने का पूरा कोर्स (Step by Step)</div>
         </div>
 
-        <div class="video-container">
-            <span class="section-tag">Tech</span>
-            <iframe src="https://www.youtube.com/embed/XcAewf1cEzM"></iframe>
-            <div class="video-topic">फ्री लैपटॉप योजना लिस्ट चेक</div>
-        </div>
-
-        <div class="video-container">
-            <span class="section-tag">Bihar</span>
-            <iframe src="https://www.youtube.com/embed/ITrCa9TeP9c"></iframe>
-            <div class="video-topic">बिहार बोर्ड रिजल्ट अपडेट</div>
-        </div>
-
-        <div class="video-container">
-            <span class="section-tag">New</span>
-            <iframe src="https://www.youtube.com/embed/VmxAyjm9mjc"></iframe>
-            <div class="video-topic">सरकारी नौकरी भर्ती 2026</div>
+        <div class="video-card" onclick="openLong('https://www.youtube.com/embed/fv73dGlh_Zk')">
+            <div class="thumb-box">
+                <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
+            </div>
+            <div class="v-title">बिहार भूमि सर्वे 2026: ज़रूरी दस्तावेज़</div>
         </div>
     </div>
 
+    <div id="cinemaMode" class="cinema-mode">
+        <div class="close-btn" onclick="closeLong()">CLOSE ×</div>
+        <iframe id="cinemaFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
 
     <script>
-        function playVideo(url, type) {
-            var elem = document.getElementById("cinemaMode");
-            document.getElementById("cinemaFrame").src = url + "?autoplay=1&rel=0";
-            elem.style.display = "block";
+        function openLong(url) {
+            var player = document.getElementById("cinemaMode");
+            var frame = document.getElementById("cinemaFrame");
+            frame.src = url + "?autoplay=1&rel=0";
+            player.style.display = "block";
 
-            // Fullscreen request
-            if (elem.requestFullscreen) { elem.requestFullscreen(); }
-            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+            // 1. Fullscreen Request
+            if (player.requestFullscreen) { player.requestFullscreen(); }
+            else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
 
-            // SIRF LONG VIDEO ke liye orientation badlega
-            if (type === 'long') {
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape').catch(e => console.log("Rotate not supported"));
-                }
-            } else {
-                // Shorts ke liye hamesha seedha (Portrait) rahega
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('portrait').catch(e => console.log("Rotate not supported"));
-                }
+            // 2. Rotate to Landscape (Automatic)
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(e => console.log("Orientation lock failed"));
             }
         }
 
-        function closeFull() {
+        function closeLong() {
             document.getElementById("cinemaMode").style.display = "none";
             document.getElementById("cinemaFrame").src = "";
             if (document.exitFullscreen) { document.exitFullscreen(); }
-            // Close karne par wapas portrait mode
+            // Back to Normal
             if (screen.orientation && screen.orientation.unlock) { screen.orientation.unlock(); }
         }
     </script>
-
-
 </body>
 </html>
