@@ -3,105 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS Tech - Shorts Portal</title>
+    <title>MS Tech - Long Tutorials</title>
     <style>
-        body { background-color: #0f0f0f; color: white; font-family: sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
+        body { background-color: #000; color: white; font-family: sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
 
-        /* Back Button */
+        /* Back Arrow */
         .back-nav { position: fixed; top: 15px; left: 15px; z-index: 1000; }
-        .back-nav a { color: #ffffff; text-decoration: none; font-size: 28px; font-weight: bold; }
+        .back-nav a { color: #ffffff; text-decoration: none; font-size: 30px; font-weight: bold; text-shadow: 0 0 10px #ff0000; }
 
-        .header { text-align: center; padding: 45px 0 15px; font-size: 20px; color: #eb2f06; font-weight: bold; text-transform: uppercase; }
+        .header { text-align: center; padding: 45px 0 15px; font-size: 22px; color: #ff0000; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Shorts Grid (2 in a row) */
-        .shorts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .short-card { display: flex; flex-direction: column; cursor: pointer; transition: 0.3s; }
-        .short-card:active { transform: scale(0.95); }
-
-        /* Thumbnail - Shorts Ratio (9:16) */
-        .thumb-box { 
-            width: 100%; 
-            aspect-ratio: 9/16; 
-            background: #000; 
-            border-radius: 15px; 
+        /* Long Video Grid (1 per row for BIG size) */
+        .long-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+        
+        .video-card { 
+            background: #111; 
+            border-radius: 18px; 
             overflow: hidden; 
-            border: 1px solid #333; 
+            border: 1px solid #222; 
+            cursor: pointer; 
             position: relative;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+            transition: 0.3s;
         }
+        .video-card:active { transform: scale(0.97); }
 
-        /* Iframe Control */
+        /* Thumbnail - 16:9 Ratio */
+        .thumb-box { width: 100%; aspect-ratio: 16/9; background: #000; position: relative; }
         .thumb-box iframe { width: 100%; height: 100%; border: none; pointer-events: none; }
-        .video-title { font-size: 12px; color: #f1f1f1; padding: 8px 5px; text-align: center; font-weight: 500; }
 
-        /* Full Screen Shorts Player */
-        .cinema-mode { 
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100vw; height: 100vh; 
-            background: #000; 
-            z-index: 20000; 
+        /* Title Overlay at bottom of video */
+        .v-title { 
+            padding: 15px 12px; 
+            font-size: 14px; 
+            color: #fff; 
+            font-weight: 600; 
+            background: linear-gradient(0deg, #111 0%, transparent 100%); 
         }
+
+        /* Full Screen Player */
+        .cinema-mode { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 20000; }
         .cinema-mode iframe { width: 100%; height: 100%; border: none; }
         
         .close-btn { 
             position: absolute; 
-            top: 25px; right: 20px; 
-            background: rgba(235, 47, 6, 0.9); 
+            top: 20px; right: 20px; 
+            background: #ff0000; 
             color: white; 
-            padding: 10px 20px; 
+            padding: 10px 22px; 
             border-radius: 50px; 
             font-size: 14px; 
             font-weight: bold; 
             cursor: pointer; 
             z-index: 20001; 
+            box-shadow: 0 0 15px rgba(255,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
     <div class="back-nav"><a href="index.html">←</a></div>
-    <div class="header">LATEST SHORTS</div>
+    <div class="header">FULL TUTORIALS</div>
 
-    <div class="shorts-grid">
-        <div class="short-card" onclick="openShort('https://www.youtube.com/embed/peE4in7xzJs')">
+    <div class="long-grid">
+        <div class="video-card" onclick="openLong('https://www.youtube.com/embed/alHxJf-vyFw')">
             <div class="thumb-box">
-                <iframe src="https://www.youtube.com/embed/peE4in7xzJs?modestbranding=1&rel=0"></iframe>
+                <iframe src="https://www.youtube.com/embed/alHxJf-vyFw"></iframe>
             </div>
-            <div class="video-title">Republic Day Special</div>
+            <div class="v-title">वेबसाइट बनाने का पूरा कोर्स (Step by Step)</div>
         </div>
 
-        <div class="short-card" onclick="openShort('https://www.youtube.com/embed/XcAewf1cEzM')">
+        <div class="video-card" onclick="openLong('https://www.youtube.com/embed/fv73dGlh_Zk')">
             <div class="thumb-box">
-                <iframe src="https://www.youtube.com/embed/XcAewf1cEzM?modestbranding=1&rel=0"></iframe>
+                <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
             </div>
-            <div class="video-title">New Tech Short</div>
+            <div class="v-title">बिहार भूमि सर्वे 2026: ज़रूरी दस्तावेज़</div>
         </div>
     </div>
 
     <div id="cinemaMode" class="cinema-mode">
-        <div class="close-btn" onclick="closeShort()">बंद करें ×</div>
+        <div class="close-btn" onclick="closeLong()">CLOSE ×</div>
         <iframe id="cinemaFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
 
     <script>
-        function openShort(url) {
+        function openLong(url) {
             var player = document.getElementById("cinemaMode");
             var frame = document.getElementById("cinemaFrame");
-            // Autoplay and No-Related Videos
-            frame.src = url + "?autoplay=1&rel=0&showinfo=0&iv_load_policy=3";
+            frame.src = url + "?autoplay=1&rel=0";
             player.style.display = "block";
 
-            // Fullscreen for best experience
+            // 1. Fullscreen Request
             if (player.requestFullscreen) { player.requestFullscreen(); }
             else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
+
+            // 2. Rotate to Landscape (Automatic)
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(e => console.log("Orientation lock failed"));
+            }
         }
 
-        function closeShort() {
+        function closeLong() {
             document.getElementById("cinemaMode").style.display = "none";
             document.getElementById("cinemaFrame").src = "";
             if (document.exitFullscreen) { document.exitFullscreen(); }
-            else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
+            // Back to Normal
+            if (screen.orientation && screen.orientation.unlock) { screen.orientation.unlock(); }
         }
     </script>
 </body>
