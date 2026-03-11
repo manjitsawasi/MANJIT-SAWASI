@@ -3,106 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manjit Sawasi Tutorial</title>
-    
+    <title>MS Tech Hub Official</title>
     <style>
-        body { background-color: #f1f3f4; font-family: sans-serif; margin: 0; padding: 10px; scroll-behavior: smooth; }
+        body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
+        
+        .back-nav { position: fixed; top: 15px; left: 15px; z-index: 10000; }
+        .back-nav a { color: #fff; text-decoration: none; font-size: 35px; font-weight: bold; text-shadow: 0 0 10px red; }
 
-        /* Header Navigation */
-        .nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            padding: 12px 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 5px;
-            z-index: 100;
+        .header { text-align: center; padding: 45px 0 15px; color: #ff0000; font-size: 26px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+
+        .section-bar { display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px; border-left: 5px solid #ff0000; padding: 8px 12px; background: linear-gradient(90deg, rgba(255,0,0,0.15) 0%, transparent 100%); }
+        .section-bar h2 { font-size: 18px; margin: 0; font-weight: 600; }
+
+        .view-btn { background: #ff0000; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; padding: 6px 14px; border-radius: 25px; text-transform: uppercase; }
+
+        .shorts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .long-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        
+        .card { background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; cursor: pointer; position: relative; box-shadow: 0 6px 20px rgba(0,0,0,0.6); }
+        .card iframe { width: 100%; border: none; pointer-events: none; display: block; }
+        
+        .short-h { aspect-ratio: 9/16; }
+        .long-h { aspect-ratio: 16/9; }
+
+        .v-title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.95)); padding: 20px 10px 10px; font-size: 13px; color: #fff; font-weight: 600; }
+
+        /* Full Screen Cinema Mode */
+        .cinema-mode { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh; 
+            background: #000; 
+            z-index: 20000; 
         }
+        /* Iframe ko pure screen par failane ke liye */
+        .cinema-mode iframe { width: 100%; height: 100%; border: none; }
 
-        .section-name { font-weight: bold; color: #1e3799; font-size: 16px; }
-
-        .view-all-btn {
-            background: #eb2f06;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: bold;
+        .close-cinema { 
+            position: absolute; 
+            top: 20px; right: 20px; 
+            background: rgba(255,0,0,0.8); 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 30px; 
+            font-size: 12px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            z-index: 20001; 
         }
-
-        /* Shorts Grid - 1 line mein 3 */
-        .shorts-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            margin-bottom: 25px;
-        }
-        .short-item iframe { width: 100%; aspect-ratio: 9/16; border-radius: 10px; border: 1px solid #ddd; }
-
-        /* Long Videos - 1 line mein 2 */
-        .long-video-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .video-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 5px; }
-        .video-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 5px; border: none; }
-        .video-card h3 { font-size: 12px; margin-top: 5px; text-align: center; color: #333; }
     </style>
 </head>
 <body>
 
-    <div class="nav-header">
-        <span class="section-name">Tutorial Shorts 📱</span>
-        <a href="#shorts-area" class="view-all-btn">VIEW ALL</a>
+    <div class="back-nav"><a href="index.html">←</a></div>
+
+    <div class="header">MS TECH HUB</div>
+
+    <div class="section-bar">
+        <h2>LATEST SHORTS</h2>
+        <a href="shortt.html" class="view-btn">VIEW ALL</a>
+    </div>
+    <div class="shorts-grid">
+        <div class="card" onclick="playFull('https://www.youtube.com/embed/peE4in7xzJs')">
+            <iframe src="https://www.youtube.com/embed/peE4in7xzJs" class="short-h"></iframe>
+            <div class="v-title-overlay">Republic Day</div>
+        </div>
+        <div class="card" onclick="playFull('https://www.youtube.com/embed/XcAewf1cEzM')">
+            <iframe src="https://www.youtube.com/embed/XcAewf1cEzM" class="short-h"></iframe>
+            <div class="v-title-overlay">Tech Update</div>
+        </div>
     </div>
 
-    <div class="shorts-container" id="shorts-area">
-        <div class="short-item"><iframe src="https://www.youtube.com/embed/peE4in7xzJs"></iframe></div>
-        <div class="short-item"><iframe src="https://www.youtube.com/embed/XcAewf1cEzM"></iframe></div>
-        
-        <div class="short-item"><iframe src="https://www.youtube.com/embed/ITrCa9TeP9c"></iframe></div>
+    <div class="section-bar" style="margin-top: 40px;">
+        <h2>FULL TUTORIALS</h2>
+        <a href="shortss.html" class="view-btn">VIEW ALL</a>
+    </div>
+    <div class="long-grid">
+        <div class="card" onclick="playFull('https://www.youtube.com/embed/alHxJf-vyFw')">
+            <iframe src="https://www.youtube.com/embed/alHxJf-vyFw" class="long-h"></iframe>
+            <div class="v-title-overlay">Full Course: Website Kaise Banaye</div>
+        </div>
     </div>
 
-    <div class="nav-header">
-        <span class="section-name">Full Tutorials 📺</span>
-        <a href="#long-area" class="view-all-btn">VIEW ALL</a>
+    <div id="cinemaMode" class="cinema-mode">
+        <div class="close-cinema" onclick="closeFull()">CLOSE ×</div>
+        <iframe id="cinemaFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
 
-    <div class="long-video-container" id="long-area">
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/alHxJf-vyFw"></iframe>
-            <h3>How to Start Blogging</h3>
-        </div>
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
-            <h3>Website Design Tips</h3>
-        </div>
-        
-                <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
-            <h3>Website Design Tips</h3>
-        </div>
-        
-                <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
-            <h3>Website Design Tips</h3>
-        </div>
-        
-                <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
-            <h3>Website Design Tips</h3>
-        </div>
-                <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/fv73dGlh_Zk"></iframe>
-            <h3>Website Design Tips</h3>
-        </div>
-    </div>
+    <script>
+        function playFull(url) {
+            var elem = document.getElementById("cinemaMode");
+            document.getElementById("cinemaFrame").src = url + "?autoplay=1&rel=0";
+            elem.style.display = "block";
+
+            // Fullscreen Request (Mobile rotate look)
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+            
+            // Screen orientation lock try (kuch mobiles par kaam karega)
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(function(error) {
+                    console.log("Orientation lock not supported");
+                });
+            }
+        }
+
+        function closeFull() {
+            document.getElementById("cinemaMode").style.display = "none";
+            document.getElementById("cinemaFrame").src = "";
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    </script>
 
 </body>
 </html>
