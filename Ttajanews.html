@@ -3,131 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS TECH HUB - ताज़ा न्यूज़, बिहार समाचार और टेक अपडेट्स</title>
+<meta name="description" content="MS TECH HUB OFFICAL पर पाएं बिहार की ताज़ा खबरें, क्रिकेट स्कोर, टेक्नोलॉजी और दुनिया भर के समाचार सबसे तेज़।">
+<meta name="keywords" content="MS Tech Hub, Bihar News, Cricket Score, Technology, Hindi News, manjit sawasi News, Gopalganj News">
+<meta name="author" content="MANJIT SAWASI">
 
-    <title>MS TECH HUB OFFICIAL - बिहार समाचार, सरकारी नौकरी और ताज़ा खबरें</title>
-    
-    <meta name="description" content="MS Tech Hub पर पाएं बिहार की ताज़ा खबरें, सरकारी नौकरी (Sarkari Job), टेक्नोलॉजी अपडेट और खेल जगत की हर जानकारी। मंजीत भाई का अपना न्यूज़ पोर्टल।">
-    
-    <meta name="keywords" content="MS Tech Hub, Manjeet Singh, Bihar News, Sarkari Result, Government Jobs, Tech News Hindi, Gopalganj News, ताज़ा खबरें">
-    
-    <meta name="author" content="Manjeet Singh (MS Tech Hub)">
+<meta property="og:title" content="MS TECH HUB OFFICAL - ताज़ा खबरें सबसे पहले">
+<meta property="og:description" content="बिहार और दुनिया की ताज़ा खबरों के लिए क्लिक करें।">
+<meta property="og:image" content="https://manjitsawasi.online/logo.png">
 
-    <meta property="og:title" content="MS TECH HUB - ताज़ा खबरें">
-    <meta property="og:description" content="बिहार और देश-दुनिया की हर खबर अब एक क्लिक पर।">
-    <meta property="og:type" content="website">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; color: #333; }
-        header { background: #ce1126; color: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        nav { background: white; overflow-x: auto; white-space: nowrap; padding: 10px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #ddd; }
-        .nav-item { display: inline-block; padding: 8px 15px; margin: 0 5px; background: #eee; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; }
-        .nav-item.active { background: #ce1126; color: white; }
-        .main-content { padding: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .news-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #eee; transition: 0.3s; }
-        .news-img { width: 100%; height: 180px; object-fit: cover; background: #ddd; }
-        .card-body { padding: 15px; }
-        .tag { background: #ce1126; color: white; font-size: 10px; padding: 3px 7px; border-radius: 4px; font-weight: bold; }
-        .card-body h2 { font-size: 17px; margin: 10px 0; line-height: 1.4; height: 48px; overflow: hidden; }
-        .card-body h2 a { text-decoration: none; color: #222; }
-        .card-footer { padding: 10px 15px; border-top: 1px solid #f9f9f9; display: flex; justify-content: space-between; font-size: 11px; color: #888; }
-        .read-more { color: #ce1126; font-weight: bold; text-decoration: none; }
-        footer { text-align: center; padding: 20px; color: #888; font-size: 12px; }
+        /* 1. CSS: डिज़ाइन जो मंजीत भाई की साइट को चमका देगा */
+        :root { --main-red: #ce1126; --dark-bg: #0d0d0d; --card-bg: #1a1a1a; }
+        
+        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: var(--dark-bg); color: #f0f0f0; }
+        
+        /* प्रीमियम हेडर */
+        header { 
+            background: var(--main-red); 
+            padding: 15px; 
+            text-align: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        header h1 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: 1.5px; color: white; text-transform: uppercase; }
+
+        /* मॉडर्न कैटेगरी स्क्रॉलर */
+        .nav-scroll { 
+            display: flex; 
+            overflow-x: auto; 
+            background: #141414; 
+            padding: 12px 5px; 
+            gap: 10px; 
+            border-bottom: 1px solid #222; 
+            scrollbar-width: none; 
+        }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+        .nav-btn { 
+            background: #252525; 
+            color: #aaa; 
+            border: none; 
+            padding: 8px 18px; 
+            border-radius: 25px; 
+            font-size: 13px; 
+            white-space: nowrap; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: 0.3s;
+        }
+        .nav-btn.active { background: var(--main-red); color: white; box-shadow: 0 0 10px rgba(206, 17, 38, 0.4); }
+
+        /* न्यूज़ ग्रिड */
+        #newsGrid { padding: 15px; display: grid; gap: 12px; max-width: 800px; margin: auto; }
+
+        /* प्रोफेशनल न्यूज़ कार्ड */
+        .news-card { 
+            background: var(--card-bg); 
+            border-radius: 12px; 
+            padding: 15px; 
+            border: 1px solid #222; 
+            transition: 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .news-card:active { background: #222; transform: scale(0.98); }
+        
+        /* सोर्स इंडिकेटर */
+        .source-dot { 
+            display: inline-block; 
+            width: 8px; 
+            height: 8px; 
+            background: var(--main-red); 
+            border-radius: 50%; 
+            margin-right: 5px; 
+        }
+        .source-tag { font-size: 10px; color: var(--main-red); font-weight: bold; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        
+        .news-title { margin: 0; font-size: 15px; line-height: 1.5; color: #ffffff; font-weight: 500; }
+        .news-title a { text-decoration: none; color: inherit; }
+        
+        .news-footer { 
+            font-size: 11px; 
+            color: #777; 
+            margin-top: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-top: 1px solid #252525;
+            padding-top: 10px;
+        }
+
+        /* रिफ्रेश फ्लोटिंग बटन */
+        .refresh-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--main-red);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>MS TECH HUB NEWS 📰</h1>
-</header>
+    <header>
+        <h1>MS TECH HUB OFFICAL</h1>
+    </header>
 
-<nav id="navMenu">
-    <div class="nav-item active" onclick="filterNews('all', this)">सब खबरें 📢</div>
-    <div class="nav-item" onclick="filterNews('bihar', this)">बिहार 📍</div>
-    <div class="nav-item" onclick="filterNews('yojana', this)">सरकारी नौकरी 💼</div>
-    <div class="nav-item" onclick="filterNews('tech', this)">टेक 💻</div>
-    <div class="nav-item" onclick="filterNews('sports', this)">खेल 🏏</div>
-</nav>
+    <div class="nav-scroll">
+        <button class="nav-btn active" onclick="loadNews('world', this)">🌍 दुनिया</button>
+        <button class="nav-btn" onclick="loadNews('india', this)">🇮🇳 भारत</button>
+        <button class="nav-btn" onclick="loadNews('bihar', this)">🎯 बिहार</button>
+        <button class="nav-btn" onclick="loadNews('tech', this)">💻 टेक्नोलॉजी</button>
+        <button class="nav-btn" onclick="loadNews('business', this)">💰 व्यापार</button>
+        <button class="nav-btn" onclick="loadNews('entertainment', this)">🎬 मनोरंजन</button>
+         <button class="nav-btn" onclick="loadNews('Cricket', this)">🎬 क्रिकेट</button>
+    </div>
 
-<div class="main-content" id="newsBox">
-    <p style="text-align:center; padding:50px;">इंजन चालू हो रहा है मंजीत भाई... 🚀</p>
-</div>
+    <div id="newsGrid">
+        <div style="text-align:center; padding:50px; color:#666;">मंजीत भाई, खबरें लोड हो रही हैं...</div>
+    </div>
 
-<footer>&copy; 2026 MS Tech Hub | मंजीत भाई (जिगरी यार)</footer>
+    <button class="refresh-float" onclick="location.reload()" title="Refresh News">🔄</button>
 
-<script>
-    async function fetchNews() {
-        const newsBox = document.getElementById('newsBox');
-        const rssUrl = "https://news.google.com/rss?hl=hi&gl=IN&ceid=IN:hi";
-        // प्रॉक्सी का इस्तेमाल (CORS फिक्स)
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
+    <script>
+        const sources = {
+            world: "world+news",
+            india: "india+news",
+            bihar: "bihar+news",
+            tech: "technology+gadgets",
+            business: "stock+market+india",
+            entertainment: "bollywood+news",
+            Cricket: "Cricket"
+        };
 
-        try {
-            const response = await fetch(proxyUrl);
-            const rawData = await response.json();
-            
-            // XML को JSON में बदलने के लिए एक छोटा सा पार्सर
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(rawData.contents, "text/xml");
-            const items = xmlDoc.querySelectorAll("item");
+        async function loadNews(cat, btn) {
+            // बटन डिज़ाइन अपडेट
+            if(btn) {
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
 
-            newsBox.innerHTML = "";
-            items.forEach(item => {
-                let title = item.querySelector("title").textContent;
-                let link = item.querySelector("link").textContent;
-                let pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString('hi-IN');
-                let titleLower = title.toLowerCase();
-                let category = "all";
-                let tagText = "ताज़ा खबर 🌐";
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = '<div style="text-align:center; padding:40px; color:var(--main-red); font-weight:bold;">ताज़ा अपडेट आ रहे हैं... 📡</div>';
 
-                // स्मार्ट कैटेगरी सॉर्टिंग
-                if (titleLower.includes("bihar") || titleLower.includes("बिहार") || titleLower.includes("पटना")) {
-                    category = "bihar"; tagText = "बिहार 📍";
-                } else if (titleLower.includes("job") || titleLower.includes("भर्ती") || titleLower.includes("vacancy") || titleLower.includes("sarkari")) {
-                    category = "yojana"; tagText = "सरकारी नौकरी 💼";
-                } else if (titleLower.includes("tech") || titleLower.includes("mobile") || titleLower.includes("phone")) {
-                    category = "tech"; tagText = "टेक 💻";
-                } else if (titleLower.includes("cricket") || titleLower.includes("खेल") || titleLower.includes("ipl")) {
-                    category = "sports"; tagText = "खेल 🏏";
-                }
+            const query = sources[cat];
+            const feedUrl = `https://news.google.com/rss/search?q=${query}&hl=hi&gl=IN&ceid=IN:hi`;
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`;
 
-                // फोटो का बैकअप (चूंकि RSS में हमेशा फोटो नहीं होती)
-                let imageUrl = `https://images.unsplash.com/photo-1585829365234-78d9b6920551?auto=format&fit=crop&w=400&q=80`;
+            try {
+                const response = await fetch(proxyUrl);
+                const data = await response.json();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data.contents, "text/xml");
+                const items = xml.querySelectorAll("item");
 
-                const card = `
-                    <div class="news-card all ${category}">
-                        <img src="${imageUrl}" class="news-img">
-                        <div class="card-body">
-                            <span class="tag">${tagText}</span>
-                            <h2><a href="${link}" target="_blank">${title}</a></h2>
+                grid.innerHTML = ""; 
+
+                items.forEach((item, index) => {
+                    if(index > 19) return; // टॉप 20 खबरें
+
+                    const title = item.querySelector("title").textContent;
+                    const link = item.querySelector("link").textContent;
+                    // समय को सुंदर बनाना
+                    const pubDate = new Date(item.querySelector("pubDate").textContent);
+                    const timeString = pubDate.toLocaleTimeString('hi-IN', {hour: '2-digit', minute:'2-digit'});
+
+                    const card = `
+                        <div class="news-card">
+                            <span class="source-tag"><span class="source-dot"></span>${cat} News</span>
+                            <h3 class="news-title">
+                                <a href="${link}" target="_blank">${title}</a>
+                            </h3>
+                            <div class="news-footer">
+                                <span>🕒 आज, ${timeString}</span>
+                                <span style="color:var(--main-red); font-weight:bold;">पढ़ें →</span>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <span>📅 ${pubDate}</span>
-                            <a href="${link}" target="_blank" class="read-more">पूरा पढ़ें →</a>
-                        </div>
-                    </div>
-                `;
-                newsBox.innerHTML += card;
-            });
-        } catch (error) {
-            newsBox.innerHTML = "<p style='text-align:center;'>मंजीत भाई, न्यूज़ लोड होने में दिक्कत है। कल सुबह ठीक करेंगे!</p>";
+                    `;
+                    grid.innerHTML += card;
+                });
+            } catch (err) {
+                grid.innerHTML = '<div style="text-align:center; padding:40px;">नेटवर्क थोड़ा धीमा है, मंजीत भाई। रिफ्रेश बटन दबाएं!</div>';
+            }
         }
-    }
 
-    function filterNews(cat, el) {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        document.querySelectorAll('.news-card').forEach(card => {
-            card.style.display = (cat === 'all' || card.classList.contains(cat)) ? "block" : "none";
-        });
-    }
+        // पेज खुलते ही 'दुनिया' लोड करें
+        window.onload = () => loadNews('world');
+    </script>
 
-    window.onload = fetchNews;
-</script>
 </body>
 </html>
