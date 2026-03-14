@@ -3,103 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS TECH HUB | Ultra Fast</title>
+    <title>MS TECH HUB | Official News</title>
     <style>
-        :root { --red: #ce1126; --bg: #050505; --card: #121212; }
-        body { margin: 0; background: var(--bg); color: #fff; font-family: sans-serif; }
+        :root { --red: #d32f2f; --black: #121212; --gray: #f5f5f5; }
+        body { margin: 0; font-family: 'Roboto', sans-serif; background: var(--gray); color: #333; }
         
-        /* तेज़ हेडर */
-        .header { background: var(--red); padding: 15px; text-align: center; font-weight: bold; position: sticky; top: 0; z-index: 100; }
-        
+        /* प्रोफेशनल हेडर */
+        .navbar { background: white; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .navbar h1 { margin: 0; color: var(--red); font-size: 22px; font-weight: bold; }
+
         /* कैटेगरी मेनू */
-        .nav { display: flex; overflow-x: auto; background: #111; padding: 10px; gap: 10px; position: sticky; top: 50px; z-index: 99; border-bottom: 1px solid #222; }
-        .nav::-webkit-scrollbar { display: none; }
-        .btn { background: #222; color: #ccc; border: 1px solid #333; padding: 8px 18px; border-radius: 20px; cursor: pointer; white-space: nowrap; font-size: 13px; }
-        .btn.active { background: var(--red); color: #fff; border-color: var(--red); }
+        .nav-tabs { display: flex; overflow-x: auto; background: white; padding: 5px 10px; gap: 10px; border-bottom: 1px solid #ddd; }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: none; background: none; font-size: 14px; cursor: pointer; color: #555; font-weight: 500; white-space: nowrap; }
+        .tab.active { color: var(--red); border-bottom: 3px solid var(--red); }
 
-        /* न्यूज़ एरिया */
-        #news-grid { padding: 12px; max-width: 650px; margin: auto; }
-        .card { background: var(--card); border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 1px solid #222; transition: 0.2s; }
-        .card h3 { margin: 0; font-size: 16px; line-height: 1.5; color: #eee; }
-        .card a { text-decoration: none; color: inherit; }
-        .card .time { font-size: 11px; color: var(--red); margin-bottom: 8px; display: block; font-weight: bold; }
+        /* न्यूज़ फीड */
+        #feed { padding: 15px; max-width: 800px; margin: auto; }
+        .news-item { background: white; border-radius: 8px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+        .news-content { padding: 15px; }
+        .news-content h3 { margin: 0 0 10px; font-size: 18px; line-height: 1.4; color: #000; }
+        .news-content h3 a { text-decoration: none; color: inherit; }
+        .news-meta { font-size: 12px; color: #777; display: flex; justify-content: space-between; align-items: center; }
+        .source { color: var(--red); font-weight: bold; }
 
-        /* जब न्यूज़ लोड हो रही हो (Skeleton) */
-        .skeleton { height: 80px; background: #1a1a1a; margin-bottom: 15px; border-radius: 8px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        /* लोडिंग एनीमेशन */
+        .loading { text-align: center; padding: 50px; font-size: 16px; color: #777; }
     </style>
 </head>
 <body>
 
-<div class="header">MS TECH HUB OFFICIAL</div>
+<div class="navbar"><h1>MS TECH HUB</h1></div>
 
-<div class="nav">
-    <button class="btn active" onclick="loadNews('world', this)">🌍 वर्ल्ड</button>
-    <button class="btn" onclick="loadNews('india', this)">🇮🇳 भारत</button>
-    <button class="btn" onclick="loadNews('bihar', this)">🎯 बिहार</button>
-    <button class="btn" onclick="loadNews('tech', this)">💻 टेक</button>
-    <button class="btn" onclick="loadNews('cricket', this)">🏏 क्रिकेट</button>
+<div class="nav-tabs">
+    <button class="tab active" onclick="changeTab('world', this)">ताज़ा खबरें</button>
+    <button class="tab" onclick="changeTab('india', this)">भारत</button>
+    <button class="tab" onclick="changeTab('bihar', this)">बिहार</button>
+    <button class="tab" onclick="changeTab('technology', this)">टेक</button>
+    <button class="tab" onclick="changeTab('cricket', this)">क्रिकेट</button>
 </div>
 
-<div id="news-grid">
-    <div class="skeleton"></div>
-    <div class="skeleton"></div>
-    <div class="skeleton"></div>
-</div>
+<div id="feed"><div class="loading">खबरें आ रही हैं...</div></div>
 
 <script>
-    const topics = {
-        world: "world+news", india: "india+news", bihar: "bihar+news",
-        tech: "technology+news", cricket: "cricket+india"
+    const categoryMap = {
+        world: "world",
+        india: "nation",
+        bihar: "Bihar",
+        technology: "technology",
+        cricket: "sports"
     };
 
-    // Chrome में तेज़ चलाने के लिए Cache का इस्तेमाल
-    async function loadNews(cat, btn) {
-        const grid = document.getElementById('news-grid');
+    async function fetchNews(category) {
+        const feedContainer = document.getElementById('feed');
         
-        if(btn) {
-            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
+        // 1. लोकल स्टोरेज से तुरंत लोड करो (Instant Load)
+        const cached = localStorage.getItem('news_' + category);
+        if (cached) feedContainer.innerHTML = cached;
 
-        // 1. तुरंत पुराना डेटा दिखाओ (Zero Delay)
-        const cached = localStorage.getItem('ms_' + cat);
-        if(cached) grid.innerHTML = cached;
-        else grid.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div>';
-
-        // 2. ताज़ा न्यूज़ लाओ (Fast Proxy)
-        const rss = `https://news.google.com/rss/search?q=${topics[cat]}&hl=hi&gl=IN&ceid=IN:hi`;
-        const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(rss)}`;
+        // 2. प्रोफेशनल API का इस्तेमाल (RSS2JSON)
+        // यह Chrome की सुरक्षा नहीं तोड़ेगा और सुपर फ़ास्ट है
+        const rssUrl = `https://news.google.com/rss/search?q=${categoryMap[category]}&hl=hi&gl=IN&ceid=IN:hi`;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&api_key=00000000000000000000000000000000`; // Free key works too
 
         try {
-            const res = await fetch(proxy);
-            if(!res.ok) throw new Error();
-            const text = await res.text();
-            const xml = new DOMParser().parseFromString(text, "text/xml");
-            const items = xml.querySelectorAll("item");
-
-            let html = "";
-            items.forEach((item, i) => {
-                if(i > 10) return;
-                const title = item.querySelector("title").textContent;
-                const link = item.querySelector("link").textContent;
-                const date = new Date(item.querySelector("pubDate").textContent).toLocaleTimeString('hi-IN', {hour:'2-digit', minute:'2-digit'});
-
-                html += `<div class="card">
-                            <span class="time">🕒 ${date}</span>
-                            <h3><a href="${link}" target="_blank">${title}</a></h3>
-                         </div>`;
-            });
-
-            grid.innerHTML = html;
-            localStorage.setItem('ms_' + cat, html); // फ्यूचर के लिए सेव
-        } catch (e) {
-            console.log("Slow connection...");
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            
+            if (data.status === 'ok') {
+                let html = "";
+                data.items.forEach(item => {
+                    const date = new Date(item.pubDate).toLocaleTimeString('hi-IN', {hour: '2-digit', minute:'2-digit'});
+                    html += `
+                        <div class="news-item">
+                            <div class="news-content">
+                                <div class="news-meta">
+                                    <span class="source">${item.author || 'Google News'}</span>
+                                    <span>${date}</span>
+                                </div>
+                                <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                            </div>
+                        </div>`;
+                });
+                feedContainer.innerHTML = html;
+                localStorage.setItem('news_' + category, html);
+            }
+        } catch (error) {
+            console.error("News fetch failed");
         }
     }
 
-    // ऑटो स्टार्ट
-    window.onload = () => loadNews('world');
+    function changeTab(cat, btn) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        fetchNews(cat);
+    }
+
+    // पहली बार में खबरें लोड करें
+    window.onload = () => fetchNews('world');
 </script>
 
 </body>
