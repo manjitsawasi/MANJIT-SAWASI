@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जाबाज़ न्यूज़ | सबसे तेज़ सबसे आगे</title>
+    <style>
+        :root { --red: #c62828; --bg: #f0f2f5; --white: #ffffff; }
+        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #1c1e21; }
+
+        header { background: var(--red); color: white; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; }
+
+        .nav-container { background: var(--white); position: sticky; top: 56px; z-index: 999; border-bottom: 1px solid #ddd; overflow-x: auto; display: flex; padding: 10px; gap: 8px; scrollbar-width: none; }
+        .nav-container::-webkit-scrollbar { display: none; }
+        .filter-btn { background: #e4e6eb; border: none; padding: 8px 18px; border-radius: 20px; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap; transition: 0.3s; color: #4b4f56; }
+        .filter-btn.active { background: var(--red); color: white; }
+
+        #news-feed { padding: 15px; max-width: 700px; margin: auto; min-height: 80vh; }
+        .news-card { background: var(--white); border-radius: 12px; padding: 16px; margin-bottom: 15px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); border: 1px solid #ddd; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .category-tag { font-size: 10px; color: var(--red); font-weight: bold; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .news-title { font-size: 18px; line-height: 1.5; font-weight: 600; margin: 0 0 10px 0; color: #000; }
+        .news-title a { text-decoration: none; color: inherit; display: block; }
+        
+        .news-footer { font-size: 11px; color: #65676b; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid #f0f2f5; padding-top: 10px; }
+        .source-info { font-weight: bold; color: #1c1e21; }
+        .time-info { color: var(--red); font-weight: 600; }
+
+        .skeleton { height: 100px; background: #e4e6eb; border-radius: 12px; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .skeleton::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, #f2f3f5, transparent); animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        footer { text-align: center; padding: 20px; background: #333; color: white; font-size: 12px; margin-top: 20px; }
+
+        .refresh-btn { position: fixed; bottom: 20px; right: 20px; background: var(--red); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; font-size: 20px; z-index: 1000; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>जाबाज़ न्यूज़</h1>
+</header>
+
+<div class="nav-container">
+    <button class="filter-btn active" onclick="loadCategory('world', this)">🌍 सब खबरें</button>
+    <button class="filter-btn" onclick="loadCategory('india', this)">🇮🇳 भारत</button>
+    <button class="filter-btn" onclick="loadCategory('bihar', this)">🎯 बिहार</button>
+    <button class="filter-btn" onclick="loadCategory('tech', this)">💻 टेक</button>
+    <button class="filter-btn" onclick="loadCategory('cricket', this)">🏏 क्रिकेट</button>
+    <button class="filter-btn" onclick="loadCategory('entertainment', this)">🎬 मनोरंजन</button>
+</div>
+
+<div id="news-feed"></div>
+
+<footer>
+    <p>© 2026 <b>Manjit Sawasi</b> - जाबाज़ न्यूज़ नेटवर्क</p>
+    <p>Manjitsawasi.online | Made in Bihar</p>
+</footer>
+
+<button class="refresh-btn" onclick="location.reload()">🔄</button>
+
+<script>
+    const config = {
+        world: "world+news",
+        india: "india+latest+news+hindi",
+        bihar: "bihar+news+hindi",
+        tech: "technology+news+hindi",
+        cricket: "cricket+news+hindi",
+        entertainment: "bollywood+news+hindi"
+    };
+
+    function formatNewsDate(dateStr) {
+        const pubDate = new Date(dateStr);
+        const today = new Date();
+        const yesterday = new Date();
+        yesterday.setDate(today.getDate() - 1);
+
+        const isToday = pubDate.toDateString() === today.toDateString();
+        const isYesterday = pubDate.toDateString() === yesterday.toDateString();
+
+        const timeStr = pubDate.toLocaleTimeString('hi-IN', {hour: '2-digit', minute:'2-digit'});
+        
+        if (isToday) return `आज, ${timeStr}`;
+        if (isYesterday) return `कल, ${timeStr}`;
+        return `${pubDate.getDate()} ${pubDate.toLocaleString('hi-IN', {month:'short'})}, ${timeStr}`;
+    }
+
+    async function loadCategory(cat, btn) {
+        const feed = document.getElementById('news-feed');
+        if(btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        feed.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
+        
+        const rssUrl = `https://news.google.com/rss/search?q=${config[cat]}&hl=hi&gl=IN&ceid=IN:hi`;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+        
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            if (data.status === 'ok') {
+                // मंजीत भाई के लिए सॉर्टिंग लॉजिक: सबसे ताज़ा खबर सबसे ऊपर
+                const sortedItems = data.items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+                
+                let html = "";
+                sortedItems.forEach((item, index) => {
+                    if(index > 19) return; // टॉप 20 ताज़ा खबरें
+
+                    const displayDate = formatNewsDate(item.pubDate);
+                    const originalSource = item.title.split('-').pop().trim();
+                    const cleanTitle = item.title.replace(` - ${originalSource}`, "");
+
+                    html += `
+                        <div class="news-card">
+                            <span class="category-tag">${cat} news</span>
+                            <h3 class="news-title">
+                                <a href="${item.link}" target="_blank">${cleanTitle}</a>
+                            </h3>
+                            <div class="news-footer">
+                                <span class="source-info">📰 ${originalSource} via जाबाज़ न्यूज़</span>
+                                <span class="time-info">🕒 ${displayDate}</span>
+                            </div>
+                        </div>`;
+                });
+                feed.innerHTML = html;
+            } else { throw new Error(); }
+        } catch (error) {
+            feed.innerHTML = `<div style="text-align:center; padding:50px;"><p>मंजीत भाई, न्यूज़ लोड नहीं हो सकी!</p></div>`;
+        }
+    }
+    window.onload = () => loadCategory('world');
+</script>
+
+</body>
+</html>
