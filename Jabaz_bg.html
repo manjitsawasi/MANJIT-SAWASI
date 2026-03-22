@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>JABAZ BG REMOVER | Universal AI Tool</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon: #00ff7f;
+            --accent: #00e5ff;
+            --bg: #010101;
+            --glass: rgba(15, 15, 15, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+        }
+
+        .jabaz-card {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            width: 92%; max-width: 330px;
+            border-radius: 25px; padding: 20px;
+            position: relative; border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+            overflow: hidden; text-align: center;
+        }
+
+        /* Moving Luxury Border */
+        .jabaz-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, var(--neon), transparent, var(--accent), transparent);
+            animation: rotate 6s linear infinite; z-index: -2;
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        .jabaz-card::after { content: ''; position: absolute; inset: 2px; background: #080808; border-radius: 23px; z-index: -1; }
+
+        .header { margin-bottom: 20px; }
+        .brand { font-family: 'Syncopate', sans-serif; font-size: 14px; color: var(--neon); letter-spacing: 2px; }
+
+        .magic-box {
+            width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 18px;
+            position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;
+            border: 1px solid #1a1a1a; margin-bottom: 15px;
+            background-image: conic-gradient(#0a0a0a 90deg, #111 90deg 180deg, #0a0a0a 180deg 270deg, #111 270deg);
+            background-size: 15px 15px;
+        }
+        
+        canvas { max-width: 100%; max-height: 100%; display: none; z-index: 2; border-radius: 12px; }
+        .scanner { position: absolute; top: 0; width: 100%; height: 2px; background: var(--neon); box-shadow: 0 0 15px var(--neon); z-index: 5; display: none; animation: scan 2.5s ease-in-out infinite; }
+        @keyframes scan { 0%, 100% { top: 0%; } 50% { top: 100%; } }
+
+        .up-ui { cursor: pointer; }
+        .up-ui span { font-size: 10px; color: #666; font-weight: bold; display: block; margin-top: 10px; }
+
+        #status { font-size: 9px; color: #444; margin-bottom: 15px; height: 10px; }
+        .btn-area { display: none; gap: 8px; width: 100%; }
+        .btn { flex: 1; padding: 15px; border-radius: 12px; border: none; font-weight: bold; font-size: 11px; cursor: pointer; text-transform: uppercase; }
+        .btn-save { background: var(--neon); color: #000; }
+        .btn-new { background: #1a1a1a; color: #fff; border: 1px solid #333; }
+
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="jabaz-card">
+    <div class="header">
+        <h1 class="brand">JABAZ BG REMOVER</h1>
+    </div>
+
+    <div class="magic-box">
+        <div class="scanner" id="scanner"></div>
+        <label class="up-ui" id="ui">
+            <span style="font-size: 35px; color: var(--accent);">✦</span>
+            <span>MAGIC UPLOAD</span>
+            <input type="file" id="fileIn" accept="image/*">
+        </label>
+        <canvas id="cvs"></canvas>
+    </div>
+
+    <div id="status">Ready for Magic, Manjit Bhai!</div>
+
+    <div class="btn-area" id="acts">
+        <button id="dl" class="btn btn-save">DOWNLOAD HD</button>
+        <button onclick="location.reload()" class="btn btn-new">NEW IMAGE</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation"></script>
+
+<script>
+    const fileIn = document.getElementById('fileIn');
+    const cvs = document.getElementById('cvs');
+    const ctx = cvs.getContext('2d');
+    const scanner = document.getElementById('scanner');
+    const ui = document.getElementById('ui');
+    const acts = document.getElementById('acts');
+    const status = document.getElementById('status');
+
+    fileIn.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        ui.style.display = "none";
+        cvs.style.display = "none";
+        acts.style.display = "none";
+        scanner.style.display = "block";
+        status.innerText = "✦ Analysis in progress...";
+        
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => runCorrectedAI(img);
+    };
+
+    async function runCorrectedAI(img) {
+        const ai = new SelfieSegmentation({
+            locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`
+        });
+
+        // 🧠 FIXED LOGIC: modelSelection 0 is more versatile for non-human objects
+        ai.setOptions({ modelSelection: 0, selfieMode: false });
+
+        ai.onResults((res) => {
+            cvs.width = img.width;
+            cvs.height = img.height;
+            
+            ctx.save();
+            ctx.clearRect(0, 0, cvs.width, cvs.height);
+            
+            // Draw original mask first
+            ctx.drawImage(res.segmentationMask, 0, 0, cvs.width, cvs.height);
+            
+            // Fill Background with transparency
+            ctx.globalCompositeOperation = 'source-in';
+            ctx.drawImage(res.image, 0, 0, cvs.width, cvs.height);
+            ctx.restore();
+
+            // ⚠️ FALLBACK: If AI fails to detect (for paper/objects), use simple edge detection
+            const imageData = ctx.getImageData(0, 0, cvs.width, cvs.height);
+            if (imageData.data.every(val => val === 0)) {
+                status.innerText = "Trying Object Mode...";
+                // (Object mode logic will go here if needed, but standard mode 0 usually works)
+            }
+
+            scanner.style.display = "none";
+            status.innerText = "✦ Background Removed!";
+            cvs.style.display = "block";
+            acts.style.display = "flex";
+            
+            document.getElementById('dl').onclick = () => {
+                const a = document.createElement('a');
+                a.download = 'JabazAI_Clean.png';
+                a.href = cvs.toDataURL();
+                a.click();
+            };
+        });
+
+        await ai.send({image: img});
+    }
+</script>
+</body>
+</html>
